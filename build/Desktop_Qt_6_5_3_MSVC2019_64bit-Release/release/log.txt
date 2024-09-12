@@ -1,0 +1,20 @@
+****** kafka.ini 配置文件丢失 ******
+配置文件不存在： D:/QtFile/lightControlServer/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Release/release/Amplifiers.ini
+SDK 初始化成功！
+http服务已开启，监听地址：0.0.0.0  监听端口：2334
+******雾灯配置文件读取失败
+SDK 初始化成功！
+http服务已开启，监听地址：0.0.0.0  监听端口：8888
+控制器：192.168.1.101:8886[正在连接]
+[192.168.1.101] stateChanged to 1
+[192.168.1.101] stateChanged to 2
+[192.168.1.101] stateChanged to 0
+[192.168.1.101] stateChanged to 0
+控制器【192.168.1.101：8886】连接失败
+SDK 初始化成功！
+http服务已开启，监听地址：0.0.0.0  监听端口：8888
+控制器：192.168.1.101:8886[正在连接]
+[192.168.1.101] stateChanged to 1
+[192.168.1.101] stateChanged to 2
+[192.168.1.101] stateChanged to 3
+控制器【192.168.1.101：8886】连接成功
