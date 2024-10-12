@@ -17,7 +17,7 @@ class lightcontroll : public QObject
 {
     Q_OBJECT
 public:
-    explicit lightcontroll(QString topic, QString ip, int port, int sendingInterval,
+    explicit lightcontroll(QString connectType, QString topic, QString ip, int port, int sendingInterval,
                            int sendingCount, QString version, QObject *parent = nullptr);
     ~lightcontroll();
 

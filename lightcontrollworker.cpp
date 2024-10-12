@@ -7,7 +7,7 @@
 #include <QDateTime>
 #include "lightcontrollworker.h"
 
-lightControllWorker::lightControllWorker(QString topic, QString ip, int port, int sendingInterval,
+lightControllWorker::lightControllWorker(QString connectType, QString topic, QString ip, int port, int sendingInterval,
                                          int sendingCount, QString version, QObject *parent)
     : QObject{parent}
     , m_sendingInterval(sendingInterval)    //单位 ms
@@ -22,22 +22,20 @@ lightControllWorker::lightControllWorker(QString topic, QString ip, int port, in
     , m_flicker("0,0")
     , m_luminance(30)
     , m_version(version)
+    , m_connectType(connectType)
 {
-    m_tcpSocket = new QTcpSocket(this);
-    connect(m_tcpSocket,SIGNAL(readyRead()), this, SLOT(slotReadyRead()));
-    //connect(m_tcpSocket, SIGNAL(disconnected()));
-    connect(m_tcpSocket, &QTcpSocket::stateChanged, [this](){
-        emit showMsg(QString("[%1] stateChanged to %2").arg(m_controllIp).arg(m_tcpSocket->state()));
-    });
-    connect(m_tcpSocket, &QTcpSocket::disconnected, [this](){
-        emit showMsg(QString("[%1] disconnected!").arg(m_controllIp));
-    });
 
     //m_timer.setInterval(30 * 60 * 1000);
     //m_timer.start();
     //connect(&m_timer, &QTimer::timeout, this, [/*this*/]{
         //slotSendDatagram(m_lastList, m_sbbh, m_name);
     //});
+
+    if(m_connectType == "TCP"){
+        initTcpSocket();
+    }else{
+        initUcpSocket();
+    }
 }
 
 lightControllWorker::~lightControllWorker()
@@ -217,7 +215,6 @@ void lightControllWorker::SendDatagram2(QStringList sendDataList, QString Device
     QJsonObject topic2Json;
     QJsonDocument jsonDoc;
     QEventLoop eventloop;
-    QStringList colorCmdList;
 
     json.insert("stateId", m_deviceId);
     json.insert("deviceId", m_deviceId);
@@ -251,7 +248,7 @@ void lightControllWorker::SendDatagram2(QStringList sendDataList, QString Device
                 m_tcpSocket->write(QByteArray::fromHex(cmd.toLatin1()));
                 m_tcpSocket->waitForBytesWritten();
                 emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp, cmd));
-                sendDataList.removeAt(i);
+                //sendDataList.removeAt(i);
             }
         }
 
@@ -259,7 +256,9 @@ void lightControllWorker::SendDatagram2(QStringList sendDataList, QString Device
             tmp.clear();
             for(int i = 0; i<m_sendingCount && !sendDataList.isEmpty() ; i++){
                 QString firstData = sendDataList.first();
-                tmp = tmp + firstData + " ";
+                if(!firstData.contains("FF 40")){
+                    tmp = tmp + firstData + " ";
+                }
                 sendDataList.removeFirst();
             }
 
@@ -270,6 +269,213 @@ void lightControllWorker::SendDatagram2(QStringList sendDataList, QString Device
         json.insert("deviceState", "1");
     }
 
+    jsonDoc.setObject(json);
+
+    emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
+    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+}
+
+void lightControllWorker::SendDatagram1Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int Luminance, QString FlickerList)
+{
+    if(Luminance != -1) m_luminance = Luminance;
+    if(FlickerList != "no") m_flicker = FlickerList;
+
+    m_currentColor = "橙";
+    m_deviceId = DeviceId;
+    m_contentStr = ContentStr;
+    m_lastList = sendDataList;
+    QString tmp;
+    QJsonObject json;
+    QJsonObject topic2Json;
+    QJsonDocument jsonDoc;
+    QEventLoop eventloop;
+
+
+    json.insert("stateId", m_deviceId);
+    json.insert("deviceId", m_deviceId);
+    json.insert("checkDate", QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+    json.insert("handleState", "1");
+
+    if(ContentStr.isEmpty()) ContentStr = "关闭";
+    json.insert("value", ContentStr);
+    json.insert("source", "1");
+    json.insert("color", m_currentColor);
+    json.insert("light", Luminance);
+    json.insert("pl", m_flicker);
+
+
+    //    判断是否在线
+    // if(!connectControll()){
+    //     json.insert("deviceState", "2");
+    //     emit showMsg(QString("控制器：%1[网络故障]").arg(m_controllIp));
+    //     jsonDoc.setObject(json);
+    //     emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
+    //     emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+    //     return;
+    // }
+
+    //qDebug() << (sendDataList);
+
+    while(!sendDataList.isEmpty()){
+        // 将闪烁 和 亮度 和 颜色 命令发送，并休眠 10s
+        if(    sendDataList.first().toUpper().contains("FF 66 FF")
+            || sendDataList.first().toUpper().contains("FF 77 FF")
+            || sendDataList.first().toUpper().contains("FF 88 FF")
+            || sendDataList.first().toUpper().contains("FF 40 FF")  )
+        {
+            m_udpSocket->writeDatagram(QByteArray::fromHex(sendDataList.first().toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+            //m_udpSocket->waitForBytesWritten();
+            emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp).arg(sendDataList.first()));
+
+            QTimer::singleShot(1000, &eventloop, SLOT(quit()));
+            eventloop.exec();
+            sendDataList.removeFirst();
+            continue;
+        }
+
+        for(int i = 0; i<m_sendingCount && !sendDataList.isEmpty() ; i++){
+            tmp = tmp + sendDataList.first() + " ";
+            sendDataList.removeFirst();
+        }
+
+        m_udpSocket->writeDatagram(QByteArray::fromHex(tmp.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+        //m_udpSocket->waitForBytesWritten();
+        emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp).arg(tmp));
+        //msleep(m_sendingInterval);
+
+        QTimer::singleShot(m_sendingInterval, &eventloop, SLOT(quit()));
+        eventloop.exec();
+        m_udpSocket->writeDatagram(QByteArray::fromHex(tmp.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+        //m_udpSocket->waitForBytesWritten();
+        //msleep(m_sendingInterval);
+
+        QTimer::singleShot(m_sendingInterval, &eventloop, SLOT(quit()));
+        eventloop.exec();
+        m_udpSocket->writeDatagram(QByteArray::fromHex(tmp.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+        //m_udpSocket->waitForBytesWritten();
+
+        QTimer::singleShot(m_sendingInterval, &eventloop, SLOT(quit()));
+        eventloop.exec();
+        m_udpSocket->writeDatagram(QByteArray::fromHex(tmp.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+        //m_udpSocket->waitForBytesWritten();
+
+        QTimer::singleShot(m_sendingInterval, &eventloop, SLOT(quit()));
+        eventloop.exec();
+        m_udpSocket->writeDatagram(QByteArray::fromHex(tmp.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+        //m_udpSocket->waitForBytesWritten();
+
+        tmp.clear();
+    }
+    json.insert("deviceState", "1");
+
+
+    jsonDoc.setObject(json);
+    emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
+    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+}
+
+void lightControllWorker::SendDatagram2Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int fontColor, int Luminance, QString FlickerList)
+{
+    if(Luminance != -1) m_luminance = Luminance;
+    if(FlickerList != "no") m_flicker = FlickerList;
+    //1红 2绿 3蓝 4白 5黄 6青 7洋红 8黑 9橙
+    switch(fontColor){
+    case 1:
+        m_currentColor = "红";
+        break;
+    case 2:
+        m_currentColor = "绿";
+        break;
+    case 3:
+        m_currentColor = "蓝";
+        break;
+    case 4:
+        m_currentColor = "白";
+        break;
+    case 5:
+        m_currentColor = "黄";
+        break;
+    case 6:
+        m_currentColor = "青";
+        break;
+    case 7:
+        m_currentColor = "洋";
+        break;
+    case 8:
+        m_currentColor = "黑";
+        break;
+    case 9:
+        m_currentColor = "橙";
+        break;
+    case -1:
+        break;
+    default:
+        m_currentColor = "橙";
+        break;
+    }
+
+    m_deviceId = DeviceId;
+    m_contentStr = ContentStr;
+    m_lastList = sendDataList;
+
+    QString tmp;
+    QJsonObject json;
+    QJsonObject topic2Json;
+    QJsonDocument jsonDoc;
+    QEventLoop eventloop;
+    QStringList colorCmdList;
+
+    json.insert("stateId", m_deviceId);
+    json.insert("deviceId", m_deviceId);
+    json.insert("checkDate", QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+    json.insert("handleState", "1");
+
+    if(ContentStr.isEmpty()) ContentStr = "关闭";
+    json.insert("value", ContentStr);
+    json.insert("source", "1");
+    json.insert("color", m_currentColor);
+    json.insert("light", m_luminance);
+    json.insert("pl", m_flicker);
+
+
+    //    判断是否在线
+    // if(!connectControll()){
+    //     json.insert("deviceState", "2");
+    //     emit showMsg(QString("控制器：%1[网络故障]").arg(m_controllIp));
+    //     jsonDoc.setObject(json);
+    //     emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
+    //     emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+    //     return;
+    // }
+
+    for(int i=0; i<sendDataList.size(); i++){
+
+        QString cmd = sendDataList.at(i);
+        if(cmd.contains("FF 40")){
+            m_udpSocket->writeDatagram(QByteArray::fromHex(cmd.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+            //m_udpSocket->waitForBytesWritten();
+            emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp, cmd));
+        }
+    }
+
+    //qDebug() << QString(" ******************* debug ******************* Version  %1");
+
+    while(!sendDataList.isEmpty()){
+        tmp.clear();
+        for(int i = 0; i<m_sendingCount && !sendDataList.isEmpty() ; i++){
+            QString firstData = sendDataList.first();
+            if(!firstData.contains("FF 40")){
+                tmp = tmp + firstData + " ";
+            }
+            sendDataList.removeFirst();
+        }
+
+        m_udpSocket->writeDatagram(QByteArray::fromHex(tmp.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+        //m_udpSocket->waitForBytesWritten();
+        emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp, tmp));
+    }
+
+    json.insert("deviceState", "1");
     jsonDoc.setObject(json);
 
     emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
@@ -310,7 +516,7 @@ QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString
         jsonTmp.insert("state", "1");
         jsonTmp.insert("type", "1");
         jsonTmp.insert("pl", m_flicker);
-        qDebug() << "FlickerList: " << m_flicker;
+        //qDebug() << "FlickerList: " << m_flicker;
         jsonTmp.insert("time", QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
 
         jsonArray << jsonTmp;
@@ -343,13 +549,46 @@ QString lightControllWorker::hex2QStr(QString hex)
     return m_outstr;
 }
 
+void lightControllWorker::initTcpSocket()
+{
+    m_tcpSocket = new QTcpSocket(this);
+    connect(m_tcpSocket,SIGNAL(readyRead()), this, SLOT(slotReadyRead()));
+    //connect(m_tcpSocket, SIGNAL(disconnected()));
+    connect(m_tcpSocket, &QTcpSocket::stateChanged, [this](){
+        emit showMsg(QString("[%1] stateChanged to %2").arg(m_controllIp).arg(m_tcpSocket->state()));
+    });
+    connect(m_tcpSocket, &QTcpSocket::disconnected, [this](){
+        emit showMsg(QString("[%1] disconnected!").arg(m_controllIp));
+    });
+
+}
+
+void lightControllWorker::initUcpSocket()
+{
+    m_udpSocket = new QUdpSocket(this);
+    connect(m_udpSocket,SIGNAL(readyRead()), this, SLOT(slotReadyRead()));
+    //connect(m_tcpSocket, SIGNAL(disconnected()));
+    // connect(m_tcpSocket, &QUdpSocket::stateChanged, [this](){
+    //     emit showMsg(QString("[%1] stateChanged to %2").arg(m_controllIp).arg(m_tcpSocket->state()));
+    // });
+    // connect(m_tcpSocket, &QUdpSocket::disconnected, [this](){
+    //     emit showMsg(QString("[%1] disconnected!").arg(m_controllIp));
+    // });
+
+}
+
 void lightControllWorker::slotSendDatagram(QStringList sendDataList, QString DeviceId, QString ContentStr, int version, int fontColor, int Luminance, QString FlickerList)
 {
-
     if(version == 1){
-        SendDatagram1(sendDataList, DeviceId, ContentStr, Luminance, FlickerList);
+        m_connectType == "TCP"
+            ? SendDatagram1(sendDataList, DeviceId, ContentStr, Luminance, FlickerList)
+            : SendDatagram1Udp(sendDataList, DeviceId, ContentStr, Luminance, FlickerList);
+
     }else if(version == 2){
-        SendDatagram2(sendDataList, DeviceId, ContentStr, fontColor, Luminance, FlickerList);
+        m_connectType == "TCP"
+            ? SendDatagram2(sendDataList, DeviceId, ContentStr, fontColor, Luminance, FlickerList)
+            : SendDatagram2Udp(sendDataList, DeviceId, ContentStr, fontColor, Luminance, FlickerList);
+
     }
 }
 
@@ -366,5 +605,7 @@ void lightControllWorker::slotSetIntervalAndCount(int sendingInterval, int sendi
 
 void lightControllWorker::slotConnectToControl()
 {
-    connectControll();
+    if(m_connectType == "TCP"){
+        connectControll();
+    }
 }

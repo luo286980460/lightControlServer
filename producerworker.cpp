@@ -62,6 +62,7 @@ void producerWorker::slotProduceMessvoidJson(QString strJson, QString strKey)
     RdKafka::ErrorCode resp;
 
     if(producer){
+        //qDebug() << "********* debug1 *********";
         resp = producer->produce(topic, partition,
                       RdKafka::Producer::RK_MSG_COPY /* Copy payload */,
                       const_cast<char *>(message.c_str()), message.size(),
@@ -74,7 +75,9 @@ void producerWorker::slotProduceMessvoidJson(QString strJson, QString strKey)
             qDebug()<< "% Produced message (" << message.size() << " bytes)";
 
             producer->poll(0);
+        //qDebug() << "********* debug2 *********";
     }
+    //qDebug() << "********* debug3 *********";
 }
 
 void producerWorker::init()

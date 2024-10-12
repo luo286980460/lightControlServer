@@ -413,15 +413,7 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
     }
 
     emit controller->sigSendDatagram(sendDataList, DeviceId, name, version, fontColor, Luminance, FlickerList);
-    //showMsg("***************" + name);
-    /*QString tmp = "\n";
-    int i=1;
-    foreach(QString str, sendDataList){
-        tmp += QString("[%1]  ").arg(str);
-        if(((i++) % 3) == 0) tmp += "\n";
-    }
-    tmp.removeLast();
-    showMsg(tmp);*/
+
     return backJson;
 }
 

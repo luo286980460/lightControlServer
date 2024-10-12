@@ -1,7 +1,7 @@
 #include "lightcontroll.h"
 #include "lightcontrollworker.h"
 
-lightcontroll::lightcontroll(QString topic, QString ip, int port, int sendingInterval,
+lightcontroll::lightcontroll(QString connectType, QString topic, QString ip, int port, int sendingInterval,
                               int sendingCount, QString version, QObject *parent)
     : QObject{parent}
     , m_controllIp(ip)                      //控制器 ip
@@ -11,7 +11,7 @@ lightcontroll::lightcontroll(QString topic, QString ip, int port, int sendingInt
     , m_topic(topic)
     , m_version(version)
 {
-    m_work = new lightControllWorker(m_topic, ip, port, m_sendingInterval, m_sendingCount, version);
+    m_work = new lightControllWorker(connectType, m_topic, ip, port, m_sendingInterval, m_sendingCount, version);
     m_work->moveToThread(&m_workerThread);
     connect(&m_workerThread, &QThread::finished, m_work, &QObject::deleteLater);
 

@@ -37,7 +37,7 @@ Widget::Widget(QWidget *parent)
     ui->setupUi(this);
     ui->testBtn->hide();
     setFixedSize(size());
-    setWindowTitle("前端设备控制端_2024年09月1222日_by:ls");//.arg(QDateTime::currentDateTime().toString("yyyy年MM月dd日hh时mm分ss秒")));
+    setWindowTitle("前端设备控制服务_2024年10月12日_by:ls");//.arg(QDateTime::currentDateTime().toString("yyyy年MM月dd日hh时mm分ss秒")));
     initSystemTray();   // 初始化系统托盘
     //initRoadState();    // 初始化车道开启状态
 
@@ -112,7 +112,7 @@ void Widget::openHttpServer()
     connect(m_httpServer, &MyHttpServer::sigleUpdateControllerUi, this, &Widget::slotUpdateControllerUi);
     connect(m_httpServer, &MyHttpServer::signalUpdateFF88, this, &Widget::slotUpdateFF88);
     connect(m_httpServer, &MyHttpServer::signalWrite2Kafka, this, &Widget::write2Kafka);
-    m_httpServer->create(QHostAddress::Any, m_settings->value("httpServer/httpServerPort", 2334).toInt());
+    m_httpServer->create(QHostAddress::Any, m_settings->value("httpServer/httpServerPort", 8886).toInt());
 
     openControlls();
 
@@ -148,51 +148,6 @@ void Widget::openProducer()
 
 void Widget::openControlls()
 {
-//    if(m_lightControllList.size() != 0)
-//        qDeleteAll(m_lightControllList);
-//    m_lightControllList.clear();
-//    m_controllCount = 0;
-
-//    QString iniPath = QCoreApplication::applicationDirPath() + INIFILE_LIGHT;
-//    if(!QFileInfo::exists(iniPath)){
-//        showMsg("******雾灯配置文件读取失败");
-//        return;
-//    }
-//    QSettings settings(QCoreApplication::applicationDirPath() + INIFILE_LIGHT, QSettings::IniFormat);
-//    m_controllCount = settings.value("Controllers/ControllersCount").toInt();
-
-//    //获取发送间隔 和 发送命令数量
-//    int sendingInterval = settings.value(QString("Controllers/SendingInterval"), 500).toInt();
-//    int sendingCount = settings.value(QString("Controllers/SendingCount"), 5).toInt();
-//    QString topic = settings.value("Controllers/Topic", "test_ls").toString();      //控制器 主题
-
-//    for(int i=0; i<m_controllCount; i++){
-//        lightcontroll* controll;    //控制器
-//        QString controllIp = settings.value(QString("Controllers/Ip%1").arg(i+1,2,10,QLatin1Char('0'))).toString();   //控制器 IP
-//        int controllPort = settings.value(QString("Controllers/Port%1").arg(i+1,2,10,QLatin1Char('0'))).toInt();      //控制器 port
-
-//        //创建控制器
-//        controll = new lightcontroll(topic, controllIp, controllPort, sendingInterval, sendingCount, this);
-//        m_lightControllList.append(controll);
-
-//        connect(controll, SIGNAL(showMsg(QString)), this, SLOT(showMsg(QString)));
-//        connect(this, &Widget::write2Light, controll, &lightcontroll::sigSendDatagram);
-//        connect(controll, SIGNAL(write2Kafka(QString,QString,QString)), this, SIGNAL(write2Kafka(QString,QString,QString)));
-
-//        controll->start();
-//        emit controll->sigConnectToControl();
-
-//        /*if(!controll->connectControll()){
-//            emit showMsg("控制器：" + controllIp + " 连接失败");
-//            emit sigleUpdateControllerUi( "控制器：" + controllIp + " 离线");
-//        }else{
-//            emit showMsg("控制器：" + controllIp + " 连接成功");
-//            emit sigleUpdateControllerUi( "控制器：" + controllIp + " 在线");
-//        }*/
-
-//    }
-
-
     if(m_lightControllList.size() != 0)
             qDeleteAll(m_lightControllList);
     m_lightControllList.clear();
@@ -207,9 +162,14 @@ void Widget::openControlls()
     m_controllCount = settings.value("Controllers/ControllersCount").toInt();
 
     //获取发送间隔 和 发送命令数量
+    QString ConnectType = settings.value("Controllers/ConnectType", "UDP").toString().toUpper();//控制器 连接方式
     int sendingInterval = settings.value(QString("Controllers/SendingInterval"), 500).toInt();
     int sendingCount = settings.value(QString("Controllers/SendingCount"), 5).toInt();
     QString topic = settings.value("Controllers/Topic", "test_ls").toString();      //控制器 主题
+
+    if(ConnectType != "UDP" && ConnectType != "TCP" ){
+        ConnectType = "UDP";
+    }
 
     for(int i=0; i<m_controllCount; i++){
             lightcontroll* controll;    //控制器
@@ -218,7 +178,7 @@ void Widget::openControlls()
             QString version = settings.value(QString("Controllers/Version%1").arg(i+1,2,10,QLatin1Char('0')), "1").toString();
 
             //创建控制器
-            controll = new lightcontroll(topic, controllIp, controllPort, sendingInterval, sendingCount, version, this);
+            controll = new lightcontroll(ConnectType, topic, controllIp, controllPort, sendingInterval, sendingCount, version, this);
             m_lightControllList.append(controll);
 
             connect(controll, SIGNAL(showMsg(QString)), this, SLOT(showMsg(QString)));
