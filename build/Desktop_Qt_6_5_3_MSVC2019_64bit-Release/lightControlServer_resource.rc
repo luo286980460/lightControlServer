@@ -3,8 +3,8 @@
 IDI_ICON1	ICON	"D:\\QtFile\\lightControlServer\\title.ico"
 
 VS_VERSION_INFO VERSIONINFO
-	FILEVERSION 2024,09,12_by:ls,0
-	PRODUCTVERSION 2024,09,12_by:ls,0
+	FILEVERSION 2024,10,31_by:ls,0
+	PRODUCTVERSION 2024,10,31_by:ls,0
 	FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
 	FILEFLAGS VS_FF_DEBUG
@@ -21,11 +21,11 @@ VS_VERSION_INFO VERSIONINFO
 			BEGIN
 				VALUE "CompanyName", "\0"
 				VALUE "FileDescription", "\0"
-				VALUE "FileVersion", "2024.09.12_by:ls.0\0"
+				VALUE "FileVersion", "2024.10.31_by:ls.0\0"
 				VALUE "LegalCopyright", "\0"
 				VALUE "OriginalFilename", "lightControlServer.exe\0"
 				VALUE "ProductName", "lightControlServer\0"
-				VALUE "ProductVersion", "2024.09.12_by:ls.0\0"
+				VALUE "ProductVersion", "2024.10.31_by:ls.0\0"
 				VALUE "InternalName", "\0"
 				VALUE "Comments", "\0"
 				VALUE "LegalTrademarks", "\0"

@@ -13,7 +13,7 @@ CONFIG += c++17
 QMAKE_PROJECT_DEPTH = 0
 
 RC_ICONS = title.ico
-VERSION = 2024.10.12_by:ls
+VERSION = 2024.10.31_by:ls
 
 SOURCES += \
     amplifier.cpp \

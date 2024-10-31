@@ -28,7 +28,7 @@ public:
 
 signals:
     void showMsg(QString);
-    void sigSendDatagram(QStringList sendDataList, QString DeviceId, QString ContentStr, int version, int fontColor, int Luminance, QString FlickerList);
+    void sigSendDatagram(QStringList sendDataList, QString DeviceId, QString ContentStr, int version, int fontColor, int Luminance, QString FlickerList, int TermIdSize);
     void siglSetIntervalAndCount(int m_sendingInterval = 500, int m_sendingCount = 10);
     void sigConnectToControl();
     void write2Kafka(QString topic, QString strJson, QString strKey);

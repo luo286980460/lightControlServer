@@ -54,6 +54,7 @@ static constexpr auto qt_meta_stringdata_CLASSlightControllWorkerENDCLASS = QtMo
     "fontColor",
     "Luminance",
     "FlickerList",
+    "TermIdSize",
     "slotReadyRead",
     "slotSetIntervalAndCount",
     "sendingInterval",
@@ -62,7 +63,7 @@ static constexpr auto qt_meta_stringdata_CLASSlightControllWorkerENDCLASS = QtMo
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t {
-    uint offsetsAndSizes[42];
+    uint offsetsAndSizes[44];
     char stringdata0[20];
     char stringdata1[8];
     char stringdata2[1];
@@ -79,11 +80,12 @@ struct qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t {
     char stringdata13[10];
     char stringdata14[10];
     char stringdata15[12];
-    char stringdata16[14];
-    char stringdata17[24];
-    char stringdata18[16];
-    char stringdata19[13];
-    char stringdata20[21];
+    char stringdata16[11];
+    char stringdata17[14];
+    char stringdata18[24];
+    char stringdata19[16];
+    char stringdata20[13];
+    char stringdata21[21];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -105,11 +107,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t q
         QT_MOC_LITERAL(135, 9),  // "fontColor"
         QT_MOC_LITERAL(145, 9),  // "Luminance"
         QT_MOC_LITERAL(155, 11),  // "FlickerList"
-        QT_MOC_LITERAL(167, 13),  // "slotReadyRead"
-        QT_MOC_LITERAL(181, 23),  // "slotSetIntervalAndCount"
-        QT_MOC_LITERAL(205, 15),  // "sendingInterval"
-        QT_MOC_LITERAL(221, 12),  // "sendingCount"
-        QT_MOC_LITERAL(234, 20)   // "slotConnectToControl"
+        QT_MOC_LITERAL(167, 10),  // "TermIdSize"
+        QT_MOC_LITERAL(178, 13),  // "slotReadyRead"
+        QT_MOC_LITERAL(192, 23),  // "slotSetIntervalAndCount"
+        QT_MOC_LITERAL(216, 15),  // "sendingInterval"
+        QT_MOC_LITERAL(232, 12),  // "sendingCount"
+        QT_MOC_LITERAL(245, 20)   // "slotConnectToControl"
     },
     "lightControllWorker",
     "showMsg",
@@ -127,6 +130,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t q
     "fontColor",
     "Luminance",
     "FlickerList",
+    "TermIdSize",
     "slotReadyRead",
     "slotSetIntervalAndCount",
     "sendingInterval",
@@ -156,10 +160,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSlightControllWorkerENDCLASS[] = 
        4,    3,   62,    2, 0x06,    5 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       8,    7,   69,    2, 0x0a,    9 /* Public */,
-      16,    0,   84,    2, 0x0a,   17 /* Public */,
-      17,    2,   85,    2, 0x0a,   18 /* Public */,
-      20,    0,   90,    2, 0x0a,   21 /* Public */,
+       8,    8,   69,    2, 0x0a,    9 /* Public */,
+      17,    0,   86,    2, 0x0a,   18 /* Public */,
+      18,    2,   87,    2, 0x0a,   19 /* Public */,
+      21,    0,   92,    2, 0x0a,   22 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
@@ -167,9 +171,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSlightControllWorkerENDCLASS[] = 
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    5,    6,    7,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QStringList, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString,    9,   10,   11,   12,   13,   14,   15,
+    QMetaType::Void, QMetaType::QStringList, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::Int,    9,   10,   11,   12,   13,   14,   15,   16,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   18,   19,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   19,   20,
     QMetaType::Void,
 
        0        // eod
@@ -204,6 +208,7 @@ Q_CONSTINIT const QMetaObject lightControllWorker::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'slotReadyRead'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'slotSetIntervalAndCount'
@@ -225,7 +230,7 @@ void lightControllWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         case 0: _t->showMsg((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 1: _t->sigReceiveData((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
         case 2: _t->write2Kafka((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
-        case 3: _t->slotSendDatagram((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[7]))); break;
+        case 3: _t->slotSendDatagram((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[7])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[8]))); break;
         case 4: _t->slotReadyRead(); break;
         case 5: _t->slotSetIntervalAndCount((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 6: _t->slotConnectToControl(); break;

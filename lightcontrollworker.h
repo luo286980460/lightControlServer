@@ -17,12 +17,12 @@ public:
     bool connectControll();             //连接
     //void disconnectControll();        //断连
 
-    void SendDatagram1(QStringList sendDataList, QString DeviceId, QString ContentStr, int Luminance, QString FlickerList);
-    void SendDatagram2(QStringList sendDataList, QString DeviceId, QString ContentStr, int fontColor, int Luminance, QString FlickerList);
-    void SendDatagram1Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int Luminance, QString FlickerList);
-    void SendDatagram2Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int fontColor, int Luminance, QString FlickerList);
+    void SendDatagram1(QStringList sendDataList, QString DeviceId, QString ContentStr, int Luminance, QString FlickerList, int TermIdSize);
+    void SendDatagram2(QStringList sendDataList, QString DeviceId, QString ContentStr, int fontColor, int Luminance, QString FlickerList, int TermIdSize);
+    void SendDatagram1Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int Luminance, QString FlickerList, int TermIdSize);
+    void SendDatagram2Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int fontColor, int Luminance, QString FlickerList, int TermIdSize);
 
-    QJsonObject getTopic2Json(QStringList sendDataList, QString DeviceId);
+    QJsonObject getTopic2Json(QStringList sendDataList, QString DeviceId, int TermIdSize);
     QString hex2QStr(QString hex);
 
 private:
@@ -35,7 +35,7 @@ signals:
     void write2Kafka(QString topic, QString strJson, QString strKey);
 
 public slots:
-    void slotSendDatagram(QStringList sendDataList, QString DeviceId, QString ContentStr, int version, int fontColor, int Luminance, QString FlickerList);    //发送数据
+    void slotSendDatagram(QStringList sendDataList, QString DeviceId, QString ContentStr, int version, int fontColor, int Luminance, QString FlickerList, int TermIdSize);    //发送数据
     void slotReadyRead();
     void slotSetIntervalAndCount(int sendingInterval, int sendingCount);
     void slotConnectToControl();

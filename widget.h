@@ -68,7 +68,7 @@ signals:
      *  车牌照：
     */
     void write2Screen(QString ip, int type, QString plate);
-    void write2Light(QStringList sendDataList, QString sbbh, QString name, int version, int color, int light, QString pl);
+    void write2Light(QStringList sendDataList, QString sbbh, QString name, int version, int color, int light, QString pl, int TermIdSize);
     void setLightIntAndCount(int sendingInterval, int sendingCount);
     //void signalUpdateScreenData(QString sbbh);
     void signalUpDateScreenDefauleContent(QString state, QString defaultContent, QString TermIp);

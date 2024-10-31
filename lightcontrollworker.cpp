@@ -62,8 +62,9 @@ bool lightControllWorker::connectControll()
     }
 }
 
-void lightControllWorker::SendDatagram1(QStringList sendDataList, QString DeviceId, QString ContentStr, int Luminance, QString FlickerList)
+void lightControllWorker::SendDatagram1(QStringList sendDataList, QString DeviceId, QString ContentStr, int Luminance, QString FlickerList, int TermIdSize)
 {
+    QStringList sendDataListTmp = sendDataList;
     if(Luminance != -1) m_luminance = Luminance;
     if(FlickerList != "no") m_flicker = FlickerList;
 
@@ -91,14 +92,14 @@ void lightControllWorker::SendDatagram1(QStringList sendDataList, QString Device
     json.insert("pl", m_flicker);
 
     if(m_tcpSocket && m_tcpSocket->state() != QAbstractSocket::ConnectedState){
-        qDebug() << m_tcpSocket->state();
+        //qDebug() << m_tcpSocket->state();
 
         if(!connectControll()){
             json.insert("deviceState", "2");
             emit showMsg(QString("控制器：%1[网络故障]").arg(m_controllIp));
             jsonDoc.setObject(json);
             emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
-            emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+            emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataListTmp, DeviceId, TermIdSize)).toJson(), "light");
             return;
         }
     }
@@ -106,7 +107,7 @@ void lightControllWorker::SendDatagram1(QStringList sendDataList, QString Device
     //qDebug() << (sendDataList);
 
     if(m_tcpSocket && m_tcpSocket->state() == QAbstractSocket::ConnectedState){
-        qDebug() << m_tcpSocket->state();
+        //qDebug() << m_tcpSocket->state();
         while(!sendDataList.isEmpty()){
             // 将闪烁 和 亮度 和 颜色 命令发送，并休眠 10s
             if(    sendDataList.first().toUpper().contains("FF 66 FF")
@@ -163,11 +164,12 @@ void lightControllWorker::SendDatagram1(QStringList sendDataList, QString Device
 
     jsonDoc.setObject(json);
     emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
-    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataListTmp, DeviceId, TermIdSize)).toJson(), "light");
 }
 
-void lightControllWorker::SendDatagram2(QStringList sendDataList, QString DeviceId, QString ContentStr, int fontColor, int Luminance, QString FlickerList)
+void lightControllWorker::SendDatagram2(QStringList sendDataList, QString DeviceId, QString ContentStr, int fontColor, int Luminance, QString FlickerList, int TermIdSize)
 {
+    QStringList sendDataListTmp = sendDataList;
     if(Luminance != -1) m_luminance = Luminance;
     if(FlickerList != "no") m_flicker = FlickerList;
     //1红 2绿 3蓝 4白 5黄 6青 7洋红 8黑 9橙
@@ -235,7 +237,7 @@ void lightControllWorker::SendDatagram2(QStringList sendDataList, QString Device
             emit showMsg(QString("控制器：%1[网络故障]").arg(m_controllIp));
             jsonDoc.setObject(json);
             emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
-            emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+            emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataListTmp, DeviceId, TermIdSize)).toJson(), "light");
             return;
         }
     }
@@ -272,11 +274,12 @@ void lightControllWorker::SendDatagram2(QStringList sendDataList, QString Device
     jsonDoc.setObject(json);
 
     emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
-    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataListTmp, DeviceId, TermIdSize)).toJson(), "light");
 }
 
-void lightControllWorker::SendDatagram1Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int Luminance, QString FlickerList)
+void lightControllWorker::SendDatagram1Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int Luminance, QString FlickerList, int TermIdSize)
 {
+    QStringList sendDataListTmp = sendDataList;
     if(Luminance != -1) m_luminance = Luminance;
     if(FlickerList != "no") m_flicker = FlickerList;
 
@@ -371,11 +374,12 @@ void lightControllWorker::SendDatagram1Udp(QStringList sendDataList, QString Dev
 
     jsonDoc.setObject(json);
     emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
-    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataListTmp, DeviceId, TermIdSize)).toJson(), "light");
 }
 
-void lightControllWorker::SendDatagram2Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int fontColor, int Luminance, QString FlickerList)
+void lightControllWorker::SendDatagram2Udp(QStringList sendDataList, QString DeviceId, QString ContentStr, int fontColor, int Luminance, QString FlickerList, int TermIdSize)
 {
+    QStringList sendDataListTmp = sendDataList;
     if(Luminance != -1) m_luminance = Luminance;
     if(FlickerList != "no") m_flicker = FlickerList;
     //1红 2绿 3蓝 4白 5黄 6青 7洋红 8黑 9橙
@@ -479,10 +483,10 @@ void lightControllWorker::SendDatagram2Udp(QStringList sendDataList, QString Dev
     jsonDoc.setObject(json);
 
     emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
-    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
+    emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataListTmp, DeviceId, TermIdSize)).toJson(), "light");
 }
 
-QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString DeviceId)
+QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString DeviceId, int TermIdSize)
 {
     QJsonObject json;
     QJsonArray jsonArray;
@@ -502,17 +506,45 @@ QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString
         }
     }
 
-    // FF 88 FF D3 EA AA
-    foreach(QString str, list){
-        QStringList tmp = str.split(" ", Qt::SkipEmptyParts);
+    // // FF 88 FF D3 EA AA
+    // int i = 1;
+    // foreach(QString str, list){
+    //     QStringList tmp = str.split(" ", Qt::SkipEmptyParts);
+    //     QJsonObject jsonTmp;
+    //     //jsonTmp.insert("device_id", DeviceId + QString("%1").arg(tmp.at(2).toInt(nullptr, 16), 3, 10, QLatin1Char('0')));
+    //     jsonTmp.insert("device_id", DeviceId + QString("%1").arg(i++, 2, 10, QLatin1Char('0')));
+    //     //qDebug() << DeviceId + QString("%1").arg(tmp.at(2).toInt(nullptr, 16), 3, 10, QLatin1Char('0'));
+    //     if(tmp.at(3) + tmp.at(4) == "A0F0"){
+    //         jsonTmp.insert("txt", "");
+    //     }else{
+    //         jsonTmp.insert("txt", hex2QStr(tmp.at(3) + tmp.at(4)));
+    //     }
+    //     jsonTmp.insert("state", "1");
+    //     jsonTmp.insert("type", "1");
+    //     jsonTmp.insert("pl", m_flicker);
+    //     //qDebug() << "FlickerList: " << m_flicker;
+    //     jsonTmp.insert("time", QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+
+    //     jsonArray << jsonTmp;
+    // }
+
+    //qDebug() << "TermIdSize: " << TermIdSize;
+    for(int i=1; i<=TermIdSize; i++){
+        //QStringList tmp = str.split(" ", Qt::SkipEmptyParts);
         QJsonObject jsonTmp;
-        jsonTmp.insert("device_id", DeviceId + QString("%1").arg(tmp.at(2).toInt(nullptr, 16), 3, 10, QLatin1Char('0')));
-        //qDebug() << DeviceId + QString("%1").arg(tmp.at(2).toInt(nullptr, 16), 3, 10, QLatin1Char('0'));
-        if(tmp.at(3) + tmp.at(4) == "A0F0"){
-            jsonTmp.insert("txt", "");
-        }else{
-            jsonTmp.insert("txt", hex2QStr(tmp.at(3) + tmp.at(4)));
+        QStringList tmp;
+        if(sendDataList.size() > 0){
+            tmp = sendDataList.at(0).split(" ", Qt::SkipEmptyParts);
+            if(tmp.at(3) + tmp.at(4) == "A0F0"){
+                jsonTmp.insert("txt", "");
+            }else{
+                jsonTmp.insert("txt", hex2QStr(tmp.at(3) + tmp.at(4)));
+            }
         }
+        //jsonTmp.insert("device_id", DeviceId + QString("%1").arg(tmp.at(2).toInt(nullptr, 16), 3, 10, QLatin1Char('0')));
+        jsonTmp.insert("device_id", DeviceId + QString("%1").arg(i, 2, 10, QLatin1Char('0')));
+        //qDebug() << DeviceId + QString("%1").arg(tmp.at(2).toInt(nullptr, 16), 3, 10, QLatin1Char('0'));
+
         jsonTmp.insert("state", "1");
         jsonTmp.insert("type", "1");
         jsonTmp.insert("pl", m_flicker);
@@ -524,6 +556,9 @@ QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString
 
     json.insert("roadid", "");
     json.insert("data", jsonArray);
+
+
+    showMsg("************lightControllWorker::getTopic2Json: " + QJsonDocument(json).toJson());
 
     return json;
 }
@@ -577,17 +612,17 @@ void lightControllWorker::initUcpSocket()
 
 }
 
-void lightControllWorker::slotSendDatagram(QStringList sendDataList, QString DeviceId, QString ContentStr, int version, int fontColor, int Luminance, QString FlickerList)
+void lightControllWorker::slotSendDatagram(QStringList sendDataList, QString DeviceId, QString ContentStr, int version, int fontColor, int Luminance, QString FlickerList, int TermIdSize)
 {
     if(version == 1){
         m_connectType == "TCP"
-            ? SendDatagram1(sendDataList, DeviceId, ContentStr, Luminance, FlickerList)
-            : SendDatagram1Udp(sendDataList, DeviceId, ContentStr, Luminance, FlickerList);
+            ? SendDatagram1(sendDataList, DeviceId, ContentStr, Luminance, FlickerList, TermIdSize)
+            : SendDatagram1Udp(sendDataList, DeviceId, ContentStr, Luminance, FlickerList, TermIdSize);
 
     }else if(version == 2){
         m_connectType == "TCP"
-            ? SendDatagram2(sendDataList, DeviceId, ContentStr, fontColor, Luminance, FlickerList)
-            : SendDatagram2Udp(sendDataList, DeviceId, ContentStr, fontColor, Luminance, FlickerList);
+            ? SendDatagram2(sendDataList, DeviceId, ContentStr, fontColor, Luminance, FlickerList, TermIdSize)
+            : SendDatagram2Udp(sendDataList, DeviceId, ContentStr, fontColor, Luminance, FlickerList, TermIdSize);
 
     }
 }

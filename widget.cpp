@@ -37,9 +37,9 @@ Widget::Widget(QWidget *parent)
     ui->setupUi(this);
     ui->testBtn->hide();
     setFixedSize(size());
-    setWindowTitle("前端设备控制服务_2024年10月12日_by:ls");//.arg(QDateTime::currentDateTime().toString("yyyy年MM月dd日hh时mm分ss秒")));
-    initSystemTray();   // 初始化系统托盘
-    //initRoadState();    // 初始化车道开启状态
+    setWindowTitle("前端设备控制服务_2024年10月31日_by:ls");//.arg(QDateTime::currentDateTime().toString("yyyy年MM月dd日hh时mm分ss秒")));
+    initSystemTray();       // 初始化系统托盘
+    // initRoadState();       // 初始化车道开启状态
 
     ui->OpenBtn->hide();
 
@@ -291,7 +291,7 @@ void Widget::on_clearBtn_clicked()
 
 void Widget::showMsg(QString msg)
 {
-    ui->history->appendPlainText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss") + " --> " + msg);
+    //ui->history->appendPlainText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss") + " --> " + msg);
 
     QString logPath = QCoreApplication::applicationDirPath() + LOG;
     QFile file(logPath);
@@ -414,7 +414,7 @@ void Widget::sendFF88()
     /*此处发送同步命令， 并更新同步命令变量*/
     QStringList sendDataList;
     sendDataList.append(m_ff88);
-    emit write2Light(sendDataList,  "no",  "", 2, 9, -1, "-1,-1");
+    emit write2Light(sendDataList,  "no",  "", 2, 9, -1, "-1,-1", 40);
 }
 
 void Widget::openFileWatcher()

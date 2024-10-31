@@ -57,6 +57,7 @@ static constexpr auto qt_meta_stringdata_CLASSWidgetENDCLASS = QtMocHelpers::str
     "color",
     "light",
     "pl",
+    "TermIdSize",
     "setLightIntAndCount",
     "sendingInterval",
     "sendingCount",
@@ -85,7 +86,7 @@ static constexpr auto qt_meta_stringdata_CLASSWidgetENDCLASS = QtMocHelpers::str
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSWidgetENDCLASS_t {
-    uint offsetsAndSizes[86];
+    uint offsetsAndSizes[88];
     char stringdata0[7];
     char stringdata1[12];
     char stringdata2[1];
@@ -104,31 +105,32 @@ struct qt_meta_stringdata_CLASSWidgetENDCLASS_t {
     char stringdata15[6];
     char stringdata16[6];
     char stringdata17[3];
-    char stringdata18[20];
-    char stringdata19[16];
-    char stringdata20[13];
-    char stringdata21[33];
-    char stringdata22[6];
-    char stringdata23[15];
-    char stringdata24[7];
-    char stringdata25[24];
-    char stringdata26[20];
-    char stringdata27[19];
-    char stringdata28[8];
-    char stringdata29[20];
-    char stringdata30[14];
-    char stringdata31[34];
-    char stringdata32[7];
-    char stringdata33[21];
-    char stringdata34[23];
-    char stringdata35[15];
-    char stringdata36[5];
-    char stringdata37[19];
-    char stringdata38[13];
-    char stringdata39[5];
-    char stringdata40[16];
-    char stringdata41[15];
-    char stringdata42[6];
+    char stringdata18[11];
+    char stringdata19[20];
+    char stringdata20[16];
+    char stringdata21[13];
+    char stringdata22[33];
+    char stringdata23[6];
+    char stringdata24[15];
+    char stringdata25[7];
+    char stringdata26[24];
+    char stringdata27[20];
+    char stringdata28[19];
+    char stringdata29[8];
+    char stringdata30[20];
+    char stringdata31[14];
+    char stringdata32[34];
+    char stringdata33[7];
+    char stringdata34[21];
+    char stringdata35[23];
+    char stringdata36[15];
+    char stringdata37[5];
+    char stringdata38[19];
+    char stringdata39[13];
+    char stringdata40[5];
+    char stringdata41[16];
+    char stringdata42[15];
+    char stringdata43[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSWidgetENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -152,31 +154,32 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSWidgetENDCLASS_t qt_meta_string
         QT_MOC_LITERAL(111, 5),  // "color"
         QT_MOC_LITERAL(117, 5),  // "light"
         QT_MOC_LITERAL(123, 2),  // "pl"
-        QT_MOC_LITERAL(126, 19),  // "setLightIntAndCount"
-        QT_MOC_LITERAL(146, 15),  // "sendingInterval"
-        QT_MOC_LITERAL(162, 12),  // "sendingCount"
-        QT_MOC_LITERAL(175, 32),  // "signalUpDateScreenDefauleContent"
-        QT_MOC_LITERAL(208, 5),  // "state"
-        QT_MOC_LITERAL(214, 14),  // "defaultContent"
-        QT_MOC_LITERAL(229, 6),  // "TermIp"
-        QT_MOC_LITERAL(236, 23),  // "signalUpDateScreenState"
-        QT_MOC_LITERAL(260, 19),  // "on_clearBtn_clicked"
-        QT_MOC_LITERAL(280, 18),  // "on_OpenBtn_clicked"
-        QT_MOC_LITERAL(299, 7),  // "showMsg"
-        QT_MOC_LITERAL(307, 19),  // "slotUpdateRoadState"
-        QT_MOC_LITERAL(327, 13),  // "iconActivated"
-        QT_MOC_LITERAL(341, 33),  // "QSystemTrayIcon::ActivationRe..."
-        QT_MOC_LITERAL(375, 6),  // "reason"
-        QT_MOC_LITERAL(382, 20),  // "soltUpdateTermListUi"
-        QT_MOC_LITERAL(403, 22),  // "slotUpdateControllerUi"
-        QT_MOC_LITERAL(426, 14),  // "slotUpdateFF88"
-        QT_MOC_LITERAL(441, 4),  // "ff88"
-        QT_MOC_LITERAL(446, 18),  // "on_testBtn_clicked"
-        QT_MOC_LITERAL(465, 12),  // "dealPicFiles"
-        QT_MOC_LITERAL(478, 4),  // "path"
-        QT_MOC_LITERAL(483, 15),  // "requestFinished"
-        QT_MOC_LITERAL(499, 14),  // "QNetworkReply*"
-        QT_MOC_LITERAL(514, 5)   // "reply"
+        QT_MOC_LITERAL(126, 10),  // "TermIdSize"
+        QT_MOC_LITERAL(137, 19),  // "setLightIntAndCount"
+        QT_MOC_LITERAL(157, 15),  // "sendingInterval"
+        QT_MOC_LITERAL(173, 12),  // "sendingCount"
+        QT_MOC_LITERAL(186, 32),  // "signalUpDateScreenDefauleContent"
+        QT_MOC_LITERAL(219, 5),  // "state"
+        QT_MOC_LITERAL(225, 14),  // "defaultContent"
+        QT_MOC_LITERAL(240, 6),  // "TermIp"
+        QT_MOC_LITERAL(247, 23),  // "signalUpDateScreenState"
+        QT_MOC_LITERAL(271, 19),  // "on_clearBtn_clicked"
+        QT_MOC_LITERAL(291, 18),  // "on_OpenBtn_clicked"
+        QT_MOC_LITERAL(310, 7),  // "showMsg"
+        QT_MOC_LITERAL(318, 19),  // "slotUpdateRoadState"
+        QT_MOC_LITERAL(338, 13),  // "iconActivated"
+        QT_MOC_LITERAL(352, 33),  // "QSystemTrayIcon::ActivationRe..."
+        QT_MOC_LITERAL(386, 6),  // "reason"
+        QT_MOC_LITERAL(393, 20),  // "soltUpdateTermListUi"
+        QT_MOC_LITERAL(414, 22),  // "slotUpdateControllerUi"
+        QT_MOC_LITERAL(437, 14),  // "slotUpdateFF88"
+        QT_MOC_LITERAL(452, 4),  // "ff88"
+        QT_MOC_LITERAL(457, 18),  // "on_testBtn_clicked"
+        QT_MOC_LITERAL(476, 12),  // "dealPicFiles"
+        QT_MOC_LITERAL(489, 4),  // "path"
+        QT_MOC_LITERAL(494, 15),  // "requestFinished"
+        QT_MOC_LITERAL(510, 14),  // "QNetworkReply*"
+        QT_MOC_LITERAL(525, 5)   // "reply"
     },
     "Widget",
     "write2Kafka",
@@ -196,6 +199,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSWidgetENDCLASS_t qt_meta_string
     "color",
     "light",
     "pl",
+    "TermIdSize",
     "setLightIntAndCount",
     "sendingInterval",
     "sendingCount",
@@ -242,44 +246,44 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSWidgetENDCLASS[] = {
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
        1,    3,  116,    2, 0x06,    1 /* Public */,
        6,    3,  123,    2, 0x06,    5 /* Public */,
-      10,    7,  130,    2, 0x06,    9 /* Public */,
-      18,    2,  145,    2, 0x06,   17 /* Public */,
-      21,    3,  150,    2, 0x06,   20 /* Public */,
-      25,    2,  157,    2, 0x06,   24 /* Public */,
+      10,    8,  130,    2, 0x06,    9 /* Public */,
+      19,    2,  147,    2, 0x06,   18 /* Public */,
+      22,    3,  152,    2, 0x06,   21 /* Public */,
+      26,    2,  159,    2, 0x06,   25 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      26,    0,  162,    2, 0x08,   27 /* Private */,
-      27,    0,  163,    2, 0x08,   28 /* Private */,
-      28,    1,  164,    2, 0x08,   29 /* Private */,
-      29,    1,  167,    2, 0x08,   31 /* Private */,
-      30,    1,  170,    2, 0x08,   33 /* Private */,
-      33,    0,  173,    2, 0x08,   35 /* Private */,
-      34,    1,  174,    2, 0x08,   36 /* Private */,
-      35,    1,  177,    2, 0x08,   38 /* Private */,
-      37,    0,  180,    2, 0x08,   40 /* Private */,
-      38,    1,  181,    2, 0x08,   41 /* Private */,
-      40,    1,  184,    2, 0x08,   43 /* Private */,
+      27,    0,  164,    2, 0x08,   28 /* Private */,
+      28,    0,  165,    2, 0x08,   29 /* Private */,
+      29,    1,  166,    2, 0x08,   30 /* Private */,
+      30,    1,  169,    2, 0x08,   32 /* Private */,
+      31,    1,  172,    2, 0x08,   34 /* Private */,
+      34,    0,  175,    2, 0x08,   36 /* Private */,
+      35,    1,  176,    2, 0x08,   37 /* Private */,
+      36,    1,  179,    2, 0x08,   39 /* Private */,
+      38,    0,  182,    2, 0x08,   41 /* Private */,
+      39,    1,  183,    2, 0x08,   42 /* Private */,
+      41,    1,  186,    2, 0x08,   44 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    3,    4,    5,
     QMetaType::Void, QMetaType::QString, QMetaType::Int, QMetaType::QString,    7,    8,    9,
-    QMetaType::Void, QMetaType::QStringList, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString,   11,   12,   13,   14,   15,   16,   17,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   19,   20,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,   22,   23,   24,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   24,   22,
+    QMetaType::Void, QMetaType::QStringList, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::Int,   11,   12,   13,   14,   15,   16,   17,   18,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   20,   21,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,   23,   24,   25,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   25,   23,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString,    2,
-    QMetaType::Void, 0x80000000 | 31,   32,
+    QMetaType::Void, 0x80000000 | 32,   33,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    2,
-    QMetaType::Void, QMetaType::QString,   36,
+    QMetaType::Void, QMetaType::QString,   37,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   39,
-    QMetaType::Void, 0x80000000 | 41,   42,
+    QMetaType::Void, QMetaType::QString,   40,
+    QMetaType::Void, 0x80000000 | 42,   43,
 
        0        // eod
 };
@@ -312,6 +316,7 @@ Q_CONSTINIT const QMetaObject Widget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'setLightIntAndCount'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
@@ -366,7 +371,7 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->write2Kafka((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         case 1: _t->write2Screen((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
-        case 2: _t->write2Light((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[7]))); break;
+        case 2: _t->write2Light((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[7])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[8]))); break;
         case 3: _t->setLightIntAndCount((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 4: _t->signalUpDateScreenDefauleContent((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         case 5: _t->signalUpDateScreenState((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
@@ -411,7 +416,7 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
             }
         }
         {
-            using _t = void (Widget::*)(QStringList , QString , QString , int , int , int , QString );
+            using _t = void (Widget::*)(QStringList , QString , QString , int , int , int , QString , int );
             if (_t _q_method = &Widget::write2Light; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 2;
                 return;
@@ -486,9 +491,9 @@ void Widget::write2Screen(QString _t1, int _t2, QString _t3)
 }
 
 // SIGNAL 2
-void Widget::write2Light(QStringList _t1, QString _t2, QString _t3, int _t4, int _t5, int _t6, QString _t7)
+void Widget::write2Light(QStringList _t1, QString _t2, QString _t3, int _t4, int _t5, int _t6, QString _t7, int _t8)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t6))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t7))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t6))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t7))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t8))) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 

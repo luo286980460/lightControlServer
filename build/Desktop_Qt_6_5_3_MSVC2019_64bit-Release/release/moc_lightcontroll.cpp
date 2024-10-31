@@ -49,6 +49,7 @@ static constexpr auto qt_meta_stringdata_CLASSlightcontrollENDCLASS = QtMocHelpe
     "fontColor",
     "Luminance",
     "FlickerList",
+    "TermIdSize",
     "siglSetIntervalAndCount",
     "m_sendingInterval",
     "m_sendingCount",
@@ -61,7 +62,7 @@ static constexpr auto qt_meta_stringdata_CLASSlightcontrollENDCLASS = QtMocHelpe
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSlightcontrollENDCLASS_t {
-    uint offsetsAndSizes[40];
+    uint offsetsAndSizes[42];
     char stringdata0[14];
     char stringdata1[8];
     char stringdata2[1];
@@ -73,15 +74,16 @@ struct qt_meta_stringdata_CLASSlightcontrollENDCLASS_t {
     char stringdata8[10];
     char stringdata9[10];
     char stringdata10[12];
-    char stringdata11[24];
-    char stringdata12[18];
-    char stringdata13[15];
-    char stringdata14[20];
-    char stringdata15[12];
-    char stringdata16[6];
-    char stringdata17[8];
-    char stringdata18[7];
-    char stringdata19[19];
+    char stringdata11[11];
+    char stringdata12[24];
+    char stringdata13[18];
+    char stringdata14[15];
+    char stringdata15[20];
+    char stringdata16[12];
+    char stringdata17[6];
+    char stringdata18[8];
+    char stringdata19[7];
+    char stringdata20[19];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSlightcontrollENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -98,15 +100,16 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightcontrollENDCLASS_t qt_meta
         QT_MOC_LITERAL(80, 9),  // "fontColor"
         QT_MOC_LITERAL(90, 9),  // "Luminance"
         QT_MOC_LITERAL(100, 11),  // "FlickerList"
-        QT_MOC_LITERAL(112, 23),  // "siglSetIntervalAndCount"
-        QT_MOC_LITERAL(136, 17),  // "m_sendingInterval"
-        QT_MOC_LITERAL(154, 14),  // "m_sendingCount"
-        QT_MOC_LITERAL(169, 19),  // "sigConnectToControl"
-        QT_MOC_LITERAL(189, 11),  // "write2Kafka"
-        QT_MOC_LITERAL(201, 5),  // "topic"
-        QT_MOC_LITERAL(207, 7),  // "strJson"
-        QT_MOC_LITERAL(215, 6),  // "strKey"
-        QT_MOC_LITERAL(222, 18)   // "slotReceiveTcpData"
+        QT_MOC_LITERAL(112, 10),  // "TermIdSize"
+        QT_MOC_LITERAL(123, 23),  // "siglSetIntervalAndCount"
+        QT_MOC_LITERAL(147, 17),  // "m_sendingInterval"
+        QT_MOC_LITERAL(165, 14),  // "m_sendingCount"
+        QT_MOC_LITERAL(180, 19),  // "sigConnectToControl"
+        QT_MOC_LITERAL(200, 11),  // "write2Kafka"
+        QT_MOC_LITERAL(212, 5),  // "topic"
+        QT_MOC_LITERAL(218, 7),  // "strJson"
+        QT_MOC_LITERAL(226, 6),  // "strKey"
+        QT_MOC_LITERAL(233, 18)   // "slotReceiveTcpData"
     },
     "lightcontroll",
     "showMsg",
@@ -119,6 +122,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightcontrollENDCLASS_t qt_meta
     "fontColor",
     "Luminance",
     "FlickerList",
+    "TermIdSize",
     "siglSetIntervalAndCount",
     "m_sendingInterval",
     "m_sendingCount",
@@ -148,24 +152,24 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSlightcontrollENDCLASS[] = {
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
        1,    1,   62,    2, 0x06,    1 /* Public */,
-       3,    7,   65,    2, 0x06,    3 /* Public */,
-      11,    2,   80,    2, 0x06,   11 /* Public */,
-      11,    1,   85,    2, 0x26,   14 /* Public | MethodCloned */,
-      11,    0,   88,    2, 0x26,   16 /* Public | MethodCloned */,
-      14,    0,   89,    2, 0x06,   17 /* Public */,
-      15,    3,   90,    2, 0x06,   18 /* Public */,
+       3,    8,   65,    2, 0x06,    3 /* Public */,
+      12,    2,   82,    2, 0x06,   12 /* Public */,
+      12,    1,   87,    2, 0x26,   15 /* Public | MethodCloned */,
+      12,    0,   90,    2, 0x26,   17 /* Public | MethodCloned */,
+      15,    0,   91,    2, 0x06,   18 /* Public */,
+      16,    3,   92,    2, 0x06,   19 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      19,    1,   97,    2, 0x0a,   22 /* Public */,
+      20,    1,   99,    2, 0x0a,   23 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
-    QMetaType::Void, QMetaType::QStringList, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString,    4,    5,    6,    7,    8,    9,   10,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   12,   13,
-    QMetaType::Void, QMetaType::Int,   12,
+    QMetaType::Void, QMetaType::QStringList, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::Int,    4,    5,    6,    7,    8,    9,   10,   11,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   13,   14,
+    QMetaType::Void, QMetaType::Int,   13,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,   16,   17,   18,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,   17,   18,   19,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QByteArray,    2,
@@ -194,6 +198,7 @@ Q_CONSTINIT const QMetaObject lightcontroll::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'siglSetIntervalAndCount'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
@@ -224,7 +229,7 @@ void lightcontroll::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         (void)_t;
         switch (_id) {
         case 0: _t->showMsg((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 1: _t->sigSendDatagram((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[7]))); break;
+        case 1: _t->sigSendDatagram((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[7])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[8]))); break;
         case 2: _t->siglSetIntervalAndCount((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 3: _t->siglSetIntervalAndCount((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 4: _t->siglSetIntervalAndCount(); break;
@@ -243,7 +248,7 @@ void lightcontroll::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             }
         }
         {
-            using _t = void (lightcontroll::*)(QStringList , QString , QString , int , int , int , QString );
+            using _t = void (lightcontroll::*)(QStringList , QString , QString , int , int , int , QString , int );
             if (_t _q_method = &lightcontroll::sigSendDatagram; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 1;
                 return;
@@ -311,9 +316,9 @@ void lightcontroll::showMsg(QString _t1)
 }
 
 // SIGNAL 1
-void lightcontroll::sigSendDatagram(QStringList _t1, QString _t2, QString _t3, int _t4, int _t5, int _t6, QString _t7)
+void lightcontroll::sigSendDatagram(QStringList _t1, QString _t2, QString _t3, int _t4, int _t5, int _t6, QString _t7, int _t8)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t6))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t7))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t6))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t7))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t8))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 

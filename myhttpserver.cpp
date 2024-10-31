@@ -248,12 +248,28 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
 
     lightcontroll* controller = nullptr;
 
+    if( TermIp.split(":").size() != 2){
+        showMsg("**************** ip地址不合法  ip:port");
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "ip地址不合法  ip:port";
+        return backJson;
+
+    }
+
     ip = TermIp.split(":").at(0);
     port = TermIp.split(":").at(1).toInt();
+
+    if(port < 1 || port > 65535){    // 判断ip是否合法
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "port不合法";
+        showMsg("**************** port不合法");
+        return backJson;
+    }
 
     if(!ipAddrIsOK(ip)){    // 判断ip是否合法
         backJson.find("code").value() = 1;
         backJson.find("msg").value() = "ip地址不合法";
+        showMsg("**************** ip地址不合法");
         return backJson;
     }
     //获取控制器
@@ -356,19 +372,19 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
                 sendDataList.insert(0, cmdStr.arg(16,2,16,QLatin1Char('0'))
                                            .arg(0,2,16,QLatin1Char('0')).toUpper());
             }else if(version == 1){         // v1 闪烁
-                if(sec1 < 1000 || sec1 > 5000 || sec2 < 1000 || sec2 > 5000){
+                if(sec1 < 1000 || sec1 > 10000 || sec2 < 1000 || sec2 > 10000){
                     backJson.find("code").value() = 1;
-                    backJson.find("msg").value() = "version1 闪烁值不合法 1000~5000";
+                    backJson.find("msg").value() = "version1 闪烁值不合法 1000~10000";
                     return backJson;
                 }
                 FlickerList = QString("%1,%2").arg(sec1).arg(sec2);
                 sendDataList.insert(0, QString("ff 77 ff %1 %2 aa")
-                                           .arg(QString::asprintf("%.0f", sec1*0.44).toInt()/100,2,16,QLatin1Char('0'))
-                                           .arg(QString::asprintf("%.0f", sec2*1.52).toInt()/100,2,16,QLatin1Char('0')));
+                                           .arg(QString::asprintf("%.0f", sec1*0.45).toInt()/100,2,16,QLatin1Char('0'))
+                                           .arg(QString::asprintf("%.0f", sec2*1.18).toInt()/100,2,16,QLatin1Char('0')));
             }else if(version == 2){         // v2 闪烁
-                if(sec1 < 250 || sec1 > 2000 || sec2 < 250 || sec2 > 2000){
+                if(sec1 < 250 || sec1 > 10000 || sec2 < 250 || sec2 > 10000){
                     backJson.find("code").value() = 1;
-                    backJson.find("msg").value() = "version2 闪烁值不合法 250~2000";
+                    backJson.find("msg").value() = "version2 闪烁值不合法 250~10000";
                     return backJson;
                 }
                 FlickerList = QString("%1,%2").arg(sec1).arg(sec2);
@@ -412,7 +428,7 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
         }
     }
 
-    emit controller->sigSendDatagram(sendDataList, DeviceId, name, version, fontColor, Luminance, FlickerList);
+    emit controller->sigSendDatagram(sendDataList, DeviceId, name, version, fontColor, Luminance, FlickerList, TermIdSize);
 
     return backJson;
 }

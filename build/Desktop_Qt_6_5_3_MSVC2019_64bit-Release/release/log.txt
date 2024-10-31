@@ -1,535 +1,149 @@
-****** kafka.ini 配置文件丢失 ******
-配置文件不存在： D:/QtFile/lightControlServer/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Release/release/Amplifiers.ini
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：2334
-******雾灯配置文件读取失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 3
-控制器【192.168.1.101：8886】连接成功
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.102:8886","Version":2,"name":"name"}
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
+{"Broadcast":0,"Content":["雨","天","路","滑"],"DeviceId":"20241031-","FontColor":1,"TermId":[3,4,5,6],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
 控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-控制器：192.168.1.101[网络故障]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-控制器：192.168.1.101[网络故障]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-控制器：192.168.1.101[网络故障]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-控制器：192.168.1.101[网络故障]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-控制器：192.168.1.101[网络故障]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 3
-控制器【192.168.1.101：8886】连接成功
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 3
-控制器【192.168.1.101：8886】连接成功
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":1,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":1,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
+控制器：192.168.1.101[FF 55 03 D3 EA AA FF 55 04 CC EC AA FF 55 05 C2 B7 AA FF 55 06 BB AC AA ]
+************lightControllWorker::getTopic2Json: {
+    "data": [
+        {
+            "device_id": "20241031-01",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:16:45",
+            "type": "1"
+        },
+        {
+            "device_id": "20241031-03",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:16:45",
+            "type": "1"
+        }
+    ],
+    "roadid": ""
+}
+
+{"Broadcast":1,"Content":["雨"],"DeviceId":"20241031-","FontColor":1,"TermId":[3,4,5,6],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
 控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
 控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
+************lightControllWorker::getTopic2Json: {
+    "data": [
+        {
+            "device_id": "20241031-01",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:17:07",
+            "type": "1"
+        },
+        {
+            "device_id": "20241031-03",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:17:07",
+            "type": "1"
+        }
+    ],
+    "roadid": ""
+}
+
+SDK 初始化成功！
+http服务已开启，监听地址：0.0.0.0  监听端口：8888
+{"Broadcast":1,"Content":["雨"],"DeviceId":"20241031-","FontColor":1,"TermId":[3,4,5,6],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
 控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
 控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
+************lightControllWorker::getTopic2Json: {
+    "data": [
+        {
+            "device_id": "20241031-01",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:18:26",
+            "type": "1"
+        },
+        {
+            "device_id": "20241031-03",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:18:26",
+            "type": "1"
+        }
+    ],
+    "roadid": ""
+}
+
+SDK 初始化成功！
+http服务已开启，监听地址：0.0.0.0  监听端口：8888
+{"Broadcast":1,"Content":["雨"],"DeviceId":"20241031-","FontColor":1,"TermId":[3,4,5,6],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
 控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
 控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
+************lightControllWorker::getTopic2Json: {
+    "data": [
+        {
+            "device_id": "20241031-01",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:18:54",
+            "type": "1"
+        },
+        {
+            "device_id": "20241031-02",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:18:54",
+            "type": "1"
+        },
+        {
+            "device_id": "20241031-03",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:18:54",
+            "type": "1"
+        },
+        {
+            "device_id": "20241031-04",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:18:54",
+            "type": "1"
+        }
+    ],
+    "roadid": ""
+}
+
+{"Broadcast":0,"Content":["雨","天","路","滑"],"DeviceId":"20241031-","FontColor":1,"TermId":[3,4,5,6],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
 控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
+控制器：192.168.1.101[FF 55 03 D3 EA AA FF 55 04 CC EC AA FF 55 05 C2 B7 AA FF 55 06 BB AC AA ]
+************lightControllWorker::getTopic2Json: {
+    "data": [
+        {
+            "device_id": "20241031-01",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:19:07",
+            "type": "1"
+        },
+        {
+            "device_id": "20241031-02",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:19:07",
+            "type": "1"
+        },
+        {
+            "device_id": "20241031-03",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:19:07",
+            "type": "1"
+        },
+        {
+            "device_id": "20241031-04",
+            "pl": "0,0",
+            "state": "1",
+            "time": "2024-10-31 11:19:07",
+            "type": "1"
+        }
+    ],
+    "roadid": ""
+}
+
 SDK 初始化成功！
 http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","Flicker":[],"FontColor":1,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 77 FF 10 00 AA FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","Flicker":[],"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 77 FF 10 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","Flicker":[],"Luminance":0,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","Flicker":[],"Luminance":0,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","Flicker":[250,250],"Luminance":0,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","Flicker":[2000,2000],"Luminance":0,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","Flicker":[1000,2000],"Luminance":0,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","Flicker":[259,2000],"Luminance":10,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-{"Broadcast":0,"Content":["雨","雨","雨","雨"],"DeviceId":"20241012-","Flicker":[],"Luminance":10,"TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 77 FF 10 00 AA]
-控制器：192.168.1.101[FF 66 FF 0A 00 AA]
-控制器：192.168.1.101[FF 55 01 D3 EA AA FF 55 02 D3 EA AA FF 55 03 D3 EA AA FF 55 04 D3 EA AA ]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":0,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":0,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-控制器：192.168.1.101[网络故障]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-控制器：192.168.1.101[网络故障]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-控制器：192.168.1.101[网络故障]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 3
-控制器【192.168.1.101：8886】连接成功
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-[192.168.1.101] stateChanged to 6
-[192.168.1.101] stateChanged to 0
-[192.168.1.101] disconnected!
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 3
-控制器【192.168.1.101：8886】连接成功
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 3
-控制器【192.168.1.101：8886】连接成功
-{"Broadcast":1,"Content":["雨"],"DeviceId":"20241012-","TermId":[1,2,3,4],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 55 FF D3 EA AA ]
-{"Broadcast":0,"Content":["雨","天","路","滑"],"DeviceId":"20241012-","FontColor":1,"TermId":[11,12,13,14],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 0B D3 EA AA FF 55 0C CC EC AA FF 55 0D C2 B7 AA FF 55 0E BB AC AA ]
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-控制器：192.168.1.101:8886[正在连接]
-[192.168.1.101] stateChanged to 1
-[192.168.1.101] stateChanged to 2
-[192.168.1.101] stateChanged to 0
-控制器【192.168.1.101：8886】连接失败
-SDK 初始化成功！
-http服务已开启，监听地址：0.0.0.0  监听端口：8888
-{"Broadcast":1,"Content":[],"DeviceId":"20241012-","FontColor":2,"TermId":[11,12,13,14],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 02 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 FF A0 F0 AA ]
-{"Broadcast":1,"Content":["雨","天","路","滑"],"DeviceId":"20241012-","FontColor":2,"TermId":[11,12,13,14],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-{"Broadcast":0,"Content":["雨","天","路","滑"],"DeviceId":"20241012-","FontColor":2,"TermId":[11,12,13,14],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 02 02 03 04 00 AA]
-控制器：192.168.1.101[FF 55 0B D3 EA AA FF 55 0C CC EC AA FF 55 0D C2 B7 AA FF 55 0E BB AC AA ]
-{"Broadcast":0,"Content":["减","速","慢","行"],"DeviceId":"20241012-","Flicker":[1000,2000],"FontColor":1,"Luminance":50,"TermId":[11,12,13,14],"TermIp":"192.168.1.101:8886","Version":2,"name":"name"}
-控制器：192.168.1.101[FF 40 FF 01 02 03 04 00 AA]
-控制器：192.168.1.101[FF 77 FF 32 64 AA FF 66 FF 32 00 AA FF 55 0B BC F5 AA FF 55 0C CB D9 AA FF 55 0D C2 FD AA FF 55 0E D0 D0 AA ]
-{"Broadcast":0,"Content":["雨","天","路","滑"],"DeviceId":"20241012-","Flicker":[2000,1000],"Luminance":50,"TermId":[11,12,13,14],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[ff 77 ff 08 0f aa]
-控制器：192.168.1.101[FF 66 FF 32 00 AA]
-控制器：192.168.1.101[FF 55 0B D3 EA AA FF 55 0C CC EC AA FF 55 0D C2 B7 AA FF 55 0E BB AC AA ]
-{"Broadcast":0,"Content":["雨","天","路","滑"],"DeviceId":"20241012-","Flicker":[],"Luminance":5010,"TermId":[11,12,13,14],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-{"Broadcast":0,"Content":["雨","天","路","滑"],"DeviceId":"20241012-","Flicker":[],"Luminance":10,"TermId":[11,12,13,14],"TermIp":"192.168.1.101:8886","Version":1,"name":"name"}
-控制器：192.168.1.101[FF 77 FF 10 00 AA]
-控制器：192.168.1.101[FF 66 FF 0A 00 AA]
-控制器：192.168.1.101[FF 55 0B D3 EA AA FF 55 0C CC EC AA FF 55 0D C2 B7 AA FF 55 0E BB AC AA ]
