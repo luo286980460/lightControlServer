@@ -554,7 +554,7 @@ QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString
         jsonArray << jsonTmp;
     }
 
-    json.insert("roadid", "");
+    json.insert("roadId", "");
     json.insert("data", jsonArray);
 
 

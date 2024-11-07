@@ -5,12 +5,6 @@
 #include <QThread>
 #include <QTimer>
 
-/****
-
-  控制器   保存last命令  每30分钟发一次
-
-***/
-
 class lightControllWorker;
 
 class lightcontroll : public QObject

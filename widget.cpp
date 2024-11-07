@@ -37,7 +37,7 @@ Widget::Widget(QWidget *parent)
     ui->setupUi(this);
     ui->testBtn->hide();
     setFixedSize(size());
-    setWindowTitle("前端设备控制服务_2024年10月31日_by:ls");//.arg(QDateTime::currentDateTime().toString("yyyy年MM月dd日hh时mm分ss秒")));
+    setWindowTitle("前端设备控制服务_2024年11月07日_by:ls");//.arg(QDateTime::currentDateTime().toString("yyyy年MM月dd日hh时mm分ss秒")));
     initSystemTray();       // 初始化系统托盘
     // initRoadState();       // 初始化车道开启状态
 
