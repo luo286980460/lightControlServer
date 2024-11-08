@@ -528,18 +528,34 @@ QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString
     //     jsonArray << jsonTmp;
     // }
 
-    //qDebug() << "TermIdSize: " << TermIdSize;
+    qDebug() << "TermIdSize: " << TermIdSize;
+    qDebug() << "list: " << list;
+
     for(int i=1; i<=TermIdSize; i++){
         //QStringList tmp = str.split(" ", Qt::SkipEmptyParts);
         QJsonObject jsonTmp;
         QStringList tmp;
-        if(sendDataList.size() > 0){
-            tmp = sendDataList.at(0).split(" ", Qt::SkipEmptyParts);
+        // if(list.size() > 0){
+        //     tmp = list.at(0).split(" ", Qt::SkipEmptyParts);
+        //     if(tmp.at(3) + tmp.at(4) == "A0F0"){
+        //         jsonTmp.insert("txt", "");
+        //     }else{
+        //         jsonTmp.insert("txt", hex2QStr(tmp.at(3) + tmp.at(4)));
+        //     }
+        // }else{
+        //     jsonTmp.insert("txt", "");
+        // }
+
+        if(list.size() == 1){
+            tmp = list.at(0).split(" ", Qt::SkipEmptyParts);
             if(tmp.at(3) + tmp.at(4) == "A0F0"){
                 jsonTmp.insert("txt", "");
             }else{
                 jsonTmp.insert("txt", hex2QStr(tmp.at(3) + tmp.at(4)));
             }
+        }else{
+            tmp = list.at(i-1).split(" ", Qt::SkipEmptyParts);
+            jsonTmp.insert("txt", hex2QStr(tmp.at(3) + tmp.at(4)));
         }
         //jsonTmp.insert("device_id", DeviceId + QString("%1").arg(tmp.at(2).toInt(nullptr, 16), 3, 10, QLatin1Char('0')));
         jsonTmp.insert("device_id", DeviceId + QString("%1").arg(i, 2, 10, QLatin1Char('0')));
@@ -557,7 +573,7 @@ QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString
     json.insert("roadId", "");
     json.insert("data", jsonArray);
 
-
+    qDebug() << "************************************ json : " << json;
     showMsg("************lightControllWorker::getTopic2Json: " + QJsonDocument(json).toJson());
 
     return json;
