@@ -1,4 +1,4 @@
-#include <QEventLoop>
+﻿#include <QEventLoop>
 #include <QTimer>
 #include <QThread>
 #include <QJsonObject>
@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QDateTime>
 #include "lightcontrollworker.h"
+#include "lightCmdList.h"
 
 lightControllWorker::lightControllWorker(QString connectType, QString topic, QString ip, int port, int sendingInterval,
                                          int sendingCount, QString version, QObject *parent)
@@ -528,8 +529,8 @@ QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString
     //     jsonArray << jsonTmp;
     // }
 
-    qDebug() << "TermIdSize: " << TermIdSize;
-    qDebug() << "list: " << list;
+    //qDebug() << "TermIdSize: " << TermIdSize;
+    //qDebug() << "list: " << list;
 
     for(int i=1; i<=TermIdSize; i++){
         //QStringList tmp = str.split(" ", Qt::SkipEmptyParts);
@@ -573,9 +574,10 @@ QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString
     json.insert("roadId", "");
     json.insert("data", jsonArray);
 
-    qDebug() << "************************************ json : " << json;
-    showMsg("************lightControllWorker::getTopic2Json: " + QJsonDocument(json).toJson());
+    //qDebug() << "************************************ json : " << json;
+    emit showMsg("************lightControllWorker::getTopic2Json: " + QJsonDocument(json).toJson());
 
+    //qDebug() << QString("发文字时间：%1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz"));
     return json;
 }
 
@@ -603,7 +605,7 @@ QString lightControllWorker::hex2QStr(QString hex)
 void lightControllWorker::initTcpSocket()
 {
     m_tcpSocket = new QTcpSocket(this);
-    connect(m_tcpSocket,SIGNAL(readyRead()), this, SLOT(slotReadyRead()));
+    //connect(m_tcpSocket,SIGNAL(readyRead()), this, SLOT(slotReadyReadTcp()));
     //connect(m_tcpSocket, SIGNAL(disconnected()));
     connect(m_tcpSocket, &QTcpSocket::stateChanged, [this](){
         emit showMsg(QString("[%1] stateChanged to %2").arg(m_controllIp).arg(m_tcpSocket->state()));
@@ -617,7 +619,9 @@ void lightControllWorker::initTcpSocket()
 void lightControllWorker::initUcpSocket()
 {
     m_udpSocket = new QUdpSocket(this);
-    connect(m_udpSocket,SIGNAL(readyRead()), this, SLOT(slotReadyRead()));
+    //m_udpSocket->bind(8886);
+    connect(m_udpSocket,SIGNAL(readyRead()), this, SLOT(slotReadyReadUdp()));
+
     //connect(m_tcpSocket, SIGNAL(disconnected()));
     // connect(m_tcpSocket, &QUdpSocket::stateChanged, [this](){
     //     emit showMsg(QString("[%1] stateChanged to %2").arg(m_controllIp).arg(m_tcpSocket->state()));
@@ -626,6 +630,11 @@ void lightControllWorker::initUcpSocket()
     //     emit showMsg(QString("[%1] disconnected!").arg(m_controllIp));
     // });
 
+}
+
+void lightControllWorker::slotInit()
+{
+    initChenkTimer();
 }
 
 void lightControllWorker::slotSendDatagram(QStringList sendDataList, QString DeviceId, QString ContentStr, int version, int fontColor, int Luminance, QString FlickerList, int TermIdSize)
@@ -643,9 +652,76 @@ void lightControllWorker::slotSendDatagram(QStringList sendDataList, QString Dev
     }
 }
 
-void lightControllWorker::slotReadyRead()
+void lightControllWorker::slotReadyReadTcp()
 {
-    //emit sigReceiveData(m_tcpSocket->readAll());
+    QByteArray ba = m_tcpSocket->readAll().toHex();
+    //m_tcpSocket->flush();
+    //qDebug() << "*************ba: " << ba;
+    QString str = ba.toUpper();
+    int state = -1;
+    //int state = -1;
+    if(str.size() == 4){ // 查询结果
+        if(str.at(0) == 'F'){
+            if(str.at(1) == '5'){           // 查询控制板状态：
+                if( str.at(3) == '5'){
+                    state = QString(str.at(2)).toInt();
+
+                }
+            }else if(str.at(1) == '6'){     // 查询控制板电源状态
+
+            }else if(str.at(1) == 'a'){     // 轨迹跟踪延时时间查询
+
+            }else if(str.at(1) == 'b'){     // 轨迹跟踪状态查询
+
+            }
+        }
+    }
+
+    // 返回信息f5 x5两个字节, x=0灯关闭 x=1 灯亮   x=3灯亮且闪烁  x=4内部通讯故障
+    switch (state) {
+    case -1:
+        //m_checkResultList << "灯离线";
+        m_checkResultList << "5";
+        break;
+    case 0:
+        //m_checkResultList << "灯关闭";
+        m_checkResultList << "0";
+        break;
+    case 1:
+        //m_checkResultList << "灯亮";
+        m_checkResultList << "1";
+        break;
+    case 3:
+        //m_checkResultList << "灯亮且闪烁";
+        m_checkResultList << "3";
+        break;
+    case 4:
+        //m_checkResultList << "内部通讯故障";
+        m_checkResultList << "4";
+        break;
+    default:
+        break;
+    }
+
+    //QString stateStr = QString("ID: [%1] state：[%2]").arg(m_currentId).arg(state);
+
+    // //qDebug() << stateStr;
+    // //if()
+    // m_checkResultList << QString::number(state);
+
+    //qDebug()  << m_tcpSocket->readAll().toHex();
+
+    //qDebug() << "m_checkResultListTmp: "  << m_checkResultListTmp;
+
+    // m_checkResultListTmp.clear();
+    // m_checkResultListTmp = QString::number(state);
+    // m_checkResultList << m_checkResultListTmp;
+}
+
+void lightControllWorker::slotReadyReadUdp()
+{
+    qDebug() << "m_udpSocket->hasPendingDatagrams();";
+    qDebug() << m_udpSocket->readAll();
 }
 
 void lightControllWorker::slotSetIntervalAndCount(int sendingInterval, int sendingCount)
@@ -659,4 +735,163 @@ void lightControllWorker::slotConnectToControl()
     if(m_connectType == "TCP"){
         connectControll();
     }
+}
+
+void lightControllWorker::slotLightPowerOn(bool on)
+{
+    if(m_lightPowerOn == on) return;
+
+    m_lightPowerOn = on;
+
+    // 灯柱电源开关
+    QString cmd = on ? CMD_POWER_ON : CMD_POWER_OFF;
+
+    if(on){
+        //qDebug() << QString("开电时间：%1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz"));
+        emit showMsg(QString("[%1]  控制器：%2[%3]  开电").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz")).arg(m_controllIp).arg(cmd));
+    }else{
+        //qDebug() << QString("关电时间：%1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz"));
+        emit showMsg(QString("[%1]  控制器：%2[%3]  关电").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz")).arg(m_controllIp).arg(cmd));
+    }
+
+    if(m_connectType == "TCP"){
+        m_tcpSocket->write(QByteArray::fromHex(cmd.toLatin1()));
+        m_tcpSocket->waitForBytesWritten();
+    }else{
+        m_udpSocket->writeDatagram(QByteArray::fromHex(cmd.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+    }
+
+    QThread::msleep(500);
+
+}
+
+void lightControllWorker::slotOpenPathTracking(int mode)
+{
+    // 轨迹跟踪 0 - 关闭; 1 - 模式1; 2 - 模式2
+
+    QString cmd;
+
+    switch(mode){
+    case 0:     // 0 - 关闭
+        cmd = QString(CMD_PATH_TRACKING_OFF).arg("FF");
+        break;
+    case 1:     // 1 - 模式1
+        cmd = QString(CMD_PATH_TRACKING_ON_1).arg("FF");
+        break;
+    case 2:     // 2 - 模式2
+        cmd = QString(CMD_PATH_TRACKING_ON_2).arg("FF");
+        break;
+    default:
+        break;
+    }
+
+    if(m_connectType == "TCP"){
+        m_tcpSocket->write(QByteArray::fromHex(cmd.toLatin1()));
+        m_tcpSocket->waitForBytesWritten();
+    }else{
+        m_udpSocket->writeDatagram(QByteArray::fromHex(cmd.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+    }
+
+    //qDebug() << "轨迹：    " << cmd;
+    QThread::msleep(500);
+}
+
+void lightControllWorker::slotCheckLightState(QString ip, int port, QStringList idlist)
+{
+    emit signalIsCheckingLightState(true);
+
+    m_checkIdList = idlist;
+    //qDebug() << " m_checkIdList : " << m_checkIdList;
+
+    m_checkResultList.clear();  // 查询灯状态返回的结果列表
+    //m_checkIdList.clear();      // 查询灯状态的ID列表
+    m_checkRCmdList.clear();
+
+    QString cmd;
+    int idCount = idlist.size();
+
+    for(int i=0; i<idCount; i++){
+        // if(i != 0)
+        //     m_checkResultList << m_checkResultListTmp;
+        cmd = QString(CMD_STATUS_QUERY_1).arg(idlist.at(i).toInt(), 2, 16, QLatin1Char('0'));
+        //qDebug() << "cmd : " << cmd;
+
+        m_checkRCmdList << cmd;
+
+        // if(m_connectType == "TCP"){
+        //     m_tcpSocket->write(QByteArray::fromHex(cmd.toLatin1()));
+        //     m_tcpSocket->waitForBytesWritten();
+        // }else{
+        //     m_udpSocket->writeDatagram(QByteArray::fromHex(cmd.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+        //     qDebug() << cmd;
+        // }
+
+        // emit signalUpdateProgress(QString("%1/%2").arg(i).arg(idCount));
+        // slotReadyReadTcp();
+
+        /// QThread::msleep(1000);
+        // slotReadyReadTcp();
+    }
+
+    m_checkTimer->start();
+
+    // m_checkResultList << m_checkResultListTmp;
+
+    // int ResultListSize = m_checkResultList.size();
+    // int IdListSize = m_checkIdList.size();
+
+    // ResultListSize = ResultListSize < IdListSize ? ResultListSize : IdListSize;
+
+    // for(int i=0; i<ResultListSize; i++){
+    //     qDebug() << QString("ID [ %1 ]  res [ %2 ]").arg(m_checkIdList.at(i)).arg(m_checkResultList.at(i));
+    // }
+
+    // qDebug() << "m_checkIdList: " << m_checkIdList;
+    // qDebug() << "m_checkResultList: " << m_checkResultList;
+
+    // emit signalIsCheckingLightState(false);
+
+}
+
+void lightControllWorker::slotTest(QByteArray ba)
+{
+    qDebug() << "**************************" ;
+    m_tcpSocket->write(ba);
+    m_tcpSocket->waitForBytesWritten();
+}
+
+void lightControllWorker::initChenkTimer()
+{
+    connect(this, &lightControllWorker::signalTest, this, &lightControllWorker::slotTest);
+    m_checkTimer = new QTimer;
+    m_checkTimer->setInterval(1000);
+    connect(m_checkTimer, &QTimer::timeout, this, [this](){
+        if(m_checkIndex > 0){
+            slotReadyReadTcp();
+        }
+
+        if(m_checkIndex == m_checkIdList.size()){
+            m_checkIndex = 0;
+
+            //qDebug() <<" m_checkIdList : " << m_checkIdList;
+            //qDebug() <<" m_checkResultList : " << m_checkResultList;
+
+            m_checkTimer->stop();
+            emit signalUpdateLightStateJson(m_checkIdList, m_checkResultList);
+            emit signalIsCheckingLightState(false);
+            return;
+        }
+
+        if(m_checkIndex < m_checkRCmdList.size()){
+            if(m_connectType == "TCP"){
+                m_tcpSocket->write(QByteArray::fromHex(m_checkRCmdList.at(m_checkIndex).toLatin1()));
+                m_tcpSocket->waitForBytesWritten();
+            }else{
+                m_udpSocket->writeDatagram(QByteArray::fromHex(m_checkRCmdList.at(m_checkIndex).toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+            }
+            m_checkIndex++;
+            emit signalUpdateProgress(QString(" %1 : %2/%3 ").arg(m_controllIp).arg(m_checkIndex).arg(m_checkIdList.size()));
+        }
+    });
+
 }

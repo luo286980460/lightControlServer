@@ -39,11 +39,11 @@ namespace {
 struct qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSMyHttpServerENDCLASS = QtMocHelpers::stringData(
     "MyHttpServer",
-    "forTest",
-    "",
     "showMsg",
+    "",
     "msg",
     "sigleUpdateTermListUi",
+    "forTest",
     "sigleUpdateControllerUi",
     "sigalUpdateRoadState",
     "sigalUpdateScreenState",
@@ -79,9 +79,9 @@ struct qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t {
     char stringdata0[13];
     char stringdata1[8];
     char stringdata2[1];
-    char stringdata3[8];
-    char stringdata4[4];
-    char stringdata5[22];
+    char stringdata3[4];
+    char stringdata4[22];
+    char stringdata5[8];
     char stringdata6[24];
     char stringdata7[21];
     char stringdata8[23];
@@ -116,11 +116,11 @@ struct qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t {
 Q_CONSTINIT static const qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t qt_meta_stringdata_CLASSMyHttpServerENDCLASS = {
     {
         QT_MOC_LITERAL(0, 12),  // "MyHttpServer"
-        QT_MOC_LITERAL(13, 7),  // "forTest"
+        QT_MOC_LITERAL(13, 7),  // "showMsg"
         QT_MOC_LITERAL(21, 0),  // ""
-        QT_MOC_LITERAL(22, 7),  // "showMsg"
-        QT_MOC_LITERAL(30, 3),  // "msg"
-        QT_MOC_LITERAL(34, 21),  // "sigleUpdateTermListUi"
+        QT_MOC_LITERAL(22, 3),  // "msg"
+        QT_MOC_LITERAL(26, 21),  // "sigleUpdateTermListUi"
+        QT_MOC_LITERAL(48, 7),  // "forTest"
         QT_MOC_LITERAL(56, 23),  // "sigleUpdateControllerUi"
         QT_MOC_LITERAL(80, 20),  // "sigalUpdateRoadState"
         QT_MOC_LITERAL(101, 22),  // "sigalUpdateScreenState"
@@ -151,11 +151,11 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t qt_meta_
         QT_MOC_LITERAL(356, 3)   // "vol"
     },
     "MyHttpServer",
-    "forTest",
-    "",
     "showMsg",
+    "",
     "msg",
     "sigleUpdateTermListUi",
+    "forTest",
     "sigleUpdateControllerUi",
     "sigalUpdateRoadState",
     "sigalUpdateScreenState",
@@ -203,8 +203,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMyHttpServerENDCLASS[] = {
       11,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   80,    2, 0x06,    1 /* Public */,
-       3,    1,   81,    2, 0x06,    2 /* Public */,
+       1,    1,   80,    2, 0x06,    1 /* Public */,
+       4,    0,   83,    2, 0x06,    3 /* Public */,
        5,    0,   84,    2, 0x06,    4 /* Public */,
        6,    1,   85,    2, 0x06,    5 /* Public */,
        7,    1,   88,    2, 0x06,    7 /* Public */,
@@ -216,8 +216,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMyHttpServerENDCLASS[] = {
       25,    9,  124,    2, 0x06,   28 /* Public */,
 
  // signals: parameters
+    QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    4,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString,    2,
@@ -240,12 +240,12 @@ Q_CONSTINIT const QMetaObject MyHttpServer::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MyHttpServer, std::true_type>,
-        // method 'forTest'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'showMsg'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'sigleUpdateTermListUi'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'forTest'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'sigleUpdateControllerUi'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -298,9 +298,9 @@ void MyHttpServer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         auto *_t = static_cast<MyHttpServer *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->forTest(); break;
-        case 1: _t->showMsg((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 2: _t->sigleUpdateTermListUi(); break;
+        case 0: _t->showMsg((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 1: _t->sigleUpdateTermListUi(); break;
+        case 2: _t->forTest(); break;
         case 3: _t->sigleUpdateControllerUi((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 4: _t->sigalUpdateRoadState((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 5: _t->sigalUpdateScreenState((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
@@ -314,22 +314,22 @@ void MyHttpServer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (MyHttpServer::*)();
-            if (_t _q_method = &MyHttpServer::forTest; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 0;
-                return;
-            }
-        }
-        {
             using _t = void (MyHttpServer::*)(QString );
             if (_t _q_method = &MyHttpServer::showMsg; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
-                *result = 1;
+                *result = 0;
                 return;
             }
         }
         {
             using _t = void (MyHttpServer::*)();
             if (_t _q_method = &MyHttpServer::sigleUpdateTermListUi; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (MyHttpServer::*)();
+            if (_t _q_method = &MyHttpServer::forTest; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 2;
                 return;
             }
@@ -424,20 +424,20 @@ int MyHttpServer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MyHttpServer::forTest()
-{
-    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
-}
-
-// SIGNAL 1
 void MyHttpServer::showMsg(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void MyHttpServer::sigleUpdateTermListUi()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
-void MyHttpServer::sigleUpdateTermListUi()
+void MyHttpServer::forTest()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
 }

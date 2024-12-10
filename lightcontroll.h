@@ -1,9 +1,10 @@
-#ifndef LIGHTCONTROLL_H
+﻿#ifndef LIGHTCONTROLL_H
 #define LIGHTCONTROLL_H
 
 #include <QObject>
 #include <QThread>
 #include <QTimer>
+#include <QJsonObject>
 
 class lightControllWorker;
 
@@ -19,16 +20,25 @@ public:
     void stop();
     QString getControllIp();
     int getControllPort();
+    bool getCheckLightState(QString& progress);
+    QJsonObject getLightState();
 
 signals:
+    void signalInitWorker();
     void showMsg(QString);
     void sigSendDatagram(QStringList sendDataList, QString DeviceId, QString ContentStr, int version, int fontColor, int Luminance, QString FlickerList, int TermIdSize);
     void siglSetIntervalAndCount(int m_sendingInterval = 500, int m_sendingCount = 10);
     void sigConnectToControl();
     void write2Kafka(QString topic, QString strJson, QString strKey);
+    void signalLightPowerOn(bool on);
+    void signalOpenPathTracking(int mode);
+    void signalCheckLightState(QString ip, int port, QStringList idlist);
 
 public slots:
     void slotReceiveTcpData(QByteArray);
+    void slotIsCheckingLightState(bool b);
+    void slotUpdateProgress(QString progress);
+    void slotUpdateLightStateJson(QStringList checkIdList, QStringList checkResultListTmp);
 
 private:
     QString m_controllIp;   // 控制器 ip
@@ -39,6 +49,9 @@ private:
     lightControllWorker *m_work = nullptr;    //雾灯 工作类
     QString m_topic;
     QString m_version;      // 雾灯版本 1 老版本 2 新版本
+    int m_checkLightState = false;        // 正在查询雾灯状态
+    QString m_progress;     // 雾灯状态查询进度
+    QJsonObject* m_lightStateJson = nullptr;
 
 };
 

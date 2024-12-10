@@ -1,4 +1,4 @@
-#include <QJsonDocument>
+﻿#include <QJsonDocument>
 #include <QTextCodec>
 #include <QSettings>
 #include <QCoreApplication>
@@ -32,7 +32,7 @@ MyHttpServer::~MyHttpServer()
 {
     if(m_httpServer != nullptr) delete m_httpServer;
     m_httpServer = nullptr;
-    emit showMsg("http服务已关闭");
+    emit emit showMsg("http服务已关闭");
     //TSDK_DeInit();
 }
 
@@ -58,6 +58,55 @@ void MyHttpServer::create(QHostAddress address, int port)
         showMsg(request.body());
 
         return parseLightJson(json);
+
+    });
+
+    // 雾灯轨迹开关
+    m_httpServer->route("/light/PathTracking", QHttpServerRequest::Method::Post,
+                            [this](const QHttpServerRequest &request) {
+        //emit showMsg(QJsonDocument::fromJson(request.body()).toJson());
+
+        //获取json数据包
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(request.body());
+        QJsonObject json = jsonDoc.object();
+        showMsg(request.body());
+
+        return parseLightPathTracking(json);
+
+    });
+
+    // 雾灯状态更新
+    m_httpServer->route("/light/UpdateLightState", QHttpServerRequest::Method::Post,
+                 [this](const QHttpServerRequest &request) {
+         //获取json数据包
+         QJsonDocument jsonDoc = QJsonDocument::fromJson(request.body());
+         QJsonObject json = jsonDoc.object();
+         showMsg(request.body());
+
+         return parseUpdateLightState(json);
+
+    });
+
+    // 查询雾灯状态
+    m_httpServer->route("/light/GetLightState", QHttpServerRequest::Method::Get,
+                        [this]() {
+        //获取json数据包
+
+        QJsonObject json;
+
+        for (int i=0; i<m_lightControllList->size(); i++) {
+            lightcontroll* light = m_lightControllList->at(i);
+
+            QString progress;
+            if(light->getCheckLightState(progress)){
+                json.insert(light->getControllIp(), progress);
+                return json;
+            }
+
+            json.insert(light->getControllIp(), light->getLightState());
+        }
+
+        return json;
 
     });
 
@@ -88,13 +137,13 @@ void MyHttpServer::create(QHostAddress address, int port)
 
         //qDebug() << request.body();
 
-        //showMsg("车道改变状态接收json： " + request.body());
+        //emit showMsg("车道改变状态接收json： " + request.body());
 
         //解析json数据 回复json数据
         if(json.find("state") != json.end() && json.find("state")->isString()
                 && json.find("TermIp") != json.end() && json.find("TermIp")->isString()){
             if(json.find("state")->toString() != "0" && json.find("state")->toString() != "1"){
-                qDebug() << json.find("state")->toString();
+                //qDebug() << json.find("state")->toString();
                 jsonBack.insert("code", "1");
                 jsonBack.insert("msg", "state，值类错误");
                 return jsonBack;
@@ -121,7 +170,7 @@ void MyHttpServer::create(QHostAddress address, int port)
 
         //qDebug() << request.body();
 
-        //showMsg("车道改变状态接收json： " + request.body());
+        //emit showMsg("车道改变状态接收json： " + request.body());
 
         //解析json数据 回复json数据
         if(json.find("state") != json.end() && json.find("state")->isString())
@@ -249,7 +298,7 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
     lightcontroll* controller = nullptr;
 
     if( TermIp.split(":").size() != 2){
-        showMsg("**************** ip地址不合法  ip:port");
+        emit showMsg("**************** ip地址不合法  ip:port");
         backJson.find("code").value() = 1;
         backJson.find("msg").value() = "ip地址不合法  ip:port";
         return backJson;
@@ -259,29 +308,40 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
     ip = TermIp.split(":").at(0);
     port = TermIp.split(":").at(1).toInt();
 
-    if(port < 1 || port > 65535){    // 判断ip是否合法
+    if(port < 1 || port > 65535){    // 判断端口是否合法
         backJson.find("code").value() = 1;
         backJson.find("msg").value() = "port不合法";
-        showMsg("**************** port不合法");
+        emit showMsg("**************** port不合法");
         return backJson;
     }
 
     if(!ipAddrIsOK(ip)){    // 判断ip是否合法
         backJson.find("code").value() = 1;
         backJson.find("msg").value() = "ip地址不合法";
-        showMsg("**************** ip地址不合法");
+        emit showMsg("**************** ip地址不合法");
         return backJson;
     }
     //获取控制器
     // lightcontroll* controller = getControllerFromIp(TermIp);
     controller = getControllerFromIpPort(ip, port);
 
-    // 判断该 ip 控制器是否在线
-    if(!controller){
-        backJson.find("code").value() = 1;
-        backJson.find("msg").value() = "控制器[" + TermIp + "]不在线";
+    if(!controllerIsUseful(controller, TermIp, backJson)){
         return backJson;
     }
+
+    // // 判断该 ip 控制器是否在线
+    // if(!controller){
+    //     backJson.find("code").value() = 1;
+    //     backJson.find("msg").value() = "控制器[" + TermIp + "]不在线";
+    //     return backJson;
+    // }
+
+    // // 判断控制器是否处在 查询状态
+    // if(controller->getCheckLightState()){
+    //     backJson.insert("code", 1);
+    //     backJson.insert("msg", "正在查询雾灯状态，请稍后重试");
+    //     return backJson;
+    // }
 
     if(Broadcast != 1 && Broadcast != 0){
         backJson.find("code").value() = 1;
@@ -304,8 +364,16 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
     if(Broadcast){              // 广播模式
         cmdStr = QString(DISPLAY_FONT).replace("%1", "FF");     // 需要发送的命令
         if(contentSize == 0){           // 关灯
+
+            // 关闭电源
+            emit controller->signalLightPowerOn(false);
+
             cmdStr.replace("%2", "A0 F0");
         }else if(contentSize == 1){     // 开灯
+
+            // 打开电源
+            emit controller->signalLightPowerOn(true);
+
             cmdStr.replace("%2", qstr2Hex(Content.at(0).toString()));
         }else{
             backJson.find("code").value() = 1;
@@ -314,11 +382,15 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
         }
         sendDataList.insert(0, cmdStr.replace("%1","FF").toUpper());
     }else{                      // 多文字模式
+
         if(TermIdSize != contentSize){
             backJson.find("code").value() = 1;
             backJson.find("msg").value() = "多文字模式下 TermId 数量只能跟 content 数量相等";
             return backJson;
         }
+
+        // 打开电源
+        emit controller->signalLightPowerOn(true);
 
         for(int i=0; i<TermIdSize; i++){
             cmdStr = DISPLAY_FONT;
@@ -427,10 +499,242 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
             backJson.insert("FontColor", "字段不存在");
         }
     }
-
     emit controller->sigSendDatagram(sendDataList, DeviceId, name, version, fontColor, Luminance, FlickerList, TermIdSize);
 
     return backJson;
+}
+
+QJsonObject MyHttpServer::parseLightPathTracking(QJsonObject &json)
+{
+    QJsonObject backJson;
+    backJson.insert("code", 0);
+    backJson.insert("msg", "成功");
+
+    //如果必要参数不存在，或者不合理，直接返回
+    if(json.find("TermIp") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 TermIp";
+        return backJson;
+    }else if(!json.find("TermIp")->isString()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "TermIp 数据类型错误 应该为 string";
+        return backJson;
+    }
+
+    if( json.find("PathTracking") == json.end()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 PathTracking";
+        return backJson;
+    }else if(!json.find("PathTracking")->isDouble()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "TermIp 数据类型错误 应该为 int";
+        return backJson;
+    }
+
+    // 获取数据
+    QString TermIp = json["TermIp"].toString();         // 获取控制器 ip:port
+    int PathTracking = json["PathTracking"].toInt();    // 获取 Broadcast
+    QString ip;
+    int port;
+
+    if(!TermIpIsUseful(TermIp, ip, port, backJson)){
+        return backJson;
+    }
+
+    if(PathTracking != 0 && PathTracking != 1 && PathTracking != 2 ){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "PathTracking 值只能为 0 - 2 整数";
+        return backJson;
+    }
+
+    lightcontroll* controller = nullptr;
+    controller = getControllerFromIpPort(ip, port);
+
+    if(!controllerIsUseful(controller, TermIp, backJson)){
+        return backJson;
+    }
+
+    // if(!controller){
+    //     backJson.find("code").value() = 1;
+    //     backJson.find("msg").value() = "控制器[" + TermIp + "]不在线";
+    //     return backJson;
+    // }
+
+    emit controller->signalOpenPathTracking(PathTracking);
+
+    return backJson;
+}
+
+QJsonObject MyHttpServer::parseUpdateLightState(QJsonObject &json)
+{
+    QJsonObject backJson;
+    backJson.insert("code", 0);
+    backJson.insert("msg", "成功");
+
+    //qDebug() << "json.keys();: " << json.keys();
+    QStringList ipPortList = json.keys();
+    QList<QJsonArray> idArrayList;
+
+    foreach (QString TermIp, ipPortList) {
+        QString ip;
+        int port;
+        QJsonArray idArray;
+        QStringList idList;
+        // ip是否合法
+        if(!TermIpIsUseful(TermIp, ip, port, backJson)){
+            return backJson;
+        }
+        idArray = json.value(TermIp).toArray();
+
+        foreach(QJsonValue idValue, idArray){
+            if(!idValue.isDouble()){
+                backJson.find("code").value() = 1;
+                backJson.find("msg").value() = "id数据类型应该为int";
+                return backJson;
+            }
+            idList << QString::number(idValue.toInt());
+        }
+
+        idArrayList << idArray;
+
+        lightcontroll* controller = nullptr;                // 控制器
+
+        controller = getControllerFromIpPort(ip, port);
+
+        if(!controllerIsUseful(controller, TermIp, backJson)){
+            return backJson;
+        }
+
+        emit controller->signalCheckLightState(ip, port, idList);
+    }
+
+
+    //qDebug() << "ipPortList: " << ipPortList;
+    //qDebug() << "idArrayList: " << idArrayList;
+
+    return backJson;
+/*
+    lightcontroll* controller = nullptr;                // 控制器
+    QString TermIp = json["TermIp"].toString();         // 获取控制器 ip:port
+    QJsonArray TermId = json["TermId"].toArray();       // 获取雾灯 id
+    QString ip;
+    int port = -1;
+    QStringList idList;
+
+    //qDebug() << "json.keys();: " << json.keys();
+
+    //如果必要参数不存在，或者不合理，直接返回
+    if(json.find("TermIp") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 TermIp";
+        return backJson;
+    }else if(!json.find("TermIp")->isString()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "TermIp 数据类型错误 应该为 string";
+        return backJson;
+    }
+
+    if(json.find("TermId") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 TermId ";
+        return backJson;
+    }else if(!json.find("TermId")->isArray()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "TermId 数据类型错误  应该为 int 类型的 array";
+        return backJson;
+    }else {
+        int TermIdSize = TermId.size();
+
+        if(TermIdSize < 1){
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "TermId 数量不能小于1";
+            return backJson;
+        }
+
+        foreach(QJsonValue value, TermId){
+            if(!value.isDouble()){
+                backJson.find("code").value() = 1;
+                backJson.find("msg").value() = "TermId 内容不是 int";
+                return backJson;
+            }
+        }
+    }
+
+    // 获取数据
+    if(!TermIpIsUseful(TermIp, ip, port, backJson)){
+        return backJson;
+    }
+
+    // 获取控制器
+    controller = getControllerFromIpPort(ip, port);
+
+    if(!controllerIsUseful(controller, TermIp, backJson)){
+        return backJson;
+    }
+
+    // if(!controller){
+    //     backJson.find("code").value() = 1;
+    //     backJson.find("msg").value() = "控制器[" + TermIp + "]不在线";
+    //     return backJson;
+    // }
+
+    foreach (QJsonValue id, TermId) {
+        idList << QString::number(id.toInt());
+    }
+
+    emit controller->signalCheckLightState(ip, port, idList);
+
+    return backJson;*/
+}
+
+bool MyHttpServer::TermIpIsUseful(QString TermIp, QString &ip, int &port, QJsonObject &backJson)
+{
+    if( TermIp.split(":").size() != 2){
+        emit showMsg("**************** ip地址不合法  ip:port");
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "ip地址不合法  ip:port";
+        return false;
+    }
+
+    ip = TermIp.split(":").at(0);
+    port = TermIp.split(":").at(1).toInt();
+
+    if(port < 1 || port > 65535){    // 判断端口是否合法
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "port不合法";
+        emit showMsg("**************** port不合法");
+        return false;
+    }
+
+    if(!ipAddrIsOK(ip)){    // 判断ip是否合法
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "ip地址不合法";
+        emit showMsg("**************** ip地址不合法");
+        return false;
+    }
+
+
+    return true;
+}
+
+bool MyHttpServer::controllerIsUseful(lightcontroll* controller, QString TermIp, QJsonObject &backJson)
+{
+    QString progress;
+    // 判断该 ip 控制器是否在线
+    if(!controller){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "控制器[" + TermIp + "]不在线";
+        return false;
+    }
+
+    // 判断控制器是否处在 查询状态
+    if(controller->getCheckLightState(progress)){
+        backJson.insert("code", 1);
+        backJson.insert("msg", QString("正在查询雾灯状态，<%1>").arg(progress));
+        return false;
+    }
+
+    return true;
 }
 
 bool MyHttpServer::missingParameter(QJsonObject &json, QJsonObject &backJson)
@@ -1586,7 +1890,7 @@ bool MyHttpServer::sastIsOnline(const QString &ip)
 bool MyHttpServer::mp3Exist(QString mp3)
 {
     QString filePath = QCoreApplication::applicationDirPath() + "/" + "recourse/" + mp3;
-    qDebug() << filePath;
+    //qDebug() << filePath;
     if(QFile(filePath).exists()) return true;
     return false;
 }

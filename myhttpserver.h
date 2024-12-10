@@ -1,4 +1,4 @@
-#ifndef MYHTTPSERVER_H
+﻿#ifndef MYHTTPSERVER_H
 #define MYHTTPSERVER_H
 
 #include <QObject>
@@ -69,6 +69,10 @@ public:
     void initSerialPort();
     //QJsonObject parseLightJson(QJsonObject& json);        //解析 雾灯 json数据z
     QJsonObject parseLightJson(QJsonObject& json);          //解析 雾灯 json数据 2.0 版本
+    QJsonObject parseLightPathTracking(QJsonObject& json);  //解析 雾灯 轨迹请求
+    QJsonObject parseUpdateLightState(QJsonObject& json);   //解析 雾灯 更新雾灯状态请求
+    bool TermIpIsUseful(QString TermIp, QString& ip, int& port, QJsonObject &backJson);
+    bool controllerIsUseful(lightcontroll* controller, QString TermIp, QJsonObject &backJson);
     bool missingParameter(QJsonObject& json, QJsonObject& backJson);
     QString qstr2Hex(QString instr);    //汉字 转 16进制
     void setSendingPara();              //设置控制器发送间隔和命令数
@@ -110,12 +114,12 @@ public:
     QStringList m_ipList;
     QStringList m_codeList;
 signals:
-    void forTest();
 
 
 signals:
     void showMsg(QString msg);
     void sigleUpdateTermListUi();
+    void forTest();
     void sigleUpdateControllerUi(QString);
     //void changeSendingInterval();
     //void changeSendingCount();
@@ -134,10 +138,11 @@ signals:
                    , QString m_deviceId, int vol);
 
 public:
-    QHttpServer* m_httpServer;          //http 服务
-    QHostAddress m_address;             //http 监听 ip
-    int m_port;                         //http 监听端口号
-    sendType m_sendType;                //当前发送模式 TCP/UART
+    QHttpServer* m_httpServer;          // http 服务
+    QHostAddress m_address;             // http 监听 ip
+    int m_port;                         // http 监听端口号
+    sendType m_sendType;                // 当前发送模式 TCP/UART
 };
+
 
 #endif // MYHTTPSERVER_H
