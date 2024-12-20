@@ -64,9 +64,8 @@ static constexpr auto qt_meta_stringdata_CLASSlightcontrollENDCLASS = QtMocHelpe
     "signalOpenPathTracking",
     "mode",
     "signalCheckLightState",
-    "ip",
-    "port",
     "idlist",
+    "signalCheckPathTrackingState",
     "slotReceiveTcpData",
     "slotIsCheckingLightState",
     "b",
@@ -74,11 +73,13 @@ static constexpr auto qt_meta_stringdata_CLASSlightcontrollENDCLASS = QtMocHelpe
     "progress",
     "slotUpdateLightStateJson",
     "checkIdList",
-    "checkResultListTmp"
+    "checkResultListTmp",
+    "slotUpdatePathTrackingStateJson",
+    "time"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSlightcontrollENDCLASS_t {
-    uint offsetsAndSizes[74];
+    uint offsetsAndSizes[76];
     char stringdata0[14];
     char stringdata1[17];
     char stringdata2[1];
@@ -105,17 +106,18 @@ struct qt_meta_stringdata_CLASSlightcontrollENDCLASS_t {
     char stringdata23[23];
     char stringdata24[5];
     char stringdata25[22];
-    char stringdata26[3];
-    char stringdata27[5];
-    char stringdata28[7];
-    char stringdata29[19];
-    char stringdata30[25];
-    char stringdata31[2];
-    char stringdata32[19];
-    char stringdata33[9];
-    char stringdata34[25];
-    char stringdata35[12];
-    char stringdata36[19];
+    char stringdata26[7];
+    char stringdata27[29];
+    char stringdata28[19];
+    char stringdata29[25];
+    char stringdata30[2];
+    char stringdata31[19];
+    char stringdata32[9];
+    char stringdata33[25];
+    char stringdata34[12];
+    char stringdata35[19];
+    char stringdata36[32];
+    char stringdata37[5];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSlightcontrollENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -147,17 +149,18 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightcontrollENDCLASS_t qt_meta
         QT_MOC_LITERAL(272, 22),  // "signalOpenPathTracking"
         QT_MOC_LITERAL(295, 4),  // "mode"
         QT_MOC_LITERAL(300, 21),  // "signalCheckLightState"
-        QT_MOC_LITERAL(322, 2),  // "ip"
-        QT_MOC_LITERAL(325, 4),  // "port"
-        QT_MOC_LITERAL(330, 6),  // "idlist"
-        QT_MOC_LITERAL(337, 18),  // "slotReceiveTcpData"
-        QT_MOC_LITERAL(356, 24),  // "slotIsCheckingLightState"
-        QT_MOC_LITERAL(381, 1),  // "b"
-        QT_MOC_LITERAL(383, 18),  // "slotUpdateProgress"
-        QT_MOC_LITERAL(402, 8),  // "progress"
-        QT_MOC_LITERAL(411, 24),  // "slotUpdateLightStateJson"
-        QT_MOC_LITERAL(436, 11),  // "checkIdList"
-        QT_MOC_LITERAL(448, 18)   // "checkResultListTmp"
+        QT_MOC_LITERAL(322, 6),  // "idlist"
+        QT_MOC_LITERAL(329, 28),  // "signalCheckPathTrackingState"
+        QT_MOC_LITERAL(358, 18),  // "slotReceiveTcpData"
+        QT_MOC_LITERAL(377, 24),  // "slotIsCheckingLightState"
+        QT_MOC_LITERAL(402, 1),  // "b"
+        QT_MOC_LITERAL(404, 18),  // "slotUpdateProgress"
+        QT_MOC_LITERAL(423, 8),  // "progress"
+        QT_MOC_LITERAL(432, 24),  // "slotUpdateLightStateJson"
+        QT_MOC_LITERAL(457, 11),  // "checkIdList"
+        QT_MOC_LITERAL(469, 18),  // "checkResultListTmp"
+        QT_MOC_LITERAL(488, 31),  // "slotUpdatePathTrackingStateJson"
+        QT_MOC_LITERAL(520, 4)   // "time"
     },
     "lightcontroll",
     "signalInitWorker",
@@ -185,9 +188,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightcontrollENDCLASS_t qt_meta
     "signalOpenPathTracking",
     "mode",
     "signalCheckLightState",
-    "ip",
-    "port",
     "idlist",
+    "signalCheckPathTrackingState",
     "slotReceiveTcpData",
     "slotIsCheckingLightState",
     "b",
@@ -195,7 +197,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightcontrollENDCLASS_t qt_meta
     "progress",
     "slotUpdateLightStateJson",
     "checkIdList",
-    "checkResultListTmp"
+    "checkResultListTmp",
+    "slotUpdatePathTrackingStateJson",
+    "time"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -207,31 +211,33 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSlightcontrollENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-      11,       // signalCount
+      12,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  104,    2, 0x06,    1 /* Public */,
-       3,    1,  105,    2, 0x06,    2 /* Public */,
-       4,    8,  108,    2, 0x06,    4 /* Public */,
-      13,    2,  125,    2, 0x06,   13 /* Public */,
-      13,    1,  130,    2, 0x26,   16 /* Public | MethodCloned */,
-      13,    0,  133,    2, 0x26,   18 /* Public | MethodCloned */,
-      16,    0,  134,    2, 0x06,   19 /* Public */,
-      17,    3,  135,    2, 0x06,   20 /* Public */,
-      21,    1,  142,    2, 0x06,   24 /* Public */,
-      23,    1,  145,    2, 0x06,   26 /* Public */,
-      25,    3,  148,    2, 0x06,   28 /* Public */,
+       1,    0,  116,    2, 0x06,    1 /* Public */,
+       3,    1,  117,    2, 0x06,    2 /* Public */,
+       4,    8,  120,    2, 0x06,    4 /* Public */,
+      13,    2,  137,    2, 0x06,   13 /* Public */,
+      13,    1,  142,    2, 0x26,   16 /* Public | MethodCloned */,
+      13,    0,  145,    2, 0x26,   18 /* Public | MethodCloned */,
+      16,    0,  146,    2, 0x06,   19 /* Public */,
+      17,    3,  147,    2, 0x06,   20 /* Public */,
+      21,    1,  154,    2, 0x06,   24 /* Public */,
+      23,    1,  157,    2, 0x06,   26 /* Public */,
+      25,    1,  160,    2, 0x06,   28 /* Public */,
+      27,    0,  163,    2, 0x06,   30 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      29,    1,  155,    2, 0x0a,   32 /* Public */,
-      30,    1,  158,    2, 0x0a,   34 /* Public */,
-      32,    1,  161,    2, 0x0a,   36 /* Public */,
-      34,    2,  164,    2, 0x0a,   38 /* Public */,
+      28,    1,  164,    2, 0x0a,   31 /* Public */,
+      29,    1,  167,    2, 0x0a,   33 /* Public */,
+      31,    1,  170,    2, 0x0a,   35 /* Public */,
+      33,    2,  173,    2, 0x0a,   37 /* Public */,
+      36,    2,  178,    2, 0x0a,   40 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -244,13 +250,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSlightcontrollENDCLASS[] = {
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,   18,   19,   20,
     QMetaType::Void, QMetaType::Bool,   22,
     QMetaType::Void, QMetaType::Int,   24,
-    QMetaType::Void, QMetaType::QString, QMetaType::Int, QMetaType::QStringList,   26,   27,   28,
+    QMetaType::Void, QMetaType::QStringList,   26,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QByteArray,    2,
-    QMetaType::Void, QMetaType::Bool,   31,
-    QMetaType::Void, QMetaType::QString,   33,
-    QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList,   35,   36,
+    QMetaType::Void, QMetaType::Bool,   30,
+    QMetaType::Void, QMetaType::QString,   32,
+    QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList,   34,   35,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   24,   37,
 
        0        // eod
 };
@@ -303,9 +311,9 @@ Q_CONSTINIT const QMetaObject lightcontroll::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'signalCheckLightState'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
+        // method 'signalCheckPathTrackingState'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'slotReceiveTcpData'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QByteArray, std::false_type>,
@@ -318,7 +326,11 @@ Q_CONSTINIT const QMetaObject lightcontroll::staticMetaObject = { {
         // method 'slotUpdateLightStateJson'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QStringList, std::false_type>
+        QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
+        // method 'slotUpdatePathTrackingStateJson'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
 } };
@@ -339,11 +351,13 @@ void lightcontroll::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 7: _t->write2Kafka((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         case 8: _t->signalLightPowerOn((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 9: _t->signalOpenPathTracking((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 10: _t->signalCheckLightState((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[3]))); break;
-        case 11: _t->slotReceiveTcpData((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
-        case 12: _t->slotIsCheckingLightState((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 13: _t->slotUpdateProgress((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 14: _t->slotUpdateLightStateJson((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[2]))); break;
+        case 10: _t->signalCheckLightState((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1]))); break;
+        case 11: _t->signalCheckPathTrackingState(); break;
+        case 12: _t->slotReceiveTcpData((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
+        case 13: _t->slotIsCheckingLightState((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 14: _t->slotUpdateProgress((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 15: _t->slotUpdateLightStateJson((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[2]))); break;
+        case 16: _t->slotUpdatePathTrackingStateJson((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -405,9 +419,16 @@ void lightcontroll::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             }
         }
         {
-            using _t = void (lightcontroll::*)(QString , int , QStringList );
+            using _t = void (lightcontroll::*)(QStringList );
             if (_t _q_method = &lightcontroll::signalCheckLightState; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 10;
+                return;
+            }
+        }
+        {
+            using _t = void (lightcontroll::*)();
+            if (_t _q_method = &lightcontroll::signalCheckPathTrackingState; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 11;
                 return;
             }
         }
@@ -433,13 +454,13 @@ int lightcontroll::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 17)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 15;
+        _id -= 17;
     }
     return _id;
 }
@@ -499,9 +520,15 @@ void lightcontroll::signalOpenPathTracking(int _t1)
 }
 
 // SIGNAL 10
-void lightcontroll::signalCheckLightState(QString _t1, int _t2, QStringList _t3)
+void lightcontroll::signalCheckLightState(QStringList _t1)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 10, _a);
+}
+
+// SIGNAL 11
+void lightcontroll::signalCheckPathTrackingState()
+{
+    QMetaObject::activate(this, &staticMetaObject, 11, nullptr);
 }
 QT_WARNING_POP

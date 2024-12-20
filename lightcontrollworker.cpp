@@ -49,16 +49,16 @@ lightControllWorker::~lightControllWorker()
 
 bool lightControllWorker::connectControll()
 {
-    emit showMsg(QString("控制器：%1:%2[正在连接]").arg(m_controllIp).arg(m_controllPort));
+    emit showMsg(QString("控制器:%1:%2[正在连接]").arg(m_controllIp).arg(m_controllPort));
     m_tcpSocket->connectToHost(m_controllIp, m_controllPort);
     m_tcpSocket->setSocketOption(QTcpSocket::KeepAliveOption, 1);
 
     if (m_tcpSocket->waitForConnected(1000))  // 连接
     {
-        emit showMsg(QString("控制器【%1：%2】连接成功").arg(m_controllIp).arg(m_controllPort));
+        emit showMsg(QString("控制器【%1:%2】连接成功").arg(m_controllIp).arg(m_controllPort));
         return true;
     }else{
-        emit showMsg(QString("控制器【%1：%2】连接失败").arg(m_controllIp).arg(m_controllPort));
+        emit showMsg(QString("控制器【%1:%2】连接失败").arg(m_controllIp).arg(m_controllPort));
         return false;
     }
 }
@@ -97,7 +97,7 @@ void lightControllWorker::SendDatagram1(QStringList sendDataList, QString Device
 
         if(!connectControll()){
             json.insert("deviceState", "2");
-            emit showMsg(QString("控制器：%1[网络故障]").arg(m_controllIp));
+            emit showMsg(QString("控制器:%1[网络故障]").arg(m_controllIp));
             jsonDoc.setObject(json);
             emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
             emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataListTmp, DeviceId, TermIdSize)).toJson(), "light");
@@ -119,7 +119,7 @@ void lightControllWorker::SendDatagram1(QStringList sendDataList, QString Device
 
                 m_tcpSocket->write(QByteArray::fromHex(sendDataList.first().toLatin1()));
                 m_tcpSocket->waitForBytesWritten();
-                emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp).arg(sendDataList.first()));
+                emit showMsg(QString("控制器:%1[%2]").arg(m_controllIp).arg(sendDataList.first()));
 
                 QTimer::singleShot(1000, &eventloop, SLOT(quit()));
                 eventloop.exec();
@@ -134,7 +134,7 @@ void lightControllWorker::SendDatagram1(QStringList sendDataList, QString Device
 
             m_tcpSocket->write(QByteArray::fromHex(tmp.toLatin1()));
             m_tcpSocket->waitForBytesWritten();
-            emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp).arg(tmp));
+            emit showMsg(QString("控制器:%1[%2]").arg(m_controllIp).arg(tmp));
             //msleep(m_sendingInterval);
 
             QTimer::singleShot(m_sendingInterval, &eventloop, SLOT(quit()));
@@ -235,7 +235,7 @@ void lightControllWorker::SendDatagram2(QStringList sendDataList, QString Device
     if(m_tcpSocket && m_tcpSocket->state() != QAbstractSocket::ConnectedState){
         if(!connectControll()){
             json.insert("deviceState", "2");
-            emit showMsg(QString("控制器：%1[网络故障]").arg(m_controllIp));
+            emit showMsg(QString("控制器:%1[网络故障]").arg(m_controllIp));
             jsonDoc.setObject(json);
             emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
             emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataListTmp, DeviceId, TermIdSize)).toJson(), "light");
@@ -250,7 +250,7 @@ void lightControllWorker::SendDatagram2(QStringList sendDataList, QString Device
             if(cmd.contains("FF 40")){
                 m_tcpSocket->write(QByteArray::fromHex(cmd.toLatin1()));
                 m_tcpSocket->waitForBytesWritten();
-                emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp, cmd));
+                emit showMsg(QString("控制器:%1[%2]").arg(m_controllIp, cmd));
                 //sendDataList.removeAt(i);
             }
         }
@@ -267,7 +267,7 @@ void lightControllWorker::SendDatagram2(QStringList sendDataList, QString Device
 
             m_tcpSocket->write(QByteArray::fromHex(tmp.toLatin1()));
             m_tcpSocket->waitForBytesWritten();
-            emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp, tmp));
+            emit showMsg(QString("控制器:%1[%2]").arg(m_controllIp, tmp));
         }
         json.insert("deviceState", "1");
     }
@@ -311,7 +311,7 @@ void lightControllWorker::SendDatagram1Udp(QStringList sendDataList, QString Dev
     //    判断是否在线
     // if(!connectControll()){
     //     json.insert("deviceState", "2");
-    //     emit showMsg(QString("控制器：%1[网络故障]").arg(m_controllIp));
+    //     emit showMsg(QString("控制器:%1[网络故障]").arg(m_controllIp));
     //     jsonDoc.setObject(json);
     //     emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
     //     emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
@@ -322,14 +322,14 @@ void lightControllWorker::SendDatagram1Udp(QStringList sendDataList, QString Dev
 
     while(!sendDataList.isEmpty()){
         // 将闪烁 和 亮度 和 颜色 命令发送，并休眠 10s
-        if(    sendDataList.first().toUpper().contains("FF 66 FF")
+        if( sendDataList.first().toUpper().contains("FF 66 FF")
             || sendDataList.first().toUpper().contains("FF 77 FF")
             || sendDataList.first().toUpper().contains("FF 88 FF")
-            || sendDataList.first().toUpper().contains("FF 40 FF")  )
+            || sendDataList.first().toUpper().contains("FF 40 FF"))
         {
             m_udpSocket->writeDatagram(QByteArray::fromHex(sendDataList.first().toLatin1()), QHostAddress(m_controllIp), m_controllPort);
             //m_udpSocket->waitForBytesWritten();
-            emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp).arg(sendDataList.first()));
+            emit showMsg(QString("控制器:%1[%2]").arg(m_controllIp).arg(sendDataList.first()));
 
             QTimer::singleShot(1000, &eventloop, SLOT(quit()));
             eventloop.exec();
@@ -344,7 +344,7 @@ void lightControllWorker::SendDatagram1Udp(QStringList sendDataList, QString Dev
 
         m_udpSocket->writeDatagram(QByteArray::fromHex(tmp.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
         //m_udpSocket->waitForBytesWritten();
-        emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp).arg(tmp));
+        emit showMsg(QString("控制器:%1[%2]").arg(m_controllIp).arg(tmp));
         //msleep(m_sendingInterval);
 
         QTimer::singleShot(m_sendingInterval, &eventloop, SLOT(quit()));
@@ -446,7 +446,7 @@ void lightControllWorker::SendDatagram2Udp(QStringList sendDataList, QString Dev
     //    判断是否在线
     // if(!connectControll()){
     //     json.insert("deviceState", "2");
-    //     emit showMsg(QString("控制器：%1[网络故障]").arg(m_controllIp));
+    //     emit showMsg(QString("控制器:%1[网络故障]").arg(m_controllIp));
     //     jsonDoc.setObject(json);
     //     emit write2Kafka(m_topic, jsonDoc.toJson(), "light");
     //     emit write2Kafka(m_topic2, QJsonDocument(getTopic2Json(sendDataList, DeviceId)).toJson(), "light");
@@ -459,7 +459,7 @@ void lightControllWorker::SendDatagram2Udp(QStringList sendDataList, QString Dev
         if(cmd.contains("FF 40")){
             m_udpSocket->writeDatagram(QByteArray::fromHex(cmd.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
             //m_udpSocket->waitForBytesWritten();
-            emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp, cmd));
+            emit showMsg(QString("控制器:%1[%2]").arg(m_controllIp, cmd));
         }
     }
 
@@ -477,7 +477,7 @@ void lightControllWorker::SendDatagram2Udp(QStringList sendDataList, QString Dev
 
         m_udpSocket->writeDatagram(QByteArray::fromHex(tmp.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
         //m_udpSocket->waitForBytesWritten();
-        emit showMsg(QString("控制器：%1[%2]").arg(m_controllIp, tmp));
+        emit showMsg(QString("控制器:%1[%2]").arg(m_controllIp, tmp));
     }
 
     json.insert("deviceState", "1");
@@ -577,7 +577,7 @@ QJsonObject lightControllWorker::getTopic2Json(QStringList sendDataList, QString
     //qDebug() << "************************************ json : " << json;
     emit showMsg("************lightControllWorker::getTopic2Json: " + QJsonDocument(json).toJson());
 
-    //qDebug() << QString("发文字时间：%1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz"));
+    //qDebug() << QString("发文字时间:%1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz"));
     return json;
 }
 
@@ -656,66 +656,57 @@ void lightControllWorker::slotReadyReadTcp()
 {
     QByteArray ba = m_tcpSocket->readAll().toHex();
     //m_tcpSocket->flush();
-    //qDebug() << "*************ba: " << ba;
+    qDebug() << "*************ba: " << ba;
     QString str = ba.toUpper();
     int state = -1;
     //int state = -1;
     if(str.size() == 4){ // 查询结果
         if(str.at(0) == 'F'){
-            if(str.at(1) == '5'){           // 查询控制板状态：
+            if(str.at(1) == '5'){           // 查询控制板状态:
                 if( str.at(3) == '5'){
                     state = QString(str.at(2)).toInt();
-
+                    // 返回信息f5 x5两个字节, x=0灯关闭 x=1 灯亮   x=3灯亮且闪烁  x=4内部通讯故障
+                    switch (state) {
+                    case -1:
+                        //m_checkResultList << "灯离线";
+                        m_checkResultList << "5";
+                        break;
+                    case 0:
+                        //m_checkResultList << "灯关闭";
+                        m_checkResultList << "0";
+                        break;
+                    case 1:
+                        //m_checkResultList << "灯亮";
+                        m_checkResultList << "1";
+                        break;
+                    case 3:
+                        //m_checkResultList << "灯亮且闪烁";
+                        m_checkResultList << "3";
+                        break;
+                    case 4:
+                        //m_checkResultList << "内部通讯故障";
+                        m_checkResultList << "4";
+                        break;
+                    default:
+                        break;
+                    }
+                    return;
                 }
             }else if(str.at(1) == '6'){     // 查询控制板电源状态
 
             }else if(str.at(1) == 'a'){     // 轨迹跟踪延时时间查询
-
+                m_pathTrackingDelay = QString(str.at(2)).toInt();
+                emit signalUpdatePathTrackingStateJson(m_pathTrackingMode, m_pathTrackingDelay);
+                return;
             }else if(str.at(1) == 'b'){     // 轨迹跟踪状态查询
-
+                if( str.at(3) == '5'){
+                    m_pathTrackingMode = QString(str.at(2)).toInt();
+                    emit signalUpdatePathTrackingStateJson(m_pathTrackingMode, m_pathTrackingDelay);
+                    return;
+                }
             }
         }
     }
-
-    // 返回信息f5 x5两个字节, x=0灯关闭 x=1 灯亮   x=3灯亮且闪烁  x=4内部通讯故障
-    switch (state) {
-    case -1:
-        //m_checkResultList << "灯离线";
-        m_checkResultList << "5";
-        break;
-    case 0:
-        //m_checkResultList << "灯关闭";
-        m_checkResultList << "0";
-        break;
-    case 1:
-        //m_checkResultList << "灯亮";
-        m_checkResultList << "1";
-        break;
-    case 3:
-        //m_checkResultList << "灯亮且闪烁";
-        m_checkResultList << "3";
-        break;
-    case 4:
-        //m_checkResultList << "内部通讯故障";
-        m_checkResultList << "4";
-        break;
-    default:
-        break;
-    }
-
-    //QString stateStr = QString("ID: [%1] state：[%2]").arg(m_currentId).arg(state);
-
-    // //qDebug() << stateStr;
-    // //if()
-    // m_checkResultList << QString::number(state);
-
-    //qDebug()  << m_tcpSocket->readAll().toHex();
-
-    //qDebug() << "m_checkResultListTmp: "  << m_checkResultListTmp;
-
-    // m_checkResultListTmp.clear();
-    // m_checkResultListTmp = QString::number(state);
-    // m_checkResultList << m_checkResultListTmp;
 }
 
 void lightControllWorker::slotReadyReadUdp()
@@ -747,11 +738,11 @@ void lightControllWorker::slotLightPowerOn(bool on)
     QString cmd = on ? CMD_POWER_ON : CMD_POWER_OFF;
 
     if(on){
-        //qDebug() << QString("开电时间：%1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz"));
-        emit showMsg(QString("[%1]  控制器：%2[%3]  开电").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz")).arg(m_controllIp).arg(cmd));
+        //qDebug() << QString("开电时间:%1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz"));
+        emit showMsg(QString("[%1]  控制器:%2[%3]  开电").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz")).arg(m_controllIp).arg(cmd));
     }else{
-        //qDebug() << QString("关电时间：%1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz"));
-        emit showMsg(QString("[%1]  控制器：%2[%3]  关电").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz")).arg(m_controllIp).arg(cmd));
+        //qDebug() << QString("关电时间:%1").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz"));
+        emit showMsg(QString("[%1]  控制器:%2[%3]  关电").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz")).arg(m_controllIp).arg(cmd));
     }
 
     if(m_connectType == "TCP"){
@@ -792,11 +783,11 @@ void lightControllWorker::slotOpenPathTracking(int mode)
         m_udpSocket->writeDatagram(QByteArray::fromHex(cmd.toLatin1()), QHostAddress(m_controllIp), m_controllPort);
     }
 
-    //qDebug() << "轨迹：    " << cmd;
+    //qDebug() << "轨迹:    " << cmd;
     QThread::msleep(500);
 }
 
-void lightControllWorker::slotCheckLightState(QString ip, int port, QStringList idlist)
+void lightControllWorker::slotCheckLightState(QStringList idlist)
 {
     emit signalIsCheckingLightState(true);
 
@@ -853,6 +844,21 @@ void lightControllWorker::slotCheckLightState(QString ip, int port, QStringList 
 
 }
 
+void lightControllWorker::slotCheckPathTrackingState()
+{
+    qDebug() << "QByteArray::fromHex(QString(CMD_STATUS_QUERY_3).toLatin1()): " << QByteArray::fromHex(QString(CMD_STATUS_QUERY_3).toLatin1());
+    if(m_pathTrackingFlag != 0) return;
+
+    if(m_connectType == "TCP"){
+        m_tcpSocket->write(QByteArray::fromHex(QString(CMD_STATUS_QUERY_3).toLatin1()));
+        m_tcpSocket->waitForBytesWritten();
+    }else{
+        m_udpSocket->writeDatagram(QByteArray::fromHex(QString(CMD_STATUS_QUERY_3).toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+    }
+    m_pathTrackingFlag = 2;
+    m_checkTimer->start();
+}
+
 void lightControllWorker::slotTest(QByteArray ba)
 {
     qDebug() << "**************************" ;
@@ -866,6 +872,28 @@ void lightControllWorker::initChenkTimer()
     m_checkTimer = new QTimer;
     m_checkTimer->setInterval(1000);
     connect(m_checkTimer, &QTimer::timeout, this, [this](){
+        // 轨迹状态查询
+        if(m_pathTrackingFlag == 2){
+            slotReadyReadTcp();
+            m_pathTrackingFlag = 1;
+
+            if(m_connectType == "TCP"){
+                m_tcpSocket->write(QByteArray::fromHex(QString(CMD_STATUS_QUERY_5).toLatin1()));
+                m_tcpSocket->waitForBytesWritten();
+            }else{
+                m_udpSocket->writeDatagram(QByteArray::fromHex(QString(CMD_STATUS_QUERY_5).toLatin1()), QHostAddress(m_controllIp), m_controllPort);
+            }
+
+            return;
+        }else if(m_pathTrackingFlag == 1){
+            slotReadyReadTcp();
+            m_pathTrackingFlag = 0;
+            m_checkTimer->stop();
+            return;
+        }
+
+
+        // 灯状态查询
         if(m_checkIndex > 0){
             slotReadyReadTcp();
         }
@@ -894,4 +922,14 @@ void lightControllWorker::initChenkTimer()
         }
     });
 
+}
+
+void lightControllWorker::initWatchTcpReceive()
+{
+    m_watchTcpReceive = new QTimer();
+    m_watchTcpReceive->setInterval(250);
+    connect(m_watchTcpReceive, &QTimer::timeout, this, [=]{
+
+    });
+    m_watchTcpReceive->start();
 }

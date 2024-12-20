@@ -48,6 +48,38 @@ void MyHttpServer::create(QHostAddress address, int port)
     m_httpServer = new QHttpServer(this);
 
     //处理雾灯 post 请求
+
+    // 广播控灯
+    m_httpServer->route("/light/Broadcast", QHttpServerRequest::Method::Post,
+                        [this](const QHttpServerRequest &request) {
+        //获取json数据包
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(request.body());
+        QJsonObject json = jsonDoc.object();
+        showMsg(request.body());
+
+        return parseLightBroadcast(json);
+
+    });
+
+    // 非广播控灯
+    m_httpServer->route("/light/BroadcastNot", QHttpServerRequest::Method::Post,
+                        [this](const QHttpServerRequest &request) {
+        //获取json数据包
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(request.body());
+        QJsonObject json = jsonDoc.object();
+        showMsg(request.body());
+
+        return parseLightBroadcastNot(json);
+
+    });
+
+
+
+
+
+
+
+
     m_httpServer->route("/light", QHttpServerRequest::Method::Post,
                          [this](const QHttpServerRequest &request) {
         //emit showMsg(QJsonDocument::fromJson(request.body()).toJson());
@@ -110,6 +142,41 @@ void MyHttpServer::create(QHostAddress address, int port)
 
     });
 
+    // 轨迹跟踪状态更新
+    m_httpServer->route("/light/UpdatePathTrackingState", QHttpServerRequest::Method::Post,
+                        [this](const QHttpServerRequest &request) {
+        //获取json数据包
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(request.body());
+        QJsonObject json = jsonDoc.object();
+        showMsg(request.body());
+
+        return parseUpdatePathTrackingState(json);
+
+    });
+
+    // 查询轨迹跟踪状态
+    m_httpServer->route("/light/GetPathTrackingState", QHttpServerRequest::Method::Get,
+                        [this]() {
+        //获取json数据包
+
+        QJsonObject json;
+
+        for (int i=0; i<m_lightControllList->size(); i++) {
+            lightcontroll* light = m_lightControllList->at(i);
+
+            QString progress;
+            if(light->getCheckLightState(progress)){
+                json.insert(light->getControllIp(), progress);
+                return json;
+            }
+
+            json.insert(light->getControllIp(), light->getPathTrackingState());
+        }
+
+        return json;
+
+    });
+
    //处理屏幕 post 请求
     m_httpServer->route("/screen/changeDef", QHttpServerRequest::Method::Post,
                          [this](const QHttpServerRequest &request) {
@@ -137,7 +204,7 @@ void MyHttpServer::create(QHostAddress address, int port)
 
         //qDebug() << request.body();
 
-        //emit showMsg("车道改变状态接收json： " + request.body());
+        //emit showMsg("车道改变状态接收json: " + request.body());
 
         //解析json数据 回复json数据
         if(json.find("state") != json.end() && json.find("state")->isString()
@@ -170,7 +237,7 @@ void MyHttpServer::create(QHostAddress address, int port)
 
         //qDebug() << request.body();
 
-        //emit showMsg("车道改变状态接收json： " + request.body());
+        //emit showMsg("车道改变状态接收json: " + request.body());
 
         //解析json数据 回复json数据
         if(json.find("state") != json.end() && json.find("state")->isString())
@@ -230,7 +297,7 @@ void MyHttpServer::create(QHostAddress address, int port)
     });
 
     m_httpServer->listen(address, m_port);
-    emit showMsg(QString("http服务已开启，监听地址：%1  监听端口：%2").arg(m_address.toString()).arg(m_port));
+    emit showMsg(QString("http服务已开启，监听地址:%1  监听端口:%2").arg(m_address.toString()).arg(m_port));
 }
 
 bool MyHttpServer::ipAddrIsOK(const QString &ip)
@@ -262,6 +329,308 @@ bool MyHttpServer::ipAddrIsOK(const QString &ip)
 void MyHttpServer::updateLightControllList(QList<lightcontroll *> * lightControllList)
 {
     m_lightControllList = lightControllList;
+}
+
+QJsonObject MyHttpServer::parseLightBroadcast(QJsonObject &json)
+{
+    QJsonObject backJson;
+    backJson.insert("code", 0);
+    backJson.insert("msg", "成功");
+
+
+    //如果必要参数不存在，或者不合理，直接返回
+    if(missingParameterBroadcast(json, backJson)){
+        return backJson;
+    }
+
+    return backJson;
+}
+
+bool MyHttpServer::missingParameterBroadcast(QJsonObject &json, QJsonObject &backJson)
+{
+    // 控制器 ip:port
+    if(json.find("ControllerIpPort") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 ControllerIpPort ";
+        return true;
+    }else if(!json.value("ControllerIpPort").isString()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "ControllerIpPort 数据类型错误 应该为 string";
+        return true;
+    }else if(json.value("ControllerIpPort").toString().split(":").size() != 2){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "ControllerIpPort 不合法,格式范例:192.168.1.186:8886";
+        return true;
+    }
+
+    // 控制器 设备编号
+    if(json.find("DeviceId") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 DeviceId ";
+        return true;
+    }else if(!json.value("DeviceId").isString()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "DeviceId 数据类型错误 应该为 string";
+        return true;
+    }
+
+    // 灯 版本
+    int version = json.value("Version").toInt();
+    if(json.find("Version") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 Version ";
+        return true;
+    }else if(!json.value("Version").isDouble()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Version 数据类型错误 应该为 int";
+        return true;
+    }else if(json.value("Version").toInt() != 1 && json.value("Version").toInt() != 2 ){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Version 值 应该为 1或者2";
+        return true;
+    }
+
+    // 文字 内容
+    if(json.find("Content") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 Content ";
+        return true;
+    }else if(!json.value("Content").isString()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Content 数据类型错误 应该为 string";
+        return true;
+    }else if(json.value("Content").toString().size() != 1 ){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Content值 数量只能为1";
+        return true;
+    }
+
+    // 文字 颜色
+    if(version == 2){
+        if(json.find("FontColor") == json.end()) {
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "version为2时 缺少必要参数 FontColor ";
+            return true;
+        }else if(!json.value("FontColor").isDouble()){
+            backJson.find("code").value() = 1;        if(json.find("FontColor") == json.end()) {
+                backJson.find("code").value() = 1;
+                backJson.find("msg").value() = "缺少必要参数 FontColor ";
+                return true;
+            }else if(!json.value("FontColor").isDouble()){
+                backJson.find("code").value() = 1;
+                backJson.find("msg").value() = "FontColor 数据类型错误 应该为 int";
+                return true;
+            }else if(json.value("FontColor").toInt() < 1 || json.value("FontColor").toInt() > 9 ){
+                backJson.find("code").value() = 1;
+                backJson.find("msg").value() = "FontColor 应该为 1-9";
+                return true;
+            }
+            backJson.find("msg").value() = "FontColor 数据类型错误 应该为 int";
+            return true;
+        }else if(json.value("FontColor").toInt() < 1 || json.value("FontColor").toInt() > 9 ){
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "FontColor 应该为 1-9";
+            return true;
+        }
+    }
+
+    // 灯 亮度
+    if(json.find("Luminance") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 Luminance ";
+        return true;
+    }else if(!json.value("Luminance").isDouble()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Luminance 数据类型错误 应该为 int";
+        return true;
+    }else if(json.value("Luminance").toInt() < 1 || json.value("Luminance").toInt() > 100 ){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Luminance 应该为 1-100";
+        return true;
+    }
+
+    // 灯 轨迹模式
+    if(json.find("PathTracking") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 PathTracking ";
+        return true;
+    }else if(!json.value("PathTracking").isDouble()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "PathTracking 数据类型错误 应该为 int";
+        return true;
+    }else if(json.value("PathTracking").toInt() < 0 || json.value("PathTracking").toInt() > 2 ){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "PathTracking 应该为 0-2";
+        return true;
+    }
+
+    // 灯 轨迹延时
+    if(json.find("PathTrackingTime") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 PathTrackingTime ";
+        return true;
+    }else if(!json.value("PathTrackingTime").isDouble()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "PathTrackingTime 数据类型错误 应该为 int";
+        return true;
+    }else if(json.value("PathTrackingTime").toInt() < 1 || json.value("PathTrackingTime").toInt() > 20 ){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "PathTrackingTime 应该为 0-2";
+        return true;
+    }
+
+    // 灯 闪烁(size == 0时，为不闪烁）
+    QJsonArray FlickerArray = json.value("Flicker").toArray();
+    if(json.find("Flicker") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 Flicker ";
+        return true;
+    }else if(!json.value("Flicker").isArray()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Flicker 数据类型错误 应该为 array";
+        return true;
+    }else if(FlickerArray.size() != 2){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Flicker 数据数量错误 应该为 2个int";
+        return true;
+    }else if(!FlickerArray.at(0).isDouble() || !FlickerArray.at(1).isDouble()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Flicker内部数据 数据类型错误 应该为 int";
+        return true;
+    }else if(FlickerArray.at(0).toInt() < 250 || FlickerArray.at(0).toInt() > 10000
+               || FlickerArray.at(1).toInt() < 250 || FlickerArray.at(1).toInt() > 10000){
+
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Flicker内部数据 数据类值错误 应该为 250 - 10000";
+        return true;
+    }
+
+    return false;
+}
+
+QJsonObject MyHttpServer::parseLightBroadcastNot(QJsonObject &json)
+{
+    QJsonObject backJson;
+    backJson.insert("code", 0);
+    backJson.insert("msg", "成功");
+
+
+    //如果必要参数不存在，或者不合理，直接返回
+    if(missingParameterBroadcastNot(json, backJson)){
+        return backJson;
+    }
+
+    return backJson;
+}
+
+bool MyHttpServer::missingParameterBroadcastNot(QJsonObject &json, QJsonObject &backJson)
+{
+    // 控制器 ip:port
+    if(json.find("ControllerIpPort") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 ControllerIpPort ";
+        return true;
+    }else if(!json.value("ControllerIpPort").isString()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "ControllerIpPort 数据类型错误 应该为 string";
+        return true;
+    }else if(json.value("ControllerIpPort").toString().split(":").size() != 2){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "ControllerIpPort 不合法,格式范例:192.168.1.186:8886";
+        return true;
+    }
+
+    // 控制器 设备编号
+    if(json.find("DeviceId") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 DeviceId ";
+        return true;
+    }else if(!json.value("DeviceId").isString()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "DeviceId 数据类型错误 应该为 string";
+        return true;
+    }
+
+    // 灯 版本
+    if(json.find("Version") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 Version ";
+        return true;
+    }else if(!json.value("Version").isDouble()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Version 数据类型错误 应该为 int";
+        return true;
+    }else if(json.value("Version").toInt() != 1 && json.value("Version").toInt() != 2 ){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Version 值 应该为 1或者2";
+        return true;
+    }
+
+    // 灯 具体数据
+    QJsonArray lightsArray = json.value("Lights").toArray();
+    if(json.find("Lights") == json.end()) {
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "缺少必要参数 Lights ";
+        return true;
+    }else if(!json.value("Lights").isArray()){
+        backJson.find("code").value() = 1;
+        backJson.find("msg").value() = "Lights 数据类型错误 应该为 array";
+        return true;
+    }
+
+    foreach(QJsonValue light, lightsArray){
+        QJsonObject jsonLight = light.toObject();
+
+        if(!light.isObject()){
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 格式错误 应该为 json";
+            return true;
+        }
+
+        if(jsonLight.find("LightId") == jsonLight.end()) {
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 缺少必要参数 LightId ";
+            return true;
+        }else if(!jsonLight.value("LightId").isDouble()){
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 LightId 数据类型错误 应该为 int";
+            return true;
+        }else if(jsonLight.value("LightId").toInt() < 1 || jsonLight.value("LightId").toInt() > 254 ){
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 LightId值 应该为 1-254";
+            return true;
+        }
+
+        if(jsonLight.find("Content") == jsonLight.end()) {
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 缺少必要参数 Content ";
+            return true;
+        }else if(!jsonLight.value("Content").isString()){
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 Content 数据类型错误 应该为 string";
+            return true;
+        }else if(jsonLight.value("Content").toString().size() != 1 ){
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 Content值 数量只能为1";
+            return true;
+        }
+
+        if(jsonLight.find("FontColor") == jsonLight.end()) {
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 缺少必要参数 FontColor ";
+            return true;
+        }else if(!jsonLight.value("FontColor").isDouble()){
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 FontColor 数据类型错误 应该为 int";
+            return true;
+        }else if(jsonLight.value("FontColor").toInt() < 1 || jsonLight.value("FontColor").toInt() > 9 ){
+            backJson.find("code").value() = 1;
+            backJson.find("msg").value() = "Lights内部数据 FontColor 应该为 1-9";
+            return true;
+        }
+    }
+
+    return false;
 }
 
 QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
@@ -420,7 +789,7 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
         }
         sendDataList.insert(0, QString(cmdStr).arg(Luminance, 2, 16, QLatin1Char('0')).toUpper());
     }else{
-        backJson.insert("Luminance", "字段不存在");
+        backJson.insert("Luminance", "亮度不存在，不做修改");
     }
 
     //需要更改闪烁
@@ -470,7 +839,7 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
             return backJson;
         }
     }else{
-        backJson.insert("Flicker", "字段不存在");
+        backJson.insert("Flicker", "闪烁不存在，不做修改");
     }
 
     if(version == 2){
@@ -496,7 +865,7 @@ QJsonObject MyHttpServer::parseLightJson(QJsonObject &json)
 
             sendDataList.insert(0, cmdStr.toUpper());
         }else{
-            backJson.insert("FontColor", "字段不存在");
+            backJson.insert("FontColor", "颜色不存在，不做修改");
         }
     }
     emit controller->sigSendDatagram(sendDataList, DeviceId, name, version, fontColor, Luminance, FlickerList, TermIdSize);
@@ -571,7 +940,6 @@ QJsonObject MyHttpServer::parseUpdateLightState(QJsonObject &json)
     backJson.insert("code", 0);
     backJson.insert("msg", "成功");
 
-    //qDebug() << "json.keys();: " << json.keys();
     QStringList ipPortList = json.keys();
     QList<QJsonArray> idArrayList;
 
@@ -605,86 +973,60 @@ QJsonObject MyHttpServer::parseUpdateLightState(QJsonObject &json)
             return backJson;
         }
 
-        emit controller->signalCheckLightState(ip, port, idList);
+        emit controller->signalCheckLightState(idList);
     }
 
-
-    //qDebug() << "ipPortList: " << ipPortList;
-    //qDebug() << "idArrayList: " << idArrayList;
-
     return backJson;
-/*
-    lightcontroll* controller = nullptr;                // 控制器
-    QString TermIp = json["TermIp"].toString();         // 获取控制器 ip:port
-    QJsonArray TermId = json["TermId"].toArray();       // 获取雾灯 id
-    QString ip;
-    int port = -1;
-    QStringList idList;
+}
 
-    //qDebug() << "json.keys();: " << json.keys();
+QJsonObject MyHttpServer::parseUpdatePathTrackingState(QJsonObject &json)
+{
+    QJsonObject backJson;
+    backJson.insert("code", 0);
+    backJson.insert("msg", "成功");
 
     //如果必要参数不存在，或者不合理，直接返回
     if(json.find("TermIp") == json.end()) {
         backJson.find("code").value() = 1;
         backJson.find("msg").value() = "缺少必要参数 TermIp";
         return backJson;
-    }else if(!json.find("TermIp")->isString()){
+    }else if(!json.find("TermIp")->isArray()){
         backJson.find("code").value() = 1;
-        backJson.find("msg").value() = "TermIp 数据类型错误 应该为 string";
+        backJson.find("msg").value() = "TermIp 内应该为字符串数组";
         return backJson;
     }
 
-    if(json.find("TermId") == json.end()) {
-        backJson.find("code").value() = 1;
-        backJson.find("msg").value() = "缺少必要参数 TermId ";
-        return backJson;
-    }else if(!json.find("TermId")->isArray()){
-        backJson.find("code").value() = 1;
-        backJson.find("msg").value() = "TermId 数据类型错误  应该为 int 类型的 array";
-        return backJson;
-    }else {
-        int TermIdSize = TermId.size();
+    QJsonArray ipListJsonArray = json.value("TermIp").toArray();
 
-        if(TermIdSize < 1){
+    foreach (QJsonValue TermIpValue, ipListJsonArray) {
+
+        if(!TermIpValue.isString()){
             backJson.find("code").value() = 1;
-            backJson.find("msg").value() = "TermId 数量不能小于1";
+            backJson.find("msg").value() = "TermIp 内应该为字符串数组";
             return backJson;
         }
 
-        foreach(QJsonValue value, TermId){
-            if(!value.isDouble()){
-                backJson.find("code").value() = 1;
-                backJson.find("msg").value() = "TermId 内容不是 int";
-                return backJson;
-            }
+        QString ip;
+        int port;
+        QString TermIp = TermIpValue.toString();
+
+        // ip是否合法
+        if(!TermIpIsUseful(TermIp, ip, port, backJson)){
+            return backJson;
         }
+
+        lightcontroll* controller = nullptr;                // 控制器
+
+        controller = getControllerFromIpPort(ip, port);
+
+        if(!controllerIsUseful(controller, TermIp, backJson)){
+            return backJson;
+        }
+
+        emit controller->signalCheckPathTrackingState();
     }
 
-    // 获取数据
-    if(!TermIpIsUseful(TermIp, ip, port, backJson)){
-        return backJson;
-    }
-
-    // 获取控制器
-    controller = getControllerFromIpPort(ip, port);
-
-    if(!controllerIsUseful(controller, TermIp, backJson)){
-        return backJson;
-    }
-
-    // if(!controller){
-    //     backJson.find("code").value() = 1;
-    //     backJson.find("msg").value() = "控制器[" + TermIp + "]不在线";
-    //     return backJson;
-    // }
-
-    foreach (QJsonValue id, TermId) {
-        idList << QString::number(id.toInt());
-    }
-
-    emit controller->signalCheckLightState(ip, port, idList);
-
-    return backJson;*/
+    return backJson;
 }
 
 bool MyHttpServer::TermIpIsUseful(QString TermIp, QString &ip, int &port, QJsonObject &backJson)
@@ -749,7 +1091,7 @@ bool MyHttpServer::missingParameter(QJsonObject &json, QJsonObject &backJson)
         return true;
     }else if(json["TermIp"].toString().split(":").size() != 2){
         backJson.find("code").value() = 1;
-        backJson.find("msg").value() = "ip地址不合法,格式范例：192.168.1.186:8886";
+        backJson.find("msg").value() = "ip地址不合法,格式范例:192.168.1.186:8886";
         return true;
     }
 
@@ -1026,7 +1368,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
                 TSdkEventTermRegister * pEventTermRegister = (TSdkEventTermRegister*)pParam;
                 LPBYTE p = pEventTermRegister->TermMac;
                 QString strText;
-                strText = QString("===> %1 请求注册：终端ID:%2 , MAC地址:%3-%4-%5-%6-%7-%8 , IP地址:%9 , 名称:%10")
+                strText = QString("===> %1 请求注册:终端ID:%2 , MAC地址:%3-%4-%5-%6-%7-%8 , IP地址:%9 , 名称:%10")
                         .arg((QString(GetTermType(pEventTermRegister->eTermType)))
                         , QString::number(pEventTermRegister->dwTermID, 16)
                         , QString("%1").arg(p[0], 2, 16, QLatin1Char('0')).toUpper()
@@ -1077,7 +1419,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
                 TSdkEventTermRegister * pEventTermConnect = (TSdkEventTermRegister*)pParam;
                 LPBYTE p = pEventTermConnect->TermMac;
                 QString strText;
-                strText = QString("===> %1 请求连接：终端ID:%2 , MAC地址:%3-%4-%5-%6-%7-%8 , IP地址:%9 , 名称:%10")
+                strText = QString("===> %1 请求连接:终端ID:%2 , MAC地址:%3-%4-%5-%6-%7-%8 , IP地址:%9 , 名称:%10")
                         .arg(QString(GetTermType(pEventTermConnect->eTermType))
                         , QString::number(pEventTermConnect->dwTermID, 16)
                         , QString("%1").arg(p[0], 2, 16, QLatin1Char('0')).toUpper()
@@ -1134,7 +1476,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
                 assert(dwSize == sizeof(TSdkEventTermCnnLost));
                 TSdkEventTermCnnLost * pEventTermCnnLost = (TSdkEventTermCnnLost*)pParam;
                 QString strText;
-                strText = QString("xxx 终端断开连接：终端ID:%1").arg(QString::number(pEventTermCnnLost->dwTermID, 16));
+                strText = QString("xxx 终端断开连接:终端ID:%1").arg(QString::number(pEventTermCnnLost->dwTermID, 16));
                 emit g_pMainWnd->showMsg(strText);
 
                 for(int i=0; i<g_pMainWnd->m_nTermCnt; i++)
@@ -1267,7 +1609,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
                 QString strText;
                 if(pAswDismissTerm->nResult == CERR_SUCCESS)
                 {
-                    g_pMainWnd->m_stcTips.SetWindowText("呼叫提示：");
+                    g_pMainWnd->m_stcTips.SetWindowText("呼叫提示:");
                     strText = QString("解除呼叫成功！终端ID:%X ", pAswDismissTerm->dwTermID);
                 }
                 else
@@ -1373,7 +1715,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
                 assert(dwSize == sizeof(TSdkPost485PipeData));
                 TSdkPost485PipeData * pPost485PipeData = (TSdkPost485PipeData*)pParam;
                 QString strText;
-                strText = QString("===> 收到485数据：终端ID:%X , 长度:%d , 内容:%s",
+                strText = QString("===> 收到485数据:终端ID:%X , 长度:%d , 内容:%s",
                     pPost485PipeData->dwTermID, pPost485PipeData->nFrmLen, pPost485PipeData->FrmData);
                 g_pMainWnd->showMsg(1, strText);
 
@@ -1393,12 +1735,12 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
                 groupInfo->playState = closed;
 
                 if (pPostMp3PlayFinish->nResult == CERR_SUCCESS) {
-                    strText = QString("分组%1 : MP3文件播放：正常结束。。").arg(groupInfo->groupNum);
+                    strText = QString("分组%1 : MP3文件播放:正常结束。。").arg(groupInfo->groupNum);
 
                     g_pMainWnd->groupBroadMp3(groupInfo);
                 }
                 else
-                    strText = QString("分组%1 : MP3文件播放：播放出错，错误代码:%2")
+                    strText = QString("分组%1 : MP3文件播放:播放出错，错误代码:%2")
                             .arg(groupInfo->groupNum)
                             .arg(pPostMp3PlayFinish->nResult);
                 break;
@@ -1422,7 +1764,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
             {
                 assert(dwSize == sizeof(TSdkDataTermAudio));
                 TSdkDataTermAudio * pDataTermAudio = (TSdkDataTermAudio*)pParam;
-    //			TRACE("== 终端音频 ID:%X ：大小 %d 字节\n", pDataTermAudio->dwTermID,pDataTermAudio->nDataSize);
+    //			TRACE("== 终端音频 ID:%X :大小 %d 字节\n", pDataTermAudio->dwTermID,pDataTermAudio->nDataSize);
                 TSDK_Player_AudVidAdd(1, TSDK_AUDIO, pDataTermAudio->pAudData, pDataTermAudio->nDataSize);
                 break;
             }
@@ -1432,9 +1774,9 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
                 assert(dwSize == sizeof(TSdkDataTermVideo));
                 TSdkDataTermVideo * pDataTermVideo = (TSdkDataTermVideo*)pParam;
                 if(pDataTermVideo->bIsKeyFrm)
-                    TRACE("== 终端I帧视频 ID:%X ：大小 %d 字节\n", pDataTermVideo->dwTermID,pDataTermVideo->nFrmSize);
+                    TRACE("== 终端I帧视频 ID:%X :大小 %d 字节\n", pDataTermVideo->dwTermID,pDataTermVideo->nFrmSize);
     //			else
-    //				TRACE("== 终端P帧视频 ID:%X ：大小 %d 字节\n", pDataTermVideo->dwTermID,pDataTermVideo->nFrmSize);
+    //				TRACE("== 终端P帧视频 ID:%X :大小 %d 字节\n", pDataTermVideo->dwTermID,pDataTermVideo->nFrmSize);
 
                 TSDK_Player_AudVidAdd(1, TSDK_VIDEO, pDataTermVideo->pVidFrm, pDataTermVideo->nFrmSize);
                 break;
@@ -1444,7 +1786,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
             {
                 assert(dwSize == sizeof(TSdkDataPcMicAudio));
                 TSdkDataPcMicAudio * pDataPcAudio = (TSdkDataPcMicAudio*)pParam;
-    //			TRACE("== 电脑麦克风音频：大小 %d 字节\n", pDataPcAudio->nDataSize);
+    //			TRACE("== 电脑麦克风音频:大小 %d 字节\n", pDataPcAudio->nDataSize);
 
                 if(g_pMainWnd->m_nTalkTermIdx != -1)
                 {
@@ -1469,7 +1811,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
             {
                 assert(dwSize == sizeof(TSdkDataBypassAudio));
                 TSdkDataBypassAudio * pDataBypassAudio = (TSdkDataBypassAudio*)pParam;
-    //			TRACE("== 旁路音频 ID:%X ：大小 %d 字节\n", pDataBypassAudio->dwTermID,pDataBypassAudio->nDataSize);
+    //			TRACE("== 旁路音频 ID:%X :大小 %d 字节\n", pDataBypassAudio->dwTermID,pDataBypassAudio->nDataSize);
                 TSDK_Player_PcmAdd(1, pDataBypassAudio->pPcmData, pDataBypassAudio->nDataSize);
                 break;
             }
@@ -1478,7 +1820,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
             {
                 assert(dwSize == sizeof(TSdkDataTermMp3L));
                 TSdkDataTermMp3L * pDataTermMp3L = (TSdkDataTermMp3L*)pParam;
-    //			TRACE("== MP3音频 ID:%X ：大小 %d 字节\n", pDataTermMp3L->dwTermID,pDataTermMp3L->nDataSize);
+    //			TRACE("== MP3音频 ID:%X :大小 %d 字节\n", pDataTermMp3L->dwTermID,pDataTermMp3L->nDataSize);
                 if(g_pMp3File1)
                     fwrite(pDataTermMp3L->pMp3Data, 1, pDataTermMp3L->nDataSize, g_pMp3File1);
                 break;
@@ -1488,7 +1830,7 @@ int MyHttpServer::OnTzlSdkCallback(enSdkCbType eCbType, LPVOID pParam, DWORD dwS
             {
                 assert(dwSize == sizeof(TSdkDataTermMp3R));
                 TSdkDataTermMp3R * pDataTermMp3R = (TSdkDataTermMp3R*)pParam;
-    //			TRACE("== MP3音频 ID:%X ：大小 %d 字节\n", pDataTermMp3R->dwTermID,pDataTermMp3R->nDataSize);
+    //			TRACE("== MP3音频 ID:%X :大小 %d 字节\n", pDataTermMp3R->dwTermID,pDataTermMp3R->nDataSize);
                 if(g_pMp3File2)
                     fwrite(pDataTermMp3R->pMp3Data, 1, pDataTermMp3R->nDataSize, g_pMp3File2);
                 break;
@@ -1749,7 +2091,7 @@ void MyHttpServer::setTermVolume(QString TermIp, int Volume)
         emit showMsg(strText);
     }else{
         //QMessageBox::information(nullptr, "提示", "音量设置成功");
-        strText = QString("音量设置成功, 当前音量：%1").arg(Volume);
+        strText = QString("音量设置成功, 当前音量:%1").arg(Volume);
         emit showMsg(strText);
     }
 }
@@ -1962,7 +2304,7 @@ void MyHttpServer::initAmplifier()
     // 获取设备列表。并更新
     QString iniPath = QCoreApplication::applicationDirPath() + INIFILE_AMPLIfiER;
     if(!QFileInfo::exists(iniPath)){
-        emit showMsg(QString("配置文件不存在： ") + iniPath);
+        emit showMsg(QString("配置文件不存在: ") + iniPath);
         return;
     }
 

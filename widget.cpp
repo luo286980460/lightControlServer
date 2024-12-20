@@ -291,7 +291,7 @@ void Widget::on_clearBtn_clicked()
 
 void Widget::showMsg(QString msg)
 {
-    //ui->history->appendPlainText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss") + " --> " + msg);
+    ui->history->appendPlainText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss") + " --> " + msg);
 
     QString logPath = QCoreApplication::applicationDirPath() + LOG;
     QFile file(logPath);

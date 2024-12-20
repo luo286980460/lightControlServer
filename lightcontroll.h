@@ -22,6 +22,7 @@ public:
     int getControllPort();
     bool getCheckLightState(QString& progress);
     QJsonObject getLightState();
+    QJsonObject getPathTrackingState();
 
 signals:
     void signalInitWorker();
@@ -32,13 +33,15 @@ signals:
     void write2Kafka(QString topic, QString strJson, QString strKey);
     void signalLightPowerOn(bool on);
     void signalOpenPathTracking(int mode);
-    void signalCheckLightState(QString ip, int port, QStringList idlist);
+    void signalCheckLightState(QStringList idlist);
+    void signalCheckPathTrackingState();
 
 public slots:
     void slotReceiveTcpData(QByteArray);
     void slotIsCheckingLightState(bool b);
     void slotUpdateProgress(QString progress);
     void slotUpdateLightStateJson(QStringList checkIdList, QStringList checkResultListTmp);
+    void slotUpdatePathTrackingStateJson(int mode, int time);
 
 private:
     QString m_controllIp;   // 控制器 ip
@@ -52,6 +55,7 @@ private:
     int m_checkLightState = false;        // 正在查询雾灯状态
     QString m_progress;     // 雾灯状态查询进度
     QJsonObject* m_lightStateJson = nullptr;
+    QJsonObject m_pathTrackingStateJson;
 
 };
 

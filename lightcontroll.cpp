@@ -30,6 +30,7 @@ lightcontroll::lightcontroll(QString connectType, QString topic, QString ip, int
     connect(m_work,&lightControllWorker::signalIsCheckingLightState, this,&lightcontroll::slotIsCheckingLightState);
     connect(m_work,&lightControllWorker::signalUpdateProgress, this,&lightcontroll::slotUpdateProgress);
     connect(m_work,&lightControllWorker::signalUpdateLightStateJson, this,&lightcontroll::slotUpdateLightStateJson);
+    connect(this,&lightcontroll::signalCheckPathTrackingState, m_work,&lightControllWorker::slotCheckPathTrackingState);
 }
 
 lightcontroll::~lightcontroll()
@@ -73,6 +74,11 @@ QJsonObject lightcontroll::getLightState()
     return QJsonObject();
 }
 
+QJsonObject lightcontroll::getPathTrackingState()
+{
+    return m_pathTrackingStateJson;
+}
+
 void lightcontroll::slotReceiveTcpData(QByteArray msg){
     emit showMsg(msg);
     return;
@@ -103,4 +109,10 @@ void lightcontroll::slotUpdateLightStateJson(QStringList checkIdList, QStringLis
     //qDebug() << "m_lightStateJson : " << *m_lightStateJson;
 
 
+}
+
+void lightcontroll::slotUpdatePathTrackingStateJson(int mode, int time)
+{
+    m_pathTrackingStateJson.find("状态").value() = mode;
+    m_pathTrackingStateJson.find("延时").value() = time;
 }

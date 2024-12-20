@@ -18,6 +18,9 @@ VERSION = 2024.11.07_by:ls
 SOURCES += \
     amplifier.cpp \
     amplifierworker.cpp \
+    controller.cpp \
+    controllermanager.cpp \
+    controllerworker.cpp \
     lightcontroll.cpp \
     lightcontrollworker.cpp \
     main.cpp \
@@ -29,6 +32,9 @@ SOURCES += \
 HEADERS += \
     amplifier.h \
     amplifierworker.h \
+    controller.h \
+    controllermanager.h \
+    controllerworker.h \
     lightCmdList.h \
     lightcontroll.h \
     lightcontrollworker.h \

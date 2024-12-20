@@ -56,6 +56,9 @@ static constexpr auto qt_meta_stringdata_CLASSlightControllWorkerENDCLASS = QtMo
     "signalUpdateLightStateJson",
     "checkIdList",
     "checkResultListTmp",
+    "signalUpdatePathTrackingStateJson",
+    "mode",
+    "time",
     "slotInit",
     "slotSendDatagram",
     "sendDataList",
@@ -75,16 +78,14 @@ static constexpr auto qt_meta_stringdata_CLASSlightControllWorkerENDCLASS = QtMo
     "slotLightPowerOn",
     "on",
     "slotOpenPathTracking",
-    "mode",
     "slotCheckLightState",
-    "ip",
-    "port",
     "idlist",
+    "slotCheckPathTrackingState",
     "slotTest"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t {
-    uint offsetsAndSizes[86];
+    uint offsetsAndSizes[88];
     char stringdata0[20];
     char stringdata1[8];
     char stringdata2[1];
@@ -103,31 +104,32 @@ struct qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t {
     char stringdata15[27];
     char stringdata16[12];
     char stringdata17[19];
-    char stringdata18[9];
-    char stringdata19[17];
-    char stringdata20[13];
+    char stringdata18[34];
+    char stringdata19[5];
+    char stringdata20[5];
     char stringdata21[9];
-    char stringdata22[11];
-    char stringdata23[8];
-    char stringdata24[10];
-    char stringdata25[10];
-    char stringdata26[12];
-    char stringdata27[11];
-    char stringdata28[17];
-    char stringdata29[17];
-    char stringdata30[24];
-    char stringdata31[16];
-    char stringdata32[13];
-    char stringdata33[21];
-    char stringdata34[17];
-    char stringdata35[3];
+    char stringdata22[17];
+    char stringdata23[13];
+    char stringdata24[9];
+    char stringdata25[11];
+    char stringdata26[8];
+    char stringdata27[10];
+    char stringdata28[10];
+    char stringdata29[12];
+    char stringdata30[11];
+    char stringdata31[17];
+    char stringdata32[17];
+    char stringdata33[24];
+    char stringdata34[16];
+    char stringdata35[13];
     char stringdata36[21];
-    char stringdata37[5];
-    char stringdata38[20];
-    char stringdata39[3];
-    char stringdata40[5];
+    char stringdata37[17];
+    char stringdata38[3];
+    char stringdata39[21];
+    char stringdata40[20];
     char stringdata41[7];
-    char stringdata42[9];
+    char stringdata42[27];
+    char stringdata43[9];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -151,31 +153,32 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t q
         QT_MOC_LITERAL(179, 26),  // "signalUpdateLightStateJson"
         QT_MOC_LITERAL(206, 11),  // "checkIdList"
         QT_MOC_LITERAL(218, 18),  // "checkResultListTmp"
-        QT_MOC_LITERAL(237, 8),  // "slotInit"
-        QT_MOC_LITERAL(246, 16),  // "slotSendDatagram"
-        QT_MOC_LITERAL(263, 12),  // "sendDataList"
-        QT_MOC_LITERAL(276, 8),  // "DeviceId"
-        QT_MOC_LITERAL(285, 10),  // "ContentStr"
-        QT_MOC_LITERAL(296, 7),  // "version"
-        QT_MOC_LITERAL(304, 9),  // "fontColor"
-        QT_MOC_LITERAL(314, 9),  // "Luminance"
-        QT_MOC_LITERAL(324, 11),  // "FlickerList"
-        QT_MOC_LITERAL(336, 10),  // "TermIdSize"
-        QT_MOC_LITERAL(347, 16),  // "slotReadyReadTcp"
-        QT_MOC_LITERAL(364, 16),  // "slotReadyReadUdp"
-        QT_MOC_LITERAL(381, 23),  // "slotSetIntervalAndCount"
-        QT_MOC_LITERAL(405, 15),  // "sendingInterval"
-        QT_MOC_LITERAL(421, 12),  // "sendingCount"
-        QT_MOC_LITERAL(434, 20),  // "slotConnectToControl"
-        QT_MOC_LITERAL(455, 16),  // "slotLightPowerOn"
-        QT_MOC_LITERAL(472, 2),  // "on"
-        QT_MOC_LITERAL(475, 20),  // "slotOpenPathTracking"
-        QT_MOC_LITERAL(496, 4),  // "mode"
-        QT_MOC_LITERAL(501, 19),  // "slotCheckLightState"
-        QT_MOC_LITERAL(521, 2),  // "ip"
-        QT_MOC_LITERAL(524, 4),  // "port"
-        QT_MOC_LITERAL(529, 6),  // "idlist"
-        QT_MOC_LITERAL(536, 8)   // "slotTest"
+        QT_MOC_LITERAL(237, 33),  // "signalUpdatePathTrackingState..."
+        QT_MOC_LITERAL(271, 4),  // "mode"
+        QT_MOC_LITERAL(276, 4),  // "time"
+        QT_MOC_LITERAL(281, 8),  // "slotInit"
+        QT_MOC_LITERAL(290, 16),  // "slotSendDatagram"
+        QT_MOC_LITERAL(307, 12),  // "sendDataList"
+        QT_MOC_LITERAL(320, 8),  // "DeviceId"
+        QT_MOC_LITERAL(329, 10),  // "ContentStr"
+        QT_MOC_LITERAL(340, 7),  // "version"
+        QT_MOC_LITERAL(348, 9),  // "fontColor"
+        QT_MOC_LITERAL(358, 9),  // "Luminance"
+        QT_MOC_LITERAL(368, 11),  // "FlickerList"
+        QT_MOC_LITERAL(380, 10),  // "TermIdSize"
+        QT_MOC_LITERAL(391, 16),  // "slotReadyReadTcp"
+        QT_MOC_LITERAL(408, 16),  // "slotReadyReadUdp"
+        QT_MOC_LITERAL(425, 23),  // "slotSetIntervalAndCount"
+        QT_MOC_LITERAL(449, 15),  // "sendingInterval"
+        QT_MOC_LITERAL(465, 12),  // "sendingCount"
+        QT_MOC_LITERAL(478, 20),  // "slotConnectToControl"
+        QT_MOC_LITERAL(499, 16),  // "slotLightPowerOn"
+        QT_MOC_LITERAL(516, 2),  // "on"
+        QT_MOC_LITERAL(519, 20),  // "slotOpenPathTracking"
+        QT_MOC_LITERAL(540, 19),  // "slotCheckLightState"
+        QT_MOC_LITERAL(560, 6),  // "idlist"
+        QT_MOC_LITERAL(567, 26),  // "slotCheckPathTrackingState"
+        QT_MOC_LITERAL(594, 8)   // "slotTest"
     },
     "lightControllWorker",
     "showMsg",
@@ -195,6 +198,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t q
     "signalUpdateLightStateJson",
     "checkIdList",
     "checkResultListTmp",
+    "signalUpdatePathTrackingStateJson",
+    "mode",
+    "time",
     "slotInit",
     "slotSendDatagram",
     "sendDataList",
@@ -214,11 +220,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSlightControllWorkerENDCLASS_t q
     "slotLightPowerOn",
     "on",
     "slotOpenPathTracking",
-    "mode",
     "slotCheckLightState",
-    "ip",
-    "port",
     "idlist",
+    "slotCheckPathTrackingState",
     "slotTest"
 };
 #undef QT_MOC_LITERAL
@@ -231,34 +235,36 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSlightControllWorkerENDCLASS[] = 
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       8,       // signalCount
+       9,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  122,    2, 0x06,    1 /* Public */,
-       3,    1,  125,    2, 0x06,    3 /* Public */,
-       4,    3,  128,    2, 0x06,    5 /* Public */,
-       8,    0,  135,    2, 0x06,    9 /* Public */,
-       9,    1,  136,    2, 0x06,   10 /* Public */,
-      11,    1,  139,    2, 0x06,   12 /* Public */,
-      13,    1,  142,    2, 0x06,   14 /* Public */,
-      15,    2,  145,    2, 0x06,   16 /* Public */,
+       1,    1,  134,    2, 0x06,    1 /* Public */,
+       3,    1,  137,    2, 0x06,    3 /* Public */,
+       4,    3,  140,    2, 0x06,    5 /* Public */,
+       8,    0,  147,    2, 0x06,    9 /* Public */,
+       9,    1,  148,    2, 0x06,   10 /* Public */,
+      11,    1,  151,    2, 0x06,   12 /* Public */,
+      13,    1,  154,    2, 0x06,   14 /* Public */,
+      15,    2,  157,    2, 0x06,   16 /* Public */,
+      18,    2,  162,    2, 0x06,   19 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      18,    0,  150,    2, 0x0a,   19 /* Public */,
-      19,    8,  151,    2, 0x0a,   20 /* Public */,
-      28,    0,  168,    2, 0x0a,   29 /* Public */,
-      29,    0,  169,    2, 0x0a,   30 /* Public */,
-      30,    2,  170,    2, 0x0a,   31 /* Public */,
-      33,    0,  175,    2, 0x0a,   34 /* Public */,
-      34,    1,  176,    2, 0x0a,   35 /* Public */,
-      36,    1,  179,    2, 0x0a,   37 /* Public */,
-      38,    3,  182,    2, 0x0a,   39 /* Public */,
-      42,    1,  189,    2, 0x0a,   43 /* Public */,
+      21,    0,  167,    2, 0x0a,   22 /* Public */,
+      22,    8,  168,    2, 0x0a,   23 /* Public */,
+      31,    0,  185,    2, 0x0a,   32 /* Public */,
+      32,    0,  186,    2, 0x0a,   33 /* Public */,
+      33,    2,  187,    2, 0x0a,   34 /* Public */,
+      36,    0,  192,    2, 0x0a,   37 /* Public */,
+      37,    1,  193,    2, 0x0a,   38 /* Public */,
+      39,    1,  196,    2, 0x0a,   40 /* Public */,
+      40,    1,  199,    2, 0x0a,   42 /* Public */,
+      42,    0,  202,    2, 0x0a,   44 /* Public */,
+      43,    1,  203,    2, 0x0a,   45 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
@@ -269,17 +275,19 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSlightControllWorkerENDCLASS[] = 
     QMetaType::Void, QMetaType::QString,   12,
     QMetaType::Void, QMetaType::QByteArray,   14,
     QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList,   16,   17,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   19,   20,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QStringList, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::Int,   20,   21,   22,   23,   24,   25,   26,   27,
+    QMetaType::Void, QMetaType::QStringList, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::Int,   23,   24,   25,   26,   27,   28,   29,   30,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   31,   32,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   34,   35,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   35,
-    QMetaType::Void, QMetaType::Int,   37,
-    QMetaType::Void, QMetaType::QString, QMetaType::Int, QMetaType::QStringList,   39,   40,   41,
+    QMetaType::Void, QMetaType::Bool,   38,
+    QMetaType::Void, QMetaType::Int,   19,
+    QMetaType::Void, QMetaType::QStringList,   41,
+    QMetaType::Void,
     QMetaType::Void, QMetaType::QByteArray,   14,
 
        0        // eod
@@ -320,6 +328,10 @@ Q_CONSTINIT const QMetaObject lightControllWorker::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
         QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
+        // method 'signalUpdatePathTrackingStateJson'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'slotInit'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'slotSendDatagram'
@@ -350,9 +362,9 @@ Q_CONSTINIT const QMetaObject lightControllWorker::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'slotCheckLightState'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
+        // method 'slotCheckPathTrackingState'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'slotTest'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QByteArray, std::false_type>
@@ -374,16 +386,18 @@ void lightControllWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         case 5: _t->signalUpdateProgress((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 6: _t->signalTest((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
         case 7: _t->signalUpdateLightStateJson((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[2]))); break;
-        case 8: _t->slotInit(); break;
-        case 9: _t->slotSendDatagram((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[7])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[8]))); break;
-        case 10: _t->slotReadyReadTcp(); break;
-        case 11: _t->slotReadyReadUdp(); break;
-        case 12: _t->slotSetIntervalAndCount((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
-        case 13: _t->slotConnectToControl(); break;
-        case 14: _t->slotLightPowerOn((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 15: _t->slotOpenPathTracking((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 16: _t->slotCheckLightState((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[3]))); break;
-        case 17: _t->slotTest((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
+        case 8: _t->signalUpdatePathTrackingStateJson((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 9: _t->slotInit(); break;
+        case 10: _t->slotSendDatagram((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[7])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[8]))); break;
+        case 11: _t->slotReadyReadTcp(); break;
+        case 12: _t->slotReadyReadUdp(); break;
+        case 13: _t->slotSetIntervalAndCount((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 14: _t->slotConnectToControl(); break;
+        case 15: _t->slotLightPowerOn((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 16: _t->slotOpenPathTracking((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 17: _t->slotCheckLightState((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1]))); break;
+        case 18: _t->slotCheckPathTrackingState(); break;
+        case 19: _t->slotTest((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -444,6 +458,13 @@ void lightControllWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
                 return;
             }
         }
+        {
+            using _t = void (lightControllWorker::*)(int , int );
+            if (_t _q_method = &lightControllWorker::signalUpdatePathTrackingStateJson; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 8;
+                return;
+            }
+        }
     }
 }
 
@@ -466,13 +487,13 @@ int lightControllWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 20)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 20;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 20)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 18;
+        _id -= 20;
     }
     return _id;
 }
@@ -530,5 +551,12 @@ void lightControllWorker::signalUpdateLightStateJson(QStringList _t1, QStringLis
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
+}
+
+// SIGNAL 8
+void lightControllWorker::signalUpdatePathTrackingStateJson(int _t1, int _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 QT_WARNING_POP
