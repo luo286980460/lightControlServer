@@ -71,11 +71,12 @@ static constexpr auto qt_meta_stringdata_CLASSMyHttpServerENDCLASS = QtMocHelper
     "Times",
     "Gap",
     "m_deviceId",
-    "vol"
+    "vol",
+    "slotWriteLightState2Kafka"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t {
-    uint offsetsAndSizes[68];
+    uint offsetsAndSizes[70];
     char stringdata0[13];
     char stringdata1[8];
     char stringdata2[1];
@@ -110,6 +111,7 @@ struct qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t {
     char stringdata31[4];
     char stringdata32[11];
     char stringdata33[4];
+    char stringdata34[26];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -148,7 +150,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t qt_meta_
         QT_MOC_LITERAL(335, 5),  // "Times"
         QT_MOC_LITERAL(341, 3),  // "Gap"
         QT_MOC_LITERAL(345, 10),  // "m_deviceId"
-        QT_MOC_LITERAL(356, 3)   // "vol"
+        QT_MOC_LITERAL(356, 3),  // "vol"
+        QT_MOC_LITERAL(360, 25)   // "slotWriteLightState2Kafka"
     },
     "MyHttpServer",
     "showMsg",
@@ -183,7 +186,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMyHttpServerENDCLASS_t qt_meta_
     "Times",
     "Gap",
     "m_deviceId",
-    "vol"
+    "vol",
+    "slotWriteLightState2Kafka"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -195,7 +199,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMyHttpServerENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -203,17 +207,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMyHttpServerENDCLASS[] = {
       11,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   80,    2, 0x06,    1 /* Public */,
-       4,    0,   83,    2, 0x06,    3 /* Public */,
-       5,    0,   84,    2, 0x06,    4 /* Public */,
-       6,    1,   85,    2, 0x06,    5 /* Public */,
-       7,    1,   88,    2, 0x06,    7 /* Public */,
-       8,    2,   91,    2, 0x06,    9 /* Public */,
-      11,    6,   96,    2, 0x06,   12 /* Public */,
-      16,    1,  109,    2, 0x06,   19 /* Public */,
-      18,    3,  112,    2, 0x06,   21 /* Public */,
-      22,    2,  119,    2, 0x06,   25 /* Public */,
-      25,    9,  124,    2, 0x06,   28 /* Public */,
+       1,    1,   86,    2, 0x06,    1 /* Public */,
+       4,    0,   89,    2, 0x06,    3 /* Public */,
+       5,    0,   90,    2, 0x06,    4 /* Public */,
+       6,    1,   91,    2, 0x06,    5 /* Public */,
+       7,    1,   94,    2, 0x06,    7 /* Public */,
+       8,    2,   97,    2, 0x06,    9 /* Public */,
+      11,    6,  102,    2, 0x06,   12 /* Public */,
+      16,    1,  115,    2, 0x06,   19 /* Public */,
+      18,    3,  118,    2, 0x06,   21 /* Public */,
+      22,    2,  125,    2, 0x06,   25 /* Public */,
+      25,    9,  130,    2, 0x06,   28 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      34,    0,  149,    2, 0x0a,   38 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -227,6 +234,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMyHttpServerENDCLASS[] = {
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,   19,   20,   21,
     QMetaType::Void, QMetaType::QStringList, QMetaType::QStringList,   23,   24,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::Int,    9,   26,   27,   28,   29,   30,   31,   32,   33,
+
+ // slots: parameters
+    QMetaType::Void,
 
        0        // eod
 };
@@ -287,7 +297,9 @@ Q_CONSTINIT const QMetaObject MyHttpServer::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'slotWriteLightState2Kafka'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -309,6 +321,7 @@ void MyHttpServer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 8: _t->signalWrite2Kafka((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         case 9: _t->signalUpdateTermList((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[2]))); break;
         case 10: _t->signalTTS((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[7])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[8])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[9]))); break;
+        case 11: _t->slotWriteLightState2Kafka(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -412,13 +425,13 @@ int MyHttpServer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 12)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        _id -= 12;
     }
     return _id;
 }

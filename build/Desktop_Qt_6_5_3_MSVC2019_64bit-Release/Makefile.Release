@@ -589,16 +589,17 @@ release\moc_controller.cpp: D:\QtFile\lightControlServer\controller.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qthread.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdeadlinetimer.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QtFile\lightControlServer\controllerworker.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\QTcpSocket \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtcpsocket.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetworkglobal.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetwork-config.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetworkexports.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qabstractsocket.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qhostaddress.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QVector \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvector.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonObject \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonobject.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonvalue.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qshareddata.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qiodevice.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborvalue.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdatetime.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcalendar.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qlocale.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvariant.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdebug.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtextstream.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringconverter_base.h \
@@ -611,16 +612,6 @@ release\moc_controller.cpp: D:\QtFile\lightControlServer\controller.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qhash.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\q20memory.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvariant.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\QUdpSocket \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qudpsocket.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonObject \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonobject.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonvalue.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborvalue.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdatetime.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcalendar.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qlocale.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborcommon.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qregularexpression.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qurl.h \
@@ -856,6 +847,9 @@ release\moc_controllerworker.cpp: D:\QtFile\lightControlServer\controllerworker.
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\quuid.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonArray \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonarray.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QTimer \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtimer.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qbasictimer.h \
 		release\moc_predefs.h \
 		D:\Qt\6.5.3\msvc2019_64\bin\moc.exe
 	D:\Qt\6.5.3\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/QtFile/lightControlServer/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Release/release/moc_predefs.h -ID:/Qt/6.5.3/msvc2019_64/mkspecs/win32-msvc -ID:/QtFile/lightControlServer -ID:/QtFile/lightControlServer -ID:/QtFile/lightControlServer -ID:/QtFile/lightControlServer -ID:/Qt/6.5.3/msvc2019_64/include -ID:/Qt/6.5.3/msvc2019_64/include/QtWidgets -ID:/Qt/6.5.3/msvc2019_64/include/QtGui -ID:/Qt/6.5.3/msvc2019_64/include/QtHttpServer -ID:/Qt/6.5.3/msvc2019_64/include/QtWebSockets -ID:/Qt/6.5.3/msvc2019_64/include/QtNetwork -ID:/Qt/6.5.3/msvc2019_64/include/QtSerialPort -ID:/Qt/6.5.3/msvc2019_64/include/QtCore5Compat -ID:/Qt/6.5.3/msvc2019_64/include/QtCore -I. -I"D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include" -I"D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\include" -I"D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" D:\QtFile\lightControlServer\controllerworker.h -o release\moc_controllerworker.cpp
@@ -1398,9 +1392,11 @@ release\moc_producer.cpp: D:\QtFile\lightControlServer\producer.h \
 	D:\Qt\6.5.3\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/QtFile/lightControlServer/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Release/release/moc_predefs.h -ID:/Qt/6.5.3/msvc2019_64/mkspecs/win32-msvc -ID:/QtFile/lightControlServer -ID:/QtFile/lightControlServer -ID:/QtFile/lightControlServer -ID:/QtFile/lightControlServer -ID:/Qt/6.5.3/msvc2019_64/include -ID:/Qt/6.5.3/msvc2019_64/include/QtWidgets -ID:/Qt/6.5.3/msvc2019_64/include/QtGui -ID:/Qt/6.5.3/msvc2019_64/include/QtHttpServer -ID:/Qt/6.5.3/msvc2019_64/include/QtWebSockets -ID:/Qt/6.5.3/msvc2019_64/include/QtNetwork -ID:/Qt/6.5.3/msvc2019_64/include/QtSerialPort -ID:/Qt/6.5.3/msvc2019_64/include/QtCore5Compat -ID:/Qt/6.5.3/msvc2019_64/include/QtCore -I. -I"D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include" -I"D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\include" -I"D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt" -I"C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" D:\QtFile\lightControlServer\producer.h -o release\moc_producer.cpp
 
 release\moc_producerworker.cpp: D:\QtFile\lightControlServer\producerworker.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QDebug \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdebug.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcontainerfwd.h \
+		D:\QtFile\lightControlServer\rdkafkacpp.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QObject \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qobject.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qobjectdefs.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qnamespace.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qglobal.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtversionchecks.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qconfig.h \
@@ -1417,6 +1413,7 @@ release\moc_producerworker.cpp: D:\QtFile\lightControlServer\producerworker.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtclasshelpermacros.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtversion.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtypeinfo.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qsysinfo.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qlogging.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qflags.h \
@@ -1442,14 +1439,13 @@ release\moc_producerworker.cpp: D:\QtFile\lightControlServer\producerworker.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtresource.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qttranslation.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qversiontagging.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtextstream.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qiodevicebase.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtmetamacros.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstring.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qchar.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringview.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qbytearray.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qrefcount.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qnamespace.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtmetamacros.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qarraydata.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qpair.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qarraydatapointer.h \
@@ -1462,46 +1458,30 @@ release\moc_producerworker.cpp: D:\QtFile\lightControlServer\producerworker.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\q20type_traits.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringliteral.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringalgorithms.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qscopedpointer.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringconverter_base.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstring.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qanystringview.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qutf8stringview.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringtokenizer.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringbuilder.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcontiguouscache.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qshareddata.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qlist.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qhashfunctions.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qsharedpointer_impl.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qiterator.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qbytearraylist.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringlist.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qalgorithms.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringmatcher.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcoreevent.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qscopedpointer.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qmetatype.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcompare.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdatastream.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qiodevicebase.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfloat16.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qmath.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qalgorithms.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qiterable.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qmetacontainer.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcontainerinfo.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtaggedpointer.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qobjectdefs.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qobjectdefs_impl.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qscopeguard.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qlist.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qiterator.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qbytearraylist.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringlist.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringmatcher.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qmap.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qshareddata_impl.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qset.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qhash.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvarlengtharray.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\q20memory.h \
-		D:\QtFile\lightControlServer\rdkafkacpp.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QObject \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qobject.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcoreevent.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qobject_impl.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qbindingstorage.h \
 		release\moc_predefs.h \
@@ -2126,16 +2106,17 @@ release\controller.obj: D:\QtFile\lightControlServer\controller.cpp D:\QtFile\li
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qthread.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdeadlinetimer.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QtFile\lightControlServer\controllerworker.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\QTcpSocket \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtcpsocket.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetworkglobal.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetwork-config.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetworkexports.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qabstractsocket.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qhostaddress.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QVector \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvector.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonObject \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonobject.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonvalue.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qshareddata.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qiodevice.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborvalue.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdatetime.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcalendar.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qlocale.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvariant.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdebug.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtextstream.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringconverter_base.h \
@@ -2148,22 +2129,26 @@ release\controller.obj: D:\QtFile\lightControlServer\controller.cpp D:\QtFile\li
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qhash.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\q20memory.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvariant.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\QUdpSocket \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qudpsocket.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonObject \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonobject.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonvalue.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborvalue.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdatetime.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcalendar.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qlocale.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborcommon.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qregularexpression.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qurl.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\quuid.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonArray \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonarray.h
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonarray.h \
+		D:\QtFile\lightControlServer\controllerworker.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\QTcpSocket \
+		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtcpsocket.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetworkglobal.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetwork-config.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetworkexports.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qabstractsocket.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qhostaddress.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qiodevice.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\QUdpSocket \
+		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qudpsocket.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QTimer \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtimer.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qbasictimer.h
 
 release\controllermanager.obj: D:\QtFile\lightControlServer\controllermanager.cpp D:\QtFile\lightControlServer\controllermanager.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QObject \
@@ -2262,16 +2247,17 @@ release\controllermanager.obj: D:\QtFile\lightControlServer\controllermanager.cp
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qthread.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdeadlinetimer.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\QtFile\lightControlServer\controllerworker.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\QTcpSocket \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtcpsocket.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetworkglobal.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetwork-config.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qtnetworkexports.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qabstractsocket.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qhostaddress.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QVector \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvector.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonObject \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonobject.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonvalue.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qshareddata.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qiodevice.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborvalue.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdatetime.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcalendar.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qlocale.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvariant.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdebug.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtextstream.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qstringconverter_base.h \
@@ -2284,16 +2270,6 @@ release\controllermanager.obj: D:\QtFile\lightControlServer\controllermanager.cp
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qhash.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\q20memory.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvariant.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\QUdpSocket \
-		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qudpsocket.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonObject \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonobject.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonvalue.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborvalue.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdatetime.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcalendar.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qlocale.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborcommon.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qregularexpression.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qurl.h \
@@ -2430,12 +2406,14 @@ release\controllerworker.obj: D:\QtFile\lightControlServer\controllerworker.cpp 
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\quuid.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonArray \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonarray.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QDateTime \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QTimer \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtimer.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qbasictimer.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QDateTime \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QEventLoop \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qeventloop.h
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qeventloop.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonDocument \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsondocument.h
 
 release\lightcontroll.obj: D:\QtFile\lightControlServer\lightcontroll.cpp D:\QtFile\lightControlServer\lightcontroll.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QObject \
@@ -3195,7 +3173,10 @@ release\myhttpserver.obj: D:\QtFile\lightControlServer\myhttpserver.cpp D:\Qt\6.
 		D:\QtFile\lightControlServer\lightcontroll.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QThread \
 		D:\QtFile\lightControlServer\lightCmdList.h \
-		D:\QtFile\lightControlServer\amplifier.h
+		D:\QtFile\lightControlServer\amplifier.h \
+		D:\QtFile\lightControlServer\controller.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QVector \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvector.h
 
 release\producer.obj: D:\QtFile\lightControlServer\producer.cpp D:\Qt\6.5.3\msvc2019_64\include\QtCore\QSettings \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qsettings.h \
@@ -3334,7 +3315,6 @@ release\producer.obj: D:\QtFile\lightControlServer\producer.cpp D:\Qt\6.5.3\msvc
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QObject \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QThread \
 		D:\QtFile\lightControlServer\producerworker.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QDebug \
 		D:\QtFile\lightControlServer\rdkafkacpp.h
 
 release\producerworker.obj: D:\QtFile\lightControlServer\producerworker.cpp D:\Qt\6.5.3\msvc2019_64\include\QtCore\QCoreApplication \
@@ -3675,70 +3655,18 @@ release\widget.obj: D:\QtFile\lightControlServer\widget.cpp D:\QtFile\lightContr
 		D:\Qt\6.5.3\msvc2019_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QMetaType \
 		ui_widget.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\QApplication \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qapplication.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcoreapplication.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qeventloop.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfuture.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfutureinterface.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qmutex.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtsan_impl.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qresultstore.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfuture_impl.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qthreadpool.h \
+		D:\QtFile\lightControlServer\producer.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QThread \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qthread.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdeadlinetimer.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qelapsedtimer.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qrunnable.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qexception.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qpromise.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qguiapplication.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qinputmethod.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qguiapplication_platform.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\QComboBox \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qcombobox.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qstyleoption.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qabstractspinbox.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qvalidator.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qregularexpression.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qslider.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qabstractslider.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qstyle.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qtabbar.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qrubberband.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qframe.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qabstractitemmodel.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\QLabel \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qlabel.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qpicture.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qtextdocument.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\QPlainTextEdit \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qplaintextedit.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qtextedit.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qabstractscrollarea.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qtextoption.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qtextcursor.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qtextformat.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qpen.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qabstracttextdocumentlayout.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qtextlayout.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qglyphrun.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qrawfont.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtGui\qfontdatabase.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\QPushButton \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtWidgets\qabstractbutton.h \
-		D:\QtFile\lightControlServer\producer.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QThread \
 		D:\QtFile\lightControlServer\lightcontroll.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonObject \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonobject.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonvalue.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborvalue.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcborcommon.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qregularexpression.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\quuid.h \
 		D:\QtFile\lightControlServer\myhttpserver.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtHttpServer\QHttpServer \
@@ -3763,20 +3691,36 @@ release\widget.obj: D:\QtFile\lightControlServer\widget.cpp D:\QtFile\lightContr
 		D:\Qt\6.5.3\msvc2019_64\include\QtHttpServer\qhttpserverresponse.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtHttpServer\qhttpserverresponder.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtHttpServer\qhttpserverviewtraits.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfuture.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfutureinterface.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qmutex.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qtsan_impl.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qresultstore.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfuture_impl.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qthreadpool.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qrunnable.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qexception.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qpromise.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtSerialPort\QSerialPort \
 		D:\Qt\6.5.3\msvc2019_64\include\QtSerialPort\qserialport.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtSerialPort\qserialportglobal.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtSerialPort\qtserialportexports.h \
 		D:\QtFile\lightControlServer\cts_sdk.h \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonDocument \
-		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsondocument.h \
+		D:\QtFile\lightControlServer\controller.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QVector \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qvector.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonArray \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsonarray.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QJsonDocument \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qjsondocument.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QFileInfo \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfileinfo.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfile.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qfiledevice.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QCoreApplication \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcoreapplication.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qeventloop.h \
+		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qcoreapplication_platform.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QDir \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\qdir.h \
 		D:\Qt\6.5.3\msvc2019_64\include\QtCore\QLockFile \

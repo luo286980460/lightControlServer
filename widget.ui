@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>264</height>
+    <height>270</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -94,17 +94,72 @@
     </rect>
    </property>
   </widget>
+  <widget class="QWidget" name="cfgWidgt" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>621</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>481</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Controllers/LightId01</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lightIds">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>551</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>1-10;254-254</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="testBtn_2">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>10</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>写入</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QPushButton" name="testBtn">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>540</x>
      <y>240</y>
      <width>51</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>test</string>
+    <string>配置</string>
    </property>
   </widget>
  </widget>

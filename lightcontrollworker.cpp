@@ -656,7 +656,7 @@ void lightControllWorker::slotReadyReadTcp()
 {
     QByteArray ba = m_tcpSocket->readAll().toHex();
     //m_tcpSocket->flush();
-    qDebug() << "*************ba: " << ba;
+    //qDebug() << "*************ba: " << ba;
     QString str = ba.toUpper();
     int state = -1;
     //int state = -1;
@@ -711,8 +711,8 @@ void lightControllWorker::slotReadyReadTcp()
 
 void lightControllWorker::slotReadyReadUdp()
 {
-    qDebug() << "m_udpSocket->hasPendingDatagrams();";
-    qDebug() << m_udpSocket->readAll();
+    // qDebug() << "m_udpSocket->hasPendingDatagrams();";
+    // qDebug() << m_udpSocket->readAll();
 }
 
 void lightControllWorker::slotSetIntervalAndCount(int sendingInterval, int sendingCount)
@@ -846,7 +846,7 @@ void lightControllWorker::slotCheckLightState(QStringList idlist)
 
 void lightControllWorker::slotCheckPathTrackingState()
 {
-    qDebug() << "QByteArray::fromHex(QString(CMD_STATUS_QUERY_3).toLatin1()): " << QByteArray::fromHex(QString(CMD_STATUS_QUERY_3).toLatin1());
+    // qDebug() << "QByteArray::fromHex(QString(CMD_STATUS_QUERY_3).toLatin1()): " << QByteArray::fromHex(QString(CMD_STATUS_QUERY_3).toLatin1());
     if(m_pathTrackingFlag != 0) return;
 
     if(m_connectType == "TCP"){
@@ -861,7 +861,7 @@ void lightControllWorker::slotCheckPathTrackingState()
 
 void lightControllWorker::slotTest(QByteArray ba)
 {
-    qDebug() << "**************************" ;
+    // qDebug() << "**************************" ;
     m_tcpSocket->write(ba);
     m_tcpSocket->waitForBytesWritten();
 }

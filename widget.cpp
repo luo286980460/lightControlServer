@@ -3,6 +3,7 @@
 #include "producer.h"
 #include "lightcontroll.h"
 #include "myhttpserver.h"
+#include "controller.h"
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -16,6 +17,7 @@
 #include <QTime>
 #include <QFile>
 #include <QTextCodec>
+#include <QMessageBox>
 
 #define INIFILE_PORT         "/ports.ini"
 #define INIFILE_LIGHT        "/Controllers.ini"
@@ -35,9 +37,10 @@ Widget::Widget(QWidget *parent)
 {
     //setWindowIconText("123");
     ui->setupUi(this);
-    ui->testBtn->hide();
+    //ui->testBtn->hide();
+    ui->cfgWidgt->hide();
     setFixedSize(size());
-    setWindowTitle("前端设备控制服务_2024年11月07日_by:ls");//.arg(QDateTime::currentDateTime().toString("yyyy年MM月dd日hh时mm分ss秒")));
+    setWindowTitle("前端设备控制服务_2024年12月31日_Alpha");//.arg(QDateTime::currentDateTime().toString("yyyy年MM月dd日hh时mm分ss秒")));
     initSystemTray();       // 初始化系统托盘
     // initRoadState();       // 初始化车道开启状态
 
@@ -64,6 +67,16 @@ Widget::Widget(QWidget *parent)
             sendFF88();
         }else{
             m_ff88Flag++;
+        }
+
+        m_autoCheck--;
+        if(m_autoCheck == 0){
+            for(int i=0; i<m_controllList.size(); i++){
+                int checkMode;
+                QStringList list;
+                m_controllList.at(i)->sendCheckCmd(checkMode, list);
+            }
+            m_autoCheck = 1800;
         }
 
     });
@@ -114,9 +127,12 @@ void Widget::openHttpServer()
     connect(m_httpServer, &MyHttpServer::signalWrite2Kafka, this, &Widget::write2Kafka);
     m_httpServer->create(QHostAddress::Any, m_settings->value("httpServer/httpServerPort", 8886).toInt());
 
-    openControlls();
+    // openControlls();
 
-    m_httpServer->updateLightControllList(&m_lightControllList);
+    // m_httpServer->updateLightControllList(&m_lightControllList);
+
+    openControllsNew();
+    m_httpServer->updateControllList(&m_controllList);
 
     soltUpdateTermListUi();
 }
@@ -141,7 +157,7 @@ void Widget::openProducer()
         m_producer->setkafkaIp(kafkaIp);
         m_producer->start();
         m_producer->init();
-        emit m_producer->sigleInitWork();
+        emit m_producer->signalInitWork();
         m_producerList.append(m_producer);
     }
 }
@@ -186,17 +202,54 @@ void Widget::openControlls()
             connect(controll, SIGNAL(write2Kafka(QString,QString,QString)), this, SIGNAL(write2Kafka(QString,QString,QString)));
 
             controll->start();
-            emit controll->sigConnectToControl();
-
-            /*if(!controll->connectControll()){
-            emit showMsg("控制器：" + controllIp + " 连接失败");
-            emit sigleUpdateControllerUi( "控制器：" + controllIp + " 离线");
-        }else{
-            emit showMsg("控制器：" + controllIp + " 连接成功");
-            emit sigleUpdateControllerUi( "控制器：" + controllIp + " 在线");
-        }*/
+            //emit controll->sigConnectToControl();
 
     }
+}
+
+void Widget::openControllsNew()
+{
+    if(m_controllList.size() != 0)
+        qDeleteAll(m_controllList);
+    m_controllList.clear();
+    m_controllCount = 0;
+
+    QString iniPath = QCoreApplication::applicationDirPath() + INIFILE_LIGHT;
+    if(!QFileInfo::exists(iniPath)){
+        showMsg("******雾灯配置文件读取失败");
+        return;
+    }
+    QSettings settings(QCoreApplication::applicationDirPath() + INIFILE_LIGHT, QSettings::IniFormat);
+    m_controllCount = settings.value("Controllers/Count").toInt();
+
+    //获取发送间隔 和 发送命令数量
+    int sendingInterval = settings.value(QString("Controllers/SendingInterval"), 500).toInt();
+    int sendingCount = settings.value(QString("Controllers/SendingCount"), 5).toInt();
+    QString topic = settings.value("Controllers/Topic", "test_ls").toString();      //控制器 主题
+
+    for(int i=0; i<m_controllCount; i++){
+        Controller* controll;    //控制器
+        QString ip = settings.value(QString("Controllers/Ip%1").arg(i+1,2,10,QLatin1Char('0'))).toString();   //控制器 IP
+        int port = settings.value(QString("Controllers/Port%1").arg(i+1,2,10,QLatin1Char('0'))).toInt();      //控制器 port
+        QString version = settings.value(QString("Controllers/Version%1").arg(i+1,2,10,QLatin1Char('0')), "1").toString();
+        QString ConnectType = settings.value(QString("Controllers/ConnectType%1").arg(i+1,2,10,QLatin1Char('0'))).toString().toUpper();   //连接方式
+        QStringList LightId = settings.value(QString("Controllers/LightId%1").arg(i+1,2,10,QLatin1Char('0'))).toStringList();   //灯id列表
+        //qDebug() << "LightId: " << LightId << " * * * " << QString("Controllers/LightId%1").arg(i+1,2,10,QLatin1Char('0'));
+
+        //创建控制器
+        controll = new Controller(ip, port, topic, sendingInterval, sendingCount, ConnectType, this);
+        m_controllList.append(controll);
+
+        connect(controll, &Controller::showMsg, this, &Widget::showMsg);
+        connect(controll, &Controller::signalWrite2Kafka, this, &Widget::slotWrite2Kafka);
+
+        controll->start();
+        controll->connectController(ConnectType);
+        controll->addLights(LightId);
+        //emit controll->sigConnectToControl();
+
+    }
+
 }
 
 void Widget::updateRoadStateSetting(QString state)
@@ -230,7 +283,7 @@ void Widget::initSystemTray()
         trayIcon->show(); //必须调用，否则托盘图标不显示
 
         //创建菜单项动作(以下动作只对windows有效)
-        minimizeAction = new QAction("最小化~", this);
+        minimizeAction = new QAction("最小化~   雾灯服务", this);
         connect(minimizeAction, SIGNAL(triggered()), this, SLOT(hide())); //绑定信号槽
 
         maximizeAction = new QAction("最大化~", this);
@@ -289,19 +342,7 @@ void Widget::on_clearBtn_clicked()
     ui->history->clear();
 }
 
-void Widget::showMsg(QString msg)
-{
-    ui->history->appendPlainText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss") + " --> " + msg);
 
-    QString logPath = QCoreApplication::applicationDirPath() + LOG;
-    QFile file(logPath);
-    if(file.open(QIODevice::Append)){
-        file.write(msg.toLocal8Bit());
-        file.write("\n");
-    }else{
-        ui->history->appendPlainText("log文件打开失败");
-    }
-}
 
 
 void Widget::on_OpenBtn_clicked()
@@ -330,6 +371,11 @@ void Widget::on_OpenBtn_clicked()
         //openFileWatcher();  // 超速摄像头文件监控模块
         //m_isOpen = !m_isOpen;
     }
+}
+
+void Widget::showMsg(QString msg)
+{
+    ui->history->appendPlainText(msg);
 }
 
 void Widget::slotUpdateRoadState(QString roadIsOpen)
@@ -454,17 +500,22 @@ QString Widget::getBackUpPath(QString filePath)
 
     if(!dir.exists()){
         bool ismkdir = dir.mkpath(filePath);
-        if(!ismkdir)
-            qDebug() << "Create path fail";
-        else
-            qDebug() << "Create fullpath success";
+        if(!ismkdir){
+            // qDebug() << "Create path fail";
+        }
+        else{
+            // qDebug() << "Create fullpath success";
+        }
     }
     return filePath;
 }
 
 void Widget::on_testBtn_clicked()
 {
-    emit m_httpServer->forTest();
+    //emit m_httpServer->forTest();
+
+    ui->cfgWidgt->setHidden(!ui->cfgWidgt->isHidden());
+
 }
 
 void Widget::dealPicFiles(QString path)
@@ -541,4 +592,78 @@ void Widget::requestFinished(QNetworkReply *reply)
 
 }
 
+void Widget::slotWrite2Kafka(QString topic, QString strJson, QString strKey)
+{
+    producer* prod = nullptr;
+
+    for(int i=0; i<m_producerList.size(); i++){
+        if(m_producerList.at(i)->getTopic() == topic){
+            prod = m_producerList.at(i);
+        }
+    }
+
+    if(prod){
+        emit prod->signalProduceMessvoidJson(strJson, strKey);
+    }
+}
+
+
+
+void Widget::on_testBtn_2_clicked()
+{
+    QString iniPath = QCoreApplication::applicationDirPath() + INIFILE_LIGHT;
+    if(!QFileInfo::exists(iniPath)){
+        showMsg("******雾灯配置文件读取失败");
+        return;
+    }
+    QSettings settings(QCoreApplication::applicationDirPath() + INIFILE_LIGHT, QSettings::IniFormat);
+
+    QString key = ui->lineEdit_2->text();
+    QStringList lightIdList;
+    QString lightIdStr = ui->lightIds->text().replace("；", ";");
+
+    if(lightIdStr.isEmpty()){
+        QMessageBox::information(this, "提示", "id列表为空，例：1-4;12-50");
+        return;
+    }
+
+    foreach (QString array, lightIdStr.split(";", Qt::SkipEmptyParts)) {
+        QStringList idList = array.split("-", Qt::SkipEmptyParts);
+        if(idList.size() != 2){
+            QMessageBox::information(this, "提示", "id格式有误，例：1-4;12-50");
+        }
+        int mini = idList.at(0).toInt();
+        int max = idList.at(1).toInt();
+        for(int i=mini; i<=max; i++){
+            lightIdList << QString::number(i);
+        }
+    }
+
+    // qDebug() << "lightIdList: " << lightIdList;
+
+    settings.setValue(key, lightIdList);
+
+    // for(int i=0; i<m_controllCount; i++){
+    //     Controller* controll;    //控制器
+    //     QString ip = settings.value(QString("Controllers/Ip%1").arg(i+1,2,10,QLatin1Char('0'))).toString();   //控制器 IP
+    //     int port = settings.value(QString("Controllers/Port%1").arg(i+1,2,10,QLatin1Char('0'))).toInt();      //控制器 port
+    //     QString version = settings.value(QString("Controllers/Version%1").arg(i+1,2,10,QLatin1Char('0')), "1").toString();
+    //     QString ConnectType = settings.value(QString("Controllers/ConnectType%1").arg(i+1,2,10,QLatin1Char('0'))).toString().toUpper();   //连接方式
+    //     QStringList LightId = settings.value(QString("Controllers/LightId%1").arg(i+1,2,10,QLatin1Char('0'))).toStringList();   //灯id列表
+    //     //qDebug() << "LightId: " << LightId << " * * * " << QString("Controllers/LightId%1").arg(i+1,2,10,QLatin1Char('0'));
+
+    //     //创建控制器
+    //     controll = new Controller(ip, port, topic, sendingInterval, sendingCount, ConnectType, this);
+    //     m_controllList.append(controll);
+
+    //     connect(controll, &Controller::showMsg, this, &Widget::showMsg);
+    //     connect(controll, &Controller::signalWrite2Kafka, this, &Widget::slotWrite2Kafka);
+
+    //     controll->start();
+    //     controll->connectController(ConnectType);
+    //     controll->addLights(LightId);
+    //     //emit controll->sigConnectToControl();
+
+    // }
+}
 

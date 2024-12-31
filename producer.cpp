@@ -1,4 +1,4 @@
-#include <QSettings>
+﻿#include <QSettings>
 #include <QCoreApplication>
 #include <QFileInfo>
 
@@ -24,8 +24,8 @@ void producer::init()
     connect(&m_workerThread, &QThread::finished, m_work, &QObject::deleteLater);
 
     connect(m_work, &producerWorker::showMsg, this, &producer::showMsg);
-    connect(this, &producer::sigleProduceMessvoidJson, m_work, &producerWorker::slotProduceMessvoidJson);
-    connect(this, &producer::sigleInitWork, m_work, &producerWorker::init);
+    connect(this, &producer::signalProduceMessvoidJson, m_work, &producerWorker::slotProduceMessvoidJson);
+    connect(this, &producer::signalInitWork, m_work, &producerWorker::init);
 }
 
 void producer::start()
@@ -49,9 +49,14 @@ void producer::setkafkaIp(QString kafkaIp)
     m_ip = kafkaIp;
 }
 
+QString producer::getTopic()
+{
+    return m_topic;
+}
+
 void producer::slotProduceMessvoidJson(QString topic, QString strJson, QString strKey)
 {
     if(m_topic == topic){
-        emit sigleProduceMessvoidJson(strJson, strKey);
+        emit signalProduceMessvoidJson(strJson, strKey);
     }
 }

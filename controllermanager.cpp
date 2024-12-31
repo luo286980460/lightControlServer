@@ -10,15 +10,15 @@ ControllerManager::ControllerManager(QObject *parent)
 
 void ControllerManager::addController(QString ControllerIpPort, QStringList LightIds, QString ConnectType)
 {
-    int index = hasController(ControllerIpPort);
-    if(index > -1) return;
+    // int index = hasController(ControllerIpPort);
+    // if(index > -1) return;
 
-    Controller* controller = new Controller;
-    controller->setControllerIpPort(ControllerIpPort);
-    controller->addLights(LightIds);
-    controller->connectController(ConnectType);
+    // Controller* controller = new Controller(ControllerIpPort.split(":").at(0), ControllerIpPort.split(":").at(1).toInt());
+    // controller->setControllerIpPort(ControllerIpPort);
+    // controller->addLights(LightIds);
+    // controller->connectController(ConnectType);
 
-    m_controllers << controller;
+    // m_controllers << controller;
 
 }
 void ControllerManager::delController(QString ControllerIpPort)

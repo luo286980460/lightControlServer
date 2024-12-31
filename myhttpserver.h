@@ -11,6 +11,7 @@
 
 class lightcontroll;
 class amplifier;
+class Controller;
 
 
 typedef enum{
@@ -67,15 +68,25 @@ public:
     int m_sendingInterval;                                  // 单位 ms
     int m_sendingCount;                                     // 发送数量
 
-    void initSerialPort();
-    //QJsonObject parseLightJson(QJsonObject& json);        // 解析 雾灯 json数据z
+    /* 新版功能开始 */
+
+    QList<Controller*>* m_controllList = nullptr;           // 控制器列表
+    void updateControllList(QList<Controller*>*);           // 更新控制器列表
+    bool controllerIsUseful(Controller* controller,         // 控制器是否存在，或者是否处在查询状态
+                            QString TermIp,
+                            QJsonObject &backJson);
+    Controller* getControllerFromIpPortNew(QString ip,      // 从ip和Port获取控制器对象
+                                        int Port);
     QJsonObject parseLightBroadcast(QJsonObject& json);     // 解析 雾灯 广播控灯（协议3.0）
     bool missingParameterBroadcast(QJsonObject& json,       // parseLightBroadcast 是否缺少必要参数
-                                    QJsonObject& backJson);
+                                   QJsonObject& backJson);
     QJsonObject parseLightBroadcastNot(QJsonObject& json);  // 解析 雾灯 非广播控灯（协议3.0）
     bool missingParameterBroadcastNot(QJsonObject& json,    // parseLightBroadcast 是否缺少必要参数
-                                   QJsonObject& backJson);
+                                      QJsonObject& backJson);
 
+    /* 新版功能结束 */
+
+    //QJsonObject parseLightJson(QJsonObject& json);        // 解析 雾灯 json数据z
     QJsonObject parseLightJson(QJsonObject& json);          // 解析 雾灯 json数据 2.0 版本
     QJsonObject parseLightPathTracking(QJsonObject& json);  // 解析 雾灯 轨迹请求
     QJsonObject parseUpdateLightState(QJsonObject& json);   // 解析 雾灯 更新雾灯状态请求
@@ -154,6 +165,9 @@ signals:
     void signalUpdateTermList(QStringList ipList, QStringList codeList);
     void signalTTS(QString TermIp, QString Content, QString Name, QString sbbh, int Volume, int Times, int Gap
                    , QString m_deviceId, int vol);
+
+public slots:
+    void slotWriteLightState2Kafka();
 
 public:
     QHttpServer* m_httpServer;          // http 服务

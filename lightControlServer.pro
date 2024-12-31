@@ -69,4 +69,3 @@ win32: LIBS += -L$$PWD/./ -lCtsSdk
 INCLUDEPATH += $$PWD/.
 DEPENDPATH += $$PWD/.
 
-DISTFILES +=

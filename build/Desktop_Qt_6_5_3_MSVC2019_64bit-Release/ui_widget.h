@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -28,6 +29,10 @@ public:
     QLabel *timeLabel;
     QLabel *label;
     QComboBox *termListComboBox;
+    QWidget *cfgWidgt;
+    QLineEdit *lineEdit_2;
+    QLineEdit *lightIds;
+    QPushButton *testBtn_2;
     QPushButton *testBtn;
 
     void setupUi(QWidget *Widget)
@@ -35,7 +40,7 @@ public:
         if (Widget->objectName().isEmpty())
             Widget->setObjectName("Widget");
         Widget->setEnabled(true);
-        Widget->resize(600, 264);
+        Widget->resize(600, 270);
         history = new QPlainTextEdit(Widget);
         history->setObjectName("history");
         history->setGeometry(QRect(10, 27, 581, 211));
@@ -56,9 +61,22 @@ public:
         termListComboBox = new QComboBox(Widget);
         termListComboBox->setObjectName("termListComboBox");
         termListComboBox->setGeometry(QRect(100, 3, 380, 20));
+        cfgWidgt = new QWidget(Widget);
+        cfgWidgt->setObjectName("cfgWidgt");
+        cfgWidgt->setGeometry(QRect(0, 0, 621, 271));
+        cfgWidgt->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        lineEdit_2 = new QLineEdit(cfgWidgt);
+        lineEdit_2->setObjectName("lineEdit_2");
+        lineEdit_2->setGeometry(QRect(10, 10, 481, 25));
+        lightIds = new QLineEdit(cfgWidgt);
+        lightIds->setObjectName("lightIds");
+        lightIds->setGeometry(QRect(10, 40, 551, 25));
+        testBtn_2 = new QPushButton(cfgWidgt);
+        testBtn_2->setObjectName("testBtn_2");
+        testBtn_2->setGeometry(QRect(510, 10, 51, 21));
         testBtn = new QPushButton(Widget);
         testBtn->setObjectName("testBtn");
-        testBtn->setGeometry(QRect(100, 240, 51, 21));
+        testBtn->setGeometry(QRect(540, 240, 51, 21));
 
         retranslateUi(Widget);
 
@@ -72,7 +90,11 @@ public:
         OpenBtn->setText(QCoreApplication::translate("Widget", "\346\211\223\345\274\200\346\234\215\345\212\241\345\231\250", nullptr));
         timeLabel->setText(QString());
         label->setText(QCoreApplication::translate("Widget", "<html><head/><body><p align=\"center\">\351\237\263\345\223\215\350\256\276\345\244\207\345\210\227\350\241\250</p></body></html>", nullptr));
-        testBtn->setText(QCoreApplication::translate("Widget", "test", nullptr));
+        lineEdit_2->setText(QString());
+        lineEdit_2->setPlaceholderText(QCoreApplication::translate("Widget", "Controllers/LightId01", nullptr));
+        lightIds->setPlaceholderText(QCoreApplication::translate("Widget", "1-10;254-254", nullptr));
+        testBtn_2->setText(QCoreApplication::translate("Widget", "\345\206\231\345\205\245", nullptr));
+        testBtn->setText(QCoreApplication::translate("Widget", "\351\205\215\347\275\256", nullptr));
     } // retranslateUi
 
 };

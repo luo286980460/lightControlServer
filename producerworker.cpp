@@ -1,4 +1,4 @@
-#include <QCoreApplication>
+﻿#include <QCoreApplication>
 #include <QFileInfo>
 #include <QSettings>
 #include <QDebug>
@@ -24,7 +24,7 @@ producerWorker::~producerWorker()
     m_run = true;
     // 退出前处理完输出队列中的消息
     while (m_run && producer->outq_len() > 0) {
-        //qDebug()<< "Waiting for " << producer->outq_len();
+        qDebug()<< "Waiting for " << producer->outq_len();
         producer->poll(1000);
     }
     RdKafka::wait_destroyed(1000);
@@ -47,37 +47,40 @@ void producerWorker::produceMessage(std::string message, std::string key)
                               const_cast<char *>(key.c_str()), key.size(),
                               NULL);
 
-    if (resp != RdKafka::ERR_NO_ERROR);
-        //qDebug()<< "% Produce failed: " <<QString::fromStdString(RdKafka::err2str(resp));
-    else;
-        //qDebug()<< "% Produced message (" << message.size() << " bytes)";
+    if (resp != RdKafka::ERR_NO_ERROR){
+        qDebug()<< "% Produce failed: " <<QString::fromStdString(RdKafka::err2str(resp));
+    }
+    else{
+        qDebug()<< "% Produced message (" << message.size() << " bytes)";
+    }
     qDebug() << QString::fromStdString(message) << QString::fromStdString(key);
     producer->poll(0);
 }
 
 void producerWorker::slotProduceMessvoidJson(QString strJson, QString strKey)
 {
+    qDebug() << "slotProduceMessvoidJson";
+
     std::string message = strJson.toStdString();
     std::string key = strKey.toStdString();
     RdKafka::ErrorCode resp;
 
     if(producer){
-        //qDebug() << "********* debug1 *********";
         resp = producer->produce(topic, partition,
                       RdKafka::Producer::RK_MSG_COPY /* Copy payload */,
                       const_cast<char *>(message.c_str()), message.size(),
                       const_cast<char *>(key.c_str()), key.size(),
                       NULL);
 
-        if (resp != RdKafka::ERR_NO_ERROR)
+        if (resp != RdKafka::ERR_NO_ERROR){
             qDebug()<< "% Produce failed: " << QString::fromStdString(RdKafka::err2str(resp));
-        else
+        }
+        else{
             qDebug()<< "% Produced message (" << message.size() << " bytes)";
+        }
 
-            producer->poll(0);
-        //qDebug() << "********* debug2 *********";
+        producer->poll(0);
     }
-    //qDebug() << "********* debug3 *********";
 }
 
 void producerWorker::init()
@@ -112,7 +115,7 @@ void producerWorker::init()
         exit(1);
     }
     std::cout << "% Created producer " << producer->name() << std::endl;
-    //emit showMsg("kafka创造已开启");
+    emit showMsg("kafka创造已开启");
 
     topic = RdKafka::Topic::create(producer, m_topic_str,
                                                    tconf, errstr);

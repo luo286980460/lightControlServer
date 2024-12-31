@@ -41,8 +41,8 @@ static constexpr auto qt_meta_stringdata_CLASSproducerENDCLASS = QtMocHelpers::s
     "producer",
     "showMsg",
     "",
-    "sigleInitWork",
-    "sigleProduceMessvoidJson",
+    "signalInitWork",
+    "signalProduceMessvoidJson",
     "strJson",
     "strKey",
     "slotProduceMessvoidJson",
@@ -54,8 +54,8 @@ struct qt_meta_stringdata_CLASSproducerENDCLASS_t {
     char stringdata0[9];
     char stringdata1[8];
     char stringdata2[1];
-    char stringdata3[14];
-    char stringdata4[25];
+    char stringdata3[15];
+    char stringdata4[26];
     char stringdata5[8];
     char stringdata6[7];
     char stringdata7[24];
@@ -68,18 +68,18 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSproducerENDCLASS_t qt_meta_stri
         QT_MOC_LITERAL(0, 8),  // "producer"
         QT_MOC_LITERAL(9, 7),  // "showMsg"
         QT_MOC_LITERAL(17, 0),  // ""
-        QT_MOC_LITERAL(18, 13),  // "sigleInitWork"
-        QT_MOC_LITERAL(32, 24),  // "sigleProduceMessvoidJson"
-        QT_MOC_LITERAL(57, 7),  // "strJson"
-        QT_MOC_LITERAL(65, 6),  // "strKey"
-        QT_MOC_LITERAL(72, 23),  // "slotProduceMessvoidJson"
-        QT_MOC_LITERAL(96, 5)   // "topic"
+        QT_MOC_LITERAL(18, 14),  // "signalInitWork"
+        QT_MOC_LITERAL(33, 25),  // "signalProduceMessvoidJson"
+        QT_MOC_LITERAL(59, 7),  // "strJson"
+        QT_MOC_LITERAL(67, 6),  // "strKey"
+        QT_MOC_LITERAL(74, 23),  // "slotProduceMessvoidJson"
+        QT_MOC_LITERAL(98, 5)   // "topic"
     },
     "producer",
     "showMsg",
     "",
-    "sigleInitWork",
-    "sigleProduceMessvoidJson",
+    "signalInitWork",
+    "signalProduceMessvoidJson",
     "strJson",
     "strKey",
     "slotProduceMessvoidJson",
@@ -133,9 +133,9 @@ Q_CONSTINIT const QMetaObject producer::staticMetaObject = { {
         // method 'showMsg'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        // method 'sigleInitWork'
+        // method 'signalInitWork'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'sigleProduceMessvoidJson'
+        // method 'signalProduceMessvoidJson'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -155,8 +155,8 @@ void producer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         (void)_t;
         switch (_id) {
         case 0: _t->showMsg((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 1: _t->sigleInitWork(); break;
-        case 2: _t->sigleProduceMessvoidJson((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 1: _t->signalInitWork(); break;
+        case 2: _t->signalProduceMessvoidJson((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 3: _t->slotProduceMessvoidJson((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         default: ;
         }
@@ -171,14 +171,14 @@ void producer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         }
         {
             using _t = void (producer::*)();
-            if (_t _q_method = &producer::sigleInitWork; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &producer::signalInitWork; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 1;
                 return;
             }
         }
         {
             using _t = void (producer::*)(QString , QString );
-            if (_t _q_method = &producer::sigleProduceMessvoidJson; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &producer::signalProduceMessvoidJson; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 2;
                 return;
             }
@@ -224,13 +224,13 @@ void producer::showMsg(QString _t1)
 }
 
 // SIGNAL 1
-void producer::sigleInitWork()
+void producer::signalInitWork()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
-void producer::sigleProduceMessvoidJson(QString _t1, QString _t2)
+void producer::signalProduceMessvoidJson(QString _t1, QString _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);

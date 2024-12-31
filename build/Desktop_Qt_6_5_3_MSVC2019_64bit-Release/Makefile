@@ -354,7 +354,6 @@ Makefile: D:\QtFile\lightControlServer\lightControlServer.pro D:\Qt\6.5.3\msvc20
 		D:\Qt\6.5.3\msvc2019_64\mkspecs\features\qt_config.prf \
 		D:\Qt\6.5.3\msvc2019_64\mkspecs\win32-msvc\qmake.conf \
 		D:\Qt\6.5.3\msvc2019_64\mkspecs\features\spec_post.prf \
-		.qmake.stash \
 		D:\Qt\6.5.3\msvc2019_64\mkspecs\features\exclusive_builds.prf \
 		D:\Qt\6.5.3\msvc2019_64\mkspecs\common\msvc-version.conf \
 		D:\Qt\6.5.3\msvc2019_64\mkspecs\features\toolchain.prf \
@@ -390,6 +389,7 @@ Makefile: D:\QtFile\lightControlServer\lightControlServer.pro D:\Qt\6.5.3\msvc20
 		D:\Qt\6.5.3\msvc2019_64\lib\Qt6Core5Compat.prl \
 		D:\Qt\6.5.3\msvc2019_64\lib\Qt6Core.prl \
 		D:\Qt\6.5.3\msvc2019_64\lib\Qt6EntryPoint.prl \
+		.qmake.stash \
 		D:\Qt\6.5.3\msvc2019_64\mkspecs\features\build_pass.prf \
 		D:\QtFile\lightControlServer\res.qrc \
 		D:\Qt\6.5.3\msvc2019_64\lib\Qt6Widgetsd.prl \
@@ -672,7 +672,6 @@ D:\Qt\6.5.3\msvc2019_64\mkspecs\features\qt_functions.prf:
 D:\Qt\6.5.3\msvc2019_64\mkspecs\features\qt_config.prf:
 D:\Qt\6.5.3\msvc2019_64\mkspecs\win32-msvc\qmake.conf:
 D:\Qt\6.5.3\msvc2019_64\mkspecs\features\spec_post.prf:
-.qmake.stash:
 D:\Qt\6.5.3\msvc2019_64\mkspecs\features\exclusive_builds.prf:
 D:\Qt\6.5.3\msvc2019_64\mkspecs\common\msvc-version.conf:
 D:\Qt\6.5.3\msvc2019_64\mkspecs\features\toolchain.prf:
@@ -708,6 +707,7 @@ D:\Qt\6.5.3\msvc2019_64\lib\Qt6SerialPort.prl:
 D:\Qt\6.5.3\msvc2019_64\lib\Qt6Core5Compat.prl:
 D:\Qt\6.5.3\msvc2019_64\lib\Qt6Core.prl:
 D:\Qt\6.5.3\msvc2019_64\lib\Qt6EntryPoint.prl:
+.qmake.stash:
 D:\Qt\6.5.3\msvc2019_64\mkspecs\features\build_pass.prf:
 D:\QtFile\lightControlServer\res.qrc:
 D:\Qt\6.5.3\msvc2019_64\lib\Qt6Widgetsd.prl:

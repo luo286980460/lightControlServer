@@ -69,6 +69,7 @@ static constexpr auto qt_meta_stringdata_CLASSWidgetENDCLASS = QtMocHelpers::str
     "on_clearBtn_clicked",
     "on_OpenBtn_clicked",
     "showMsg",
+    "msg",
     "slotUpdateRoadState",
     "iconActivated",
     "QSystemTrayIcon::ActivationReason",
@@ -82,11 +83,13 @@ static constexpr auto qt_meta_stringdata_CLASSWidgetENDCLASS = QtMocHelpers::str
     "path",
     "requestFinished",
     "QNetworkReply*",
-    "reply"
+    "reply",
+    "slotWrite2Kafka",
+    "on_testBtn_2_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSWidgetENDCLASS_t {
-    uint offsetsAndSizes[88];
+    uint offsetsAndSizes[94];
     char stringdata0[7];
     char stringdata1[12];
     char stringdata2[1];
@@ -117,20 +120,23 @@ struct qt_meta_stringdata_CLASSWidgetENDCLASS_t {
     char stringdata27[20];
     char stringdata28[19];
     char stringdata29[8];
-    char stringdata30[20];
-    char stringdata31[14];
-    char stringdata32[34];
-    char stringdata33[7];
-    char stringdata34[21];
-    char stringdata35[23];
-    char stringdata36[15];
-    char stringdata37[5];
-    char stringdata38[19];
-    char stringdata39[13];
-    char stringdata40[5];
-    char stringdata41[16];
-    char stringdata42[15];
-    char stringdata43[6];
+    char stringdata30[4];
+    char stringdata31[20];
+    char stringdata32[14];
+    char stringdata33[34];
+    char stringdata34[7];
+    char stringdata35[21];
+    char stringdata36[23];
+    char stringdata37[15];
+    char stringdata38[5];
+    char stringdata39[19];
+    char stringdata40[13];
+    char stringdata41[5];
+    char stringdata42[16];
+    char stringdata43[15];
+    char stringdata44[6];
+    char stringdata45[16];
+    char stringdata46[21];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSWidgetENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -166,20 +172,23 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSWidgetENDCLASS_t qt_meta_string
         QT_MOC_LITERAL(271, 19),  // "on_clearBtn_clicked"
         QT_MOC_LITERAL(291, 18),  // "on_OpenBtn_clicked"
         QT_MOC_LITERAL(310, 7),  // "showMsg"
-        QT_MOC_LITERAL(318, 19),  // "slotUpdateRoadState"
-        QT_MOC_LITERAL(338, 13),  // "iconActivated"
-        QT_MOC_LITERAL(352, 33),  // "QSystemTrayIcon::ActivationRe..."
-        QT_MOC_LITERAL(386, 6),  // "reason"
-        QT_MOC_LITERAL(393, 20),  // "soltUpdateTermListUi"
-        QT_MOC_LITERAL(414, 22),  // "slotUpdateControllerUi"
-        QT_MOC_LITERAL(437, 14),  // "slotUpdateFF88"
-        QT_MOC_LITERAL(452, 4),  // "ff88"
-        QT_MOC_LITERAL(457, 18),  // "on_testBtn_clicked"
-        QT_MOC_LITERAL(476, 12),  // "dealPicFiles"
-        QT_MOC_LITERAL(489, 4),  // "path"
-        QT_MOC_LITERAL(494, 15),  // "requestFinished"
-        QT_MOC_LITERAL(510, 14),  // "QNetworkReply*"
-        QT_MOC_LITERAL(525, 5)   // "reply"
+        QT_MOC_LITERAL(318, 3),  // "msg"
+        QT_MOC_LITERAL(322, 19),  // "slotUpdateRoadState"
+        QT_MOC_LITERAL(342, 13),  // "iconActivated"
+        QT_MOC_LITERAL(356, 33),  // "QSystemTrayIcon::ActivationRe..."
+        QT_MOC_LITERAL(390, 6),  // "reason"
+        QT_MOC_LITERAL(397, 20),  // "soltUpdateTermListUi"
+        QT_MOC_LITERAL(418, 22),  // "slotUpdateControllerUi"
+        QT_MOC_LITERAL(441, 14),  // "slotUpdateFF88"
+        QT_MOC_LITERAL(456, 4),  // "ff88"
+        QT_MOC_LITERAL(461, 18),  // "on_testBtn_clicked"
+        QT_MOC_LITERAL(480, 12),  // "dealPicFiles"
+        QT_MOC_LITERAL(493, 4),  // "path"
+        QT_MOC_LITERAL(498, 15),  // "requestFinished"
+        QT_MOC_LITERAL(514, 14),  // "QNetworkReply*"
+        QT_MOC_LITERAL(529, 5),  // "reply"
+        QT_MOC_LITERAL(535, 15),  // "slotWrite2Kafka"
+        QT_MOC_LITERAL(551, 20)   // "on_testBtn_2_clicked"
     },
     "Widget",
     "write2Kafka",
@@ -211,6 +220,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSWidgetENDCLASS_t qt_meta_string
     "on_clearBtn_clicked",
     "on_OpenBtn_clicked",
     "showMsg",
+    "msg",
     "slotUpdateRoadState",
     "iconActivated",
     "QSystemTrayIcon::ActivationReason",
@@ -224,7 +234,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSWidgetENDCLASS_t qt_meta_string
     "path",
     "requestFinished",
     "QNetworkReply*",
-    "reply"
+    "reply",
+    "slotWrite2Kafka",
+    "on_testBtn_2_clicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -236,7 +248,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSWidgetENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      17,   14, // methods
+      19,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -244,25 +256,27 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSWidgetENDCLASS[] = {
        6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    3,  116,    2, 0x06,    1 /* Public */,
-       6,    3,  123,    2, 0x06,    5 /* Public */,
-      10,    8,  130,    2, 0x06,    9 /* Public */,
-      19,    2,  147,    2, 0x06,   18 /* Public */,
-      22,    3,  152,    2, 0x06,   21 /* Public */,
-      26,    2,  159,    2, 0x06,   25 /* Public */,
+       1,    3,  128,    2, 0x06,    1 /* Public */,
+       6,    3,  135,    2, 0x06,    5 /* Public */,
+      10,    8,  142,    2, 0x06,    9 /* Public */,
+      19,    2,  159,    2, 0x06,   18 /* Public */,
+      22,    3,  164,    2, 0x06,   21 /* Public */,
+      26,    2,  171,    2, 0x06,   25 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      27,    0,  164,    2, 0x08,   28 /* Private */,
-      28,    0,  165,    2, 0x08,   29 /* Private */,
-      29,    1,  166,    2, 0x08,   30 /* Private */,
-      30,    1,  169,    2, 0x08,   32 /* Private */,
-      31,    1,  172,    2, 0x08,   34 /* Private */,
-      34,    0,  175,    2, 0x08,   36 /* Private */,
-      35,    1,  176,    2, 0x08,   37 /* Private */,
-      36,    1,  179,    2, 0x08,   39 /* Private */,
-      38,    0,  182,    2, 0x08,   41 /* Private */,
-      39,    1,  183,    2, 0x08,   42 /* Private */,
-      41,    1,  186,    2, 0x08,   44 /* Private */,
+      27,    0,  176,    2, 0x08,   28 /* Private */,
+      28,    0,  177,    2, 0x08,   29 /* Private */,
+      29,    1,  178,    2, 0x08,   30 /* Private */,
+      31,    1,  181,    2, 0x08,   32 /* Private */,
+      32,    1,  184,    2, 0x08,   34 /* Private */,
+      35,    0,  187,    2, 0x08,   36 /* Private */,
+      36,    1,  188,    2, 0x08,   37 /* Private */,
+      37,    1,  191,    2, 0x08,   39 /* Private */,
+      39,    0,  194,    2, 0x08,   41 /* Private */,
+      40,    1,  195,    2, 0x08,   42 /* Private */,
+      42,    1,  198,    2, 0x08,   44 /* Private */,
+      45,    3,  201,    2, 0x08,   46 /* Private */,
+      46,    0,  208,    2, 0x08,   50 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    3,    4,    5,
@@ -275,15 +289,17 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSWidgetENDCLASS[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   30,
     QMetaType::Void, QMetaType::QString,    2,
-    QMetaType::Void, QMetaType::QString,    2,
-    QMetaType::Void, 0x80000000 | 32,   33,
+    QMetaType::Void, 0x80000000 | 33,   34,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    2,
-    QMetaType::Void, QMetaType::QString,   37,
+    QMetaType::Void, QMetaType::QString,   38,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   40,
-    QMetaType::Void, 0x80000000 | 42,   43,
+    QMetaType::Void, QMetaType::QString,   41,
+    QMetaType::Void, 0x80000000 | 43,   44,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,    3,    4,    5,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -358,7 +374,14 @@ Q_CONSTINIT const QMetaObject Widget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'requestFinished'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QNetworkReply *, std::false_type>
+        QtPrivate::TypeAndForceComplete<QNetworkReply *, std::false_type>,
+        // method 'slotWrite2Kafka'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'on_testBtn_2_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -386,6 +409,8 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 14: _t->on_testBtn_clicked(); break;
         case 15: _t->dealPicFiles((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 16: _t->requestFinished((*reinterpret_cast< std::add_pointer_t<QNetworkReply*>>(_a[1]))); break;
+        case 17: _t->slotWrite2Kafka((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
+        case 18: _t->on_testBtn_2_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -465,13 +490,13 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 17)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 17;
+        _id -= 19;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 17)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 17;
+        _id -= 19;
     }
     return _id;
 }

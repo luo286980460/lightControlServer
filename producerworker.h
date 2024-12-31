@@ -1,4 +1,4 @@
-#ifndef PRODUCERWORKER_H
+﻿#ifndef PRODUCERWORKER_H
 #define PRODUCERWORKER_H
 
 #include <iostream>
@@ -6,7 +6,6 @@
 #include <cstdlib>
 #include <cstdio>
 //#include <csignal>
-#include <QDebug>
 #include "rdkafkacpp.h"
 #include <QObject>
 

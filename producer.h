@@ -1,4 +1,4 @@
-#ifndef PRODUCER_H
+﻿#ifndef PRODUCER_H
 #define PRODUCER_H
 
 #include <QObject>
@@ -18,11 +18,12 @@ public:
 
     void setTopic(QString topic);
     void setkafkaIp(QString kafkaIp);
+    QString getTopic();
 
 signals:
     void showMsg(QString);
-    void sigleInitWork();
-    void sigleProduceMessvoidJson(QString strJson, QString strKey);
+    void signalInitWork();
+    void signalProduceMessvoidJson(QString strJson, QString strKey);
 
 public slots:
     void slotProduceMessvoidJson(QString topic, QString strJson, QString strKey);

@@ -16,6 +16,7 @@ QT_END_NAMESPACE
 class producer;
 class lightcontroll;
 class MyHttpServer;
+class Controller;
 
 class Widget : public QWidget
 {
@@ -31,6 +32,7 @@ public:
     void openHttpServer();  // 打开http服务，可控雾灯、右转屏、音响
     void openProducer();    // 打开kafka创造者
     void openControlls();   // 加载雾灯控制器
+    void openControllsNew();   // 加载雾灯控制器
     void updateRoadStateSetting(QString state); // 更新车道状态配置文件
 
     void closeEvent(QCloseEvent* event);        // 重写关闭按钮事件
@@ -41,7 +43,7 @@ public:
 private slots:
     void on_clearBtn_clicked();
     void on_OpenBtn_clicked();
-    void showMsg(QString);
+    void showMsg(QString msg);
     void slotUpdateRoadState(QString);
     void iconActivated(QSystemTrayIcon::ActivationReason reason);   // 托盘点击响应槽
 
@@ -54,6 +56,9 @@ private slots:
     // 处理超速照片模块
     void dealPicFiles(QString path);
     void requestFinished(QNetworkReply* reply);
+    void slotWrite2Kafka(QString topic, QString strJson, QString strKey);
+
+    void on_testBtn_2_clicked();
 
 signals:
     void write2Kafka(QString topic, QString strJson, QString strKey);
@@ -83,9 +88,11 @@ private:
     QTimer m_timer;             // 应急车道关闭缓冲计时器
     QString m_roadIsOpen;       // 应急车道是否开启
     QTimer m_mscTimer;          // 秒级定时器
+    int m_autoCheck = 1800;        // 自动查询灯状态 每30分钟
 
     //雾灯 模块
-    QList<lightcontroll*> m_lightControllList; // 控制器列表
+    QList<lightcontroll*> m_lightControllList;  // 控制器列表
+    QList<Controller*> m_controllList;          // 控制器列表
     int m_controllCount;        // 控制器数量
     int m_ff88Flag;             // 闪烁同步标志
     QString m_ff88;             // 闪烁同步命令
